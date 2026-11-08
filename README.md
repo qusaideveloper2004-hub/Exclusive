@@ -1,5 +1,11 @@
 # Exclusive E-Commerce
 
+## Live Demo
+
+- [Open the live demo](https://exclusive-olive.vercel.app/)
+
+- [English](https://exclusive-olive.vercel.app/en) | [Arabic](https://exclusive-olive.vercel.app/ar)
+
 This project is a multi-language e-commerce mini website built with Next.js and TypeScript. It includes Arabic and English support, responsive design, product pages, cart, wishlist, checkout, account management, and local demo interactions.
 
 The goal was to build a complete frontend experience close to the provided design, while keeping the code organized and maintainable.
