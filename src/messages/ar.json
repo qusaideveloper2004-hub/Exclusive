@@ -1,0 +1,441 @@
+{
+  "TopBanner": {
+    "announcement": "خصم الصيف على جميع ملابس السباحة وتوصيل سريع مجاني - خصم 50%!",
+    "shopNow": "تسوق الآن"
+  },
+
+
+
+
+  "Header": {
+    "home": "الرئيسية",
+    "contact": "تواصل معنا",
+    "about": "من نحن",
+    "signup": "حساب جديد",
+    "searchPlaceholder": "عن ماذا تبحث؟",
+    "searchAction": "بحث",
+    "wishlist": "المفضلة",
+    "cart": "السلة"
+  },
+
+
+  "Auth": {
+    "loginTitle": "تسجيل الدخول إلى Exclusive",
+    "loginSubtitle": "أدخل بياناتك أدناه",
+    "emailOrPhonePlaceholder": "البريد الإلكتروني أو رقم الهاتف",
+    "passwordPlaceholder": "كلمة المرور",
+    "logIn": "تسجيل الدخول",
+    "loggingIn": "جارٍ تسجيل الدخول...",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "loginFailed": "تعذر تسجيل الدخول. حاول مرة أخرى.",
+    "googleSignInDemo": "تسجيل الدخول باستخدام Google تجريبي وغير متصل بمزود حسابات.",
+    "createAccountTitle": "إنشاء حساب",
+    "signupSubtitle": "أدخل بياناتك أدناه",
+    "namePlaceholder": "الاسم",
+    "createAccount": "إنشاء حساب",
+    "creatingAccount": "جارٍ إنشاء الحساب...",
+    "signUpGoogle": "التسجيل باستخدام Google",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "signupImageAlt": "عربة تسوق وهاتف وحقائب تسوق",
+    "accountMenu": "قائمة الحساب",
+    "manageAccount": "إدارة حسابي",
+    "myOrders": "طلباتي",
+    "myCancellations": "إلغاءاتي",
+    "myReviews": "تقييماتي",
+    "logout": "تسجيل الخروج",
+
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "passwordMin": "يجب ألا تقل كلمة المرور عن 8 أحرف",
+      "invalidEmail": "أدخل بريدًا إلكترونيًا صحيحًا",
+      "passwordMatch": "كلمتا المرور غير متطابقتين"
+    }
+
+  },
+
+
+
+  "AccountPage": {
+    "home": "الرئيسية",
+    "myAccount": "حسابي",
+    "welcome": "مرحبًا! {name}",
+    "manageAccount": "إدارة حسابي",
+    "myProfile": "ملفي الشخصي",
+    "addressBook": "دفتر العناوين",
+    "paymentOptions": "خيارات الدفع",
+    "myOrders": "طلباتي",
+    "myReturns": "مرتجعاتي",
+    "myCancellations": "إلغاءاتي",
+    "myWishlist": "قائمة أمنياتي",
+    "editProfile": "تعديل الملف الشخصي",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "firstNamePlaceholder": "محمد",
+    "lastNamePlaceholder": "رميل",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "rimel1111@gmail.com",
+    "address": "العنوان",
+    "addressPlaceholder": "كينغستون، 5236، الولايات المتحدة",
+    "passwordChanges": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+    "cancel": "إلغاء",
+    "saveChanges": "حفظ التغييرات",
+    "profileUpdated": "تم تحديث الملف الشخصي بنجاح!"
+  },
+  "Common": {
+    "search": "ابحث عن المنتجات...",
+    "addToCart": "إضافة للسلة",
+    "addToWishlist": "إضافة للمفضلة",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "quickView": "عرض سريع",
+    "previousSlide": "الشريحة السابقة",
+    "nextSlide": "الشريحة التالية",
+    "scrollToTop": "العودة إلى الأعلى",
+    "red": "أحمر",
+    "black": "أسود",
+    "price": "السعر"
+  },
+
+
+  "Footer": {
+    "subscribeTitle": "اشترك معنا",
+    "subscribeText": "احصل على خصم 10% على طلبتك الأولى",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "supportTitle": "الدعم الفني",
+    "supportAddressLine1": "١١٠ المنصورة، الدقهلية،",
+    "supportAddressLine2": "شارع ١١٠، مصر.",
+    "accountTitle": "الحساب",
+    "myAccount": "حسابي",
+    "loginRegister": "تسجيل الدخول / التسجيل",
+    "cart": "السلة",
+    "wishlist": "المفضلة",
+    "shop": "المتجر",
+    "quickLinkTitle": "روابط سريعة",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfUse": "شروط الاستخدام",
+    "faq": "الأسئلة الشائعة",
+    "contact": "تواصل معنا",
+    "downloadAppTitle": "تحميل التطبيق",
+    "appDiscountText": "وفر 3$ للعملاء الجدد عبر التطبيق فقط",
+    "qrCodeAlt": "رمز QR لتحميل التطبيق",
+    "googlePlayAlt": "احصل عليه من Google Play",
+    "appStoreAlt": "حمّله من App Store",
+    "facebook": "فيسبوك",
+    "twitter": "تويتر",
+    "instagram": "إنستغرام",
+    "linkedin": "لينكدإن",
+    "copyright": "© حقوق النشر محفوظة لـ Rimel 2022",
+    "subscribeSuccess": "شكرًا لاشتراكك!",
+    "subscribeError": "يرجى إدخال بريدك الإلكتروني."
+  },
+
+
+  "Hero": {
+    "shopNow": "تسوق الآن",
+    "slideLabel": "انتقل إلى الشريحة {number}",
+    "toggleSubcategories": "إظهار أو إخفاء تصنيفات {category}",
+
+    "categories": {
+      "womanFashion": "أزياء نسائية",
+      "manFashion": "أزياء رجالية",
+      "electronics": "إلكترونيات",
+      "homeLifestyle": "المنزل والمعيشة",
+      "medicine": "أدوية",
+      "sportsOutdoor": "الرياضة واللياقة",
+      "babyToys": "ألعاب وأطفال",
+      "groceriesPets": "البقالة والحيوانات الأليفة",
+      "healthBeauty": "الصحة والجمال"
+    },
+
+    "subCategories": {
+      "dresses": "فساتين",
+      "tops": "بلوزات وتيشيرتات",
+      "jackets": "جاكيتات ومعاطف",
+      "shoes": "أحذية",
+      "shirts": "قمصان",
+      "pants": "بنطال",
+      "outerwear": "ملابس خارجية",
+      "watches": "ساعات"
+    },
+
+    "slides": {
+      "iphoneTitle": "سلسلة iPhone 14",
+      "iphoneSubtitle": "قسيمة خصم تصل إلى 10%",
+      "ps5Title": "جهاز PlayStation 5",
+      "ps5Subtitle": "قسيمة خصم تصل إلى 15%",
+      "womenFashionTitle": "أزياء نسائية",
+      "womenFashionSubtitle": "قسيمة خصم تصل إلى 20%",
+      "lifestyleTitle": "المنزل والمعيشة",
+      "lifestyleSubtitle": "قسيمة خصم تصل إلى 10%",
+      "outdoorTitle": "الرياضة والتخييم",
+      "outdoorSubtitle": "قسيمة خصم تصل إلى 30%",
+      "voucherTitle": "قسائم خاصة",
+      "voucherSubtitle": "بطاقات هدايا تصل إلى 50%"
+    }
+
+  },
+
+
+  "Home": {
+    "flashSalesKicker": "اليوم",
+    "flashSalesTitle": "مبيعات خاطفة",
+    "viewAllProducts": "عرض جميع المنتجات"
+  },
+
+  "Countdown": {
+    "days": "أيام",
+    "hours": "ساعات",
+    "minutes": "دقائق",
+    "seconds": "ثواني"
+  },
+
+  "CategorySection": {
+    "kicker": "التصنيفات",
+    "title": "تصفح حسب التصنيف",
+
+    "categories": {
+      "phones": "الهواتف",
+      "computers": "الحواسيب",
+      "smartWatch": "الساعات الذكية",
+      "camera": "الكاميرات",
+      "headPhones": "سماعات الرأس",
+      "gaming": "الألعاب",
+      "fashion": "الأزياء",
+      "bike": "الدراجات"
+    }
+
+  },
+
+
+  "BestSelling": {
+    "kicker": "هذا الشهر",
+    "title": "المنتجات الأكثر مبيعاً",
+    "viewAll": "عرض الكل"
+  },
+
+
+  "PromoBanner": {
+  "kicker": "الأقسام",
+  "title": "عزز تجربتك الموسيقية",
+  "buyNow": "اشترِ الآن!"
+},
+
+
+"ExploreProducts": {
+  "kicker": "منتجاتنا",
+  "title": "استكشف منتجاتنا",
+  "viewAll": "عرض جميع المنتجات"
+},
+
+
+"ServicesFeature": {
+  "kicker": "مميز",
+  "title": "وصل حديثاً",
+  "shopNow": "تسوق الآن",
+
+  "featured": {
+    "ps5Title": "بلايستيشن 5",
+    "ps5Desc": "النسخة باللونين الأبيض والأسود معروضة للبيع.",
+    "womenTitle": "مجموعات النساء",
+    "womenDesc": "تشكيلة نسائية مميزة تضفي عليك لمسة فريدة.",
+    "speakersTitle": "مكبرات الصوت",
+    "speakersDesc": "مكبرات صوت أمازون اللاسلكية",
+    "perfumeTitle": "العطور",
+    "perfumeDesc": "عطر جوتشي إنتنس أود"
+  },
+
+  "services": {
+    "deliveryTitle": "توصيل مجاني وسريع",
+    "deliveryDesc": "توصيل مجاني لجميع الطلبات التي تتجاوز 140 دولاراً",
+    "serviceTitle": "خدمة عملاء على مدار الساعة",
+    "serviceDesc": "دعم فني وتواصل مباشر 24/7",
+    "secureTitle": "ضمان استعادة الأموال",
+    "secureDesc": "نعيد لك أموالك خلال 30 يوماً"
+  }
+
+},
+
+
+
+"ProductDetails": {
+  "breadcrumbAccount": "الرئيسية",
+  "errorMessage": "تعذر تحميل هذا المنتج.",
+  "backHome": "العودة للرئيسية",
+  "inStock": "متوفر في المخزون",
+  "colours": "الألوان",
+  "size": "المقاس",
+  "buyNow": "اشترِ الآن",
+  "freeDeliveryTitle": "توصيل مجاني",
+  "freeDeliverySub": "أدخل الرمز البريدي لمعرفة توفر التوصيل",
+  "returnDeliveryTitle": "إرجاع مجاني",
+  "returnDeliverySub": "إمكانية الإرجاع مجاناً خلال 30 يوماً",
+  "relatedKicker": "منتجات ذات صلة",
+  "relatedTitle": "قد يعجبك أيضاً"
+},
+
+
+"CategoryPage": {
+  "breadcrumbHome": "الرئيسية",
+  "sortByLabel": "ترتيب حسب",
+  "sortDefault": "الافتراضي",
+  "sortPriceAsc": "السعر: من الأقل للأعلى",
+  "sortPriceDesc": "السعر: من الأعلى للأقل",
+  "errorMessage": "تعذر تحميل المنتجات الخاصة بهذا التصنيف.",
+  "retryButton": "إعادة المحاولة",
+  "emptyMessage": "لا توجد منتجات متاحة في هذا التصنيف حالياً.",
+
+
+  "searchResultsTitle": "نتائج البحث عن «{query}»",
+  "searchNoResults": "لا توجد منتجات تطابق «{query}».",
+
+
+  "backHomeButton": "العودة للرئيسية"
+},
+
+
+"CartPage": {
+  "breadcrumbHome": "الرئيسية",
+  "breadcrumbCart": "السلة",
+  "colProduct": "المنتج",
+  "colPrice": "السعر",
+  "colQuantity": "الكمية",
+  "colSubtotal": "المجموع الفرعي",
+  "color": "اللون",
+  "size": "المقاس",
+  "returnToShop": "العودة للتسوق",
+  "updateCart": "تحديث السلة",
+  "couponPlaceholder": "كود الخصم",
+  "applyCoupon": "تطبيق الخصم",
+  "couponApplied": "تم تطبيق خصم 10٪.",
+  "couponInvalid": "الكود غير صحيح. جرّب SAVE10.",
+  "discount": "الخصم",
+  "cartTotalTitle": "إجمالي السلة",
+  "subtotal": "المجموع الفرعي",
+  "shipping": "الشحن",
+  "free": "مجاني",
+  "total": "الإجمالي النهائي",
+  "proceedToCheckout": "الانتقال لإتمام الشراء",
+  "emptyTitle": "سلة المشتريات فارغة",
+  "emptySubtitle": "يبدو أنك لم تقم بإضافة أي منتجات إلى سلتك بعد.",
+  "orderConfirmation": "تم تأكيد الطلب"
+},
+
+
+
+"Checkout": {
+  "breadcrumbCart": "السلة",
+  "breadcrumbCheckout": "إتمام الطلب",
+
+  "steps": {
+    "shipping": "بيانات الشحن",
+    "review": "مراجعة الطلب"
+  },
+
+  "billingDetails": "بيانات الفاتورة والشحن",
+  "firstName": "الاسم الأول",
+  "companyName": "اسم الشركة",
+  "streetAddress": "عنوان الشارع",
+  "apartment": "الشقة أو الطابق (اختياري)",
+  "townCity": "المدينة",
+  "phoneNumber": "رقم الهاتف",
+  "emailAddress": "البريد الإلكتروني",
+  "saveInfo": "احفظ هذه البيانات لتسريع إتمام الطلب في المرة القادمة",
+  "orderSummary": "ملخص الطلب",
+  "reviewTitle": "راجع طلبك",
+  "shippingInformation": "بيانات الشحن",
+  "edit": "تعديل",
+  "name": "الاسم",
+  "address": "العنوان",
+  "quantity": "الكمية: {count}",
+  "emptyCart": "سلة المشتريات فارغة.",
+  "backToCart": "العودة إلى السلة",
+  "subtotal": "المجموع الفرعي",
+  "shipping": "الشحن",
+  "free": "مجاني",
+  "total": "الإجمالي",
+  "paymentMethod": "طريقة الدفع",
+  "bank": "تحويل بنكي",
+  "cashDelivery": "الدفع عند الاستلام",
+  "couponPlaceholder": "رمز الخصم",
+  "applyCoupon": "تطبيق الرمز",
+  "couponApplied": "تم تطبيق خصم 10٪.",
+  "couponInvalid": "الكود غير صحيح. جرّب SAVE10.",
+  "discount": "الخصم",
+  "continueReview": "المتابعة لمراجعة الطلب",
+  "placeOrder": "تأكيد الطلب",
+  "backShipping": "العودة إلى بيانات الشحن",
+  "orderConfirmedTitle": "تم تأكيد الطلب!",
+  "orderConfirmedDesc": "شكراً لشرائك. تم تسجيل طلبك بنجاح.",
+  "backToHome": "العودة للرئيسية",
+
+  "validation": {
+    "firstName": "يرجى إدخال اسم أول مكوّن من حرفين على الأقل.",
+    "streetAddress": "يرجى إدخال عنوان شارع مكوّن من 5 أحرف على الأقل.",
+    "townCity": "يرجى إدخال اسم المدينة.",
+    "phoneNumber": "يرجى إدخال رقم هاتف صحيح من 8 أرقام على الأقل.",
+    "emailAddress": "يرجى إدخال بريد إلكتروني صحيح."
+  }
+
+},
+
+
+"WishlistPage": {
+  "wishlistTitle": "قائمة الرغبات",
+  "moveAllToBag": "نقل الكل للسلة",
+  "emptyMessage": "قائمة الرغبات فارغة حالياً.",
+  "exploreProducts": "تصفح المنتجات",
+  "justForYouKicker": "مقترحات لأجلك",
+  "seeAll": "عرض الكل"
+},
+
+
+"AboutPage": {
+  "breadcrumbHome": "الرئيسية",
+  "breadcrumbAbout": "من نحن",
+  "storyTitle": "قصتنا",
+  "storyImageAlt": "امرأتان تستمتعان بالتسوق",
+  "storyText1": "انطلقت Exclusive عام 2015 لتصبح من أبرز منصات التسوق الإلكتروني في جنوب آسيا، مع حضور نشط في بنغلاديش. وبفضل حلول التسويق والبيانات والخدمات المصممة لتلبية الاحتياجات، تضم Exclusive أكثر من 10,500 بائع و300 علامة تجارية، وتخدم 3 ملايين عميل في المنطقة.",
+  "storyText2": "تقدم Exclusive أكثر من مليون منتج، وتواصل نموها بسرعة، مع تشكيلة متنوعة من المنتجات التي تشمل السلع الاستهلاكية واحتياجات أسلوب الحياة.",
+  "sellersLabel": "بائعون نشطون على الموقع",
+  "monthlyLabel": "مبيعات المنتجات الشهرية",
+  "customersLabel": "عملاء نشطون على الموقع",
+  "annualLabel": "إجمالي المبيعات السنوية على الموقع",
+  "tomRole": "المؤسس ورئيس مجلس الإدارة",
+  "emmaRole": "المدير العام",
+  "willRole": "مصمم المنتجات",
+  "teamSlideLabel": "الانتقال إلى مجموعة الفريق رقم {number}"
+},
+
+
+"NotFoundPage": {
+  "breadcrumbHome": "الرئيسية",
+  "breadcrumb404": "خطأ 404",
+  "title": "404 Not Found",
+  "subtitle": "الصفحة التي تبحث عنها غير موجودة. يمكنك العودة للصفحة الرئيسية.",
+  "backToHome": "العودة للرئيسية"
+},
+
+
+"ContactPage": {
+  "breadcrumbHome": "الرئيسية",
+  "breadcrumbContact": "التواصل",
+  "callTitle": "اتصل بنا",
+  "callSubtitle": "نحن متواجدون على مدار 24/7 طوال أيام الأسبوع.",
+  "phone": "الهاتف",
+  "writeTitle": "ارسل لنا رسالة",
+  "writeSubtitle": "قم بملء النموذج وسنتواصل معك خلال 24 ساعة.",
+  "emailCustomer": "البريد الإلكتروني",
+  "emailSupport": "البريد الإلكتروني",
+  "inputName": "اسمك *",
+  "inputEmail": "بريدك الإلكتروني *",
+  "inputPhone": "رقم هاتفك *",
+  "inputMessage": "رسالتك",
+  "sendButton": "إرسال الرسالة",
+  "messageSent": "تم حفظ رسالتك في هذا النموذج التجريبي؛ لم يتم إرسال بريد إلكتروني."
+}
+}
+
+
+

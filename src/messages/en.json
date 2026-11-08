@@ -1,0 +1,430 @@
+{
+  "TopBanner": {
+    "announcement": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+    "shopNow": "ShopNow"
+  },
+
+
+
+  "Header": {
+    "home": "Home",
+    "contact": "Contact",
+    "about": "About",
+    "signup": "Sign Up",
+    "searchPlaceholder": "What are you looking for?",
+    "searchAction": "Search",
+    "wishlist": "Wishlist",
+    "cart": "Cart"
+  },
+
+
+
+  "Auth": {
+    "loginTitle": "Log in to Exclusive",
+    "loginSubtitle": "Enter your details below",
+    "emailOrPhonePlaceholder": "Email or Phone Number",
+    "passwordPlaceholder": "Password",
+    "logIn": "Log In",
+    "loggingIn": "Logging in...",
+    "forgotPassword": "Forgot Password?",
+    "loginFailed": "Unable to log in. Please try again.",
+    "googleSignInDemo": "Google sign-in is a demo and is not connected to an account provider.",
+    "createAccountTitle": "Create an account",
+    "signupSubtitle": "Enter your details below",
+    "namePlaceholder": "Name",
+    "createAccount": "Create Account",
+    "creatingAccount": "Creating Account...",
+    "signUpGoogle": "Sign up with Google",
+    "alreadyHaveAccount": "Already have account?",
+    "signupImageAlt": "A shopping cart, phone, and shopping bags",
+    "accountMenu": "Account menu",
+    "manageAccount": "Manage My Account",
+    "myOrders": "My Order",
+    "myCancellations": "My Cancellations",
+    "myReviews": "My Reviews",
+    "logout": "Logout",
+
+    "validation": {
+      "required": "This field is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "invalidEmail": "Enter a valid email address",
+      "passwordMatch": "Passwords do not match"
+    }
+  },
+
+
+
+  "AccountPage": {
+    "home": "Home",
+    "myAccount": "My Account",
+    "welcome": "Welcome! {name}",
+    "manageAccount": "Manage My Account",
+    "myProfile": "My Profile",
+    "addressBook": "Address Book",
+    "paymentOptions": "My Payment Options",
+    "myOrders": "My Orders",
+    "myReturns": "My Returns",
+    "myCancellations": "My Cancellations",
+    "myWishlist": "My Wishlist",
+    "editProfile": "Edit Your Profile",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Md",
+    "lastNamePlaceholder": "Rimel",
+    "email": "Email",
+    "emailPlaceholder": "rimel1111@gmail.com",
+    "address": "Address",
+    "addressPlaceholder": "Kingston, 5236, United State",
+    "passwordChanges": "Password Changes",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "profileUpdated": "Profile updated successfully!"
+  },
+
+
+
+  "Common": {
+    "search": "Search products...",
+    "addToCart": "Add to Cart",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "quickView": "Quick View",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "scrollToTop": "Scroll to top",
+    "red": "Red",
+    "black": "Black",
+    "price": "Price"
+  },
+
+
+  "Footer": {
+    "subscribeTitle": "Subscribe",
+    "subscribeText": "Get 10% off your first order",
+    "emailPlaceholder": "Enter your email",
+    "supportTitle": "Support",
+    "supportAddressLine1": "110 Mansoura, Dakahlia,",
+    "supportAddressLine2": "Street 110, Egypt.",
+    "accountTitle": "Account",
+    "myAccount": "My Account",
+    "loginRegister": "Login / Register",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "shop": "Shop",
+    "quickLinkTitle": "Quick Link",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms Of Use",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "downloadAppTitle": "Download App",
+    "appDiscountText": "Save $3 with App New User Only",
+    "qrCodeAlt": "QR code to download the app",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "copyright": "© Copyright Rimel 2022. All rights reserved",
+    "subscribeSuccess": "Thanks for subscribing!",
+    "subscribeError": "Please enter your email address."
+  },
+
+
+  "Hero": {
+    "shopNow": "Shop Now",
+    "slideLabel": "Go to slide {number}",
+    "toggleSubcategories": "Toggle subcategories for {category}",
+
+    "categories": {
+      "womanFashion": "Woman's Fashion",
+      "manFashion": "Men's Fashion",
+      "electronics": "Electronics",
+      "homeLifestyle": "Home & Lifestyle",
+      "medicine": "Medicine",
+      "sportsOutdoor": "Sports & Outdoor",
+      "babyToys": "Baby's & Toys",
+      "groceriesPets": "Groceries & Pets",
+      "healthBeauty": "Health & Beauty"
+    },
+
+    "subCategories": {
+      "dresses": "Dresses",
+      "tops": "Tops & Tees",
+      "jackets": "Jackets & Coats",
+      "shoes": "Shoes",
+      "shirts": "Shirts",
+      "pants": "Pants",
+      "outerwear": "Outerwear",
+      "watches": "Watches"
+    },
+
+    "slides": {
+      "iphoneTitle": "iPhone 14 Series",
+      "iphoneSubtitle": "Up to 10% off Voucher",
+      "ps5Title": "PlayStation 5 Console",
+      "ps5Subtitle": "Up to 15% off Voucher",
+      "womenFashionTitle": "Women's Fashion",
+      "womenFashionSubtitle": "Up to 20% off Voucher",
+      "lifestyleTitle": "Home & Lifestyle",
+      "lifestyleSubtitle": "Up to 10% off Voucher",
+      "outdoorTitle": "Outdoor & Sports",
+      "outdoorSubtitle": "Up to 30% off Voucher",
+      "voucherTitle": "Special Vouchers",
+      "voucherSubtitle": "Up to 50% Gift Cards"
+    }
+  },
+
+
+  "Home": {
+    "flashSalesKicker": "Today's",
+    "flashSalesTitle": "Flash Sales",
+    "viewAllProducts": "View All Products"
+  },
+
+
+  "Countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+
+  
+  "CategorySection": {
+    "kicker": "Categories",
+    "title": "Browse By Category",
+
+    "categories": {
+      "phones": "Phones",
+      "computers": "Computers",
+      "smartWatch": "SmartWatch",
+      "camera": "Camera",
+      "headPhones": "HeadPhones",
+      "gaming": "Gaming",
+      "fashion": "Fashion",
+      "bike": "Bikes"
+    }
+  },
+
+  "BestSelling": {
+    "kicker": "This Month",
+    "title": "Best Selling Products",
+    "viewAll": "View All"
+  },
+
+  "PromoBanner": {
+  "kicker": "Categories",
+  "title": "Enhance Your Music Experience",
+  "buyNow": "Buy Now!"
+},
+
+"ExploreProducts": {
+  "kicker": "Our Products",
+  "title": "Explore Our Products",
+  "viewAll": "View All Products"
+},
+
+"ServicesFeature": {
+  "kicker": "Featured",
+  "title": "New Arrival",
+  "shopNow": "Shop Now",
+
+  "featured": {
+    "ps5Title": "PlayStation 5",
+    "ps5Desc": "Black and White version of the PS5 coming out on sale.",
+    "womenTitle": "Women's Collections",
+    "womenDesc": "Featured woman collections that give you another vibe.",
+    "speakersTitle": "Speakers",
+    "speakersDesc": "Amazon wireless speakers",
+    "perfumeTitle": "Perfume",
+    "perfumeDesc": "GUCCI INTENSE OUD EDP"
+  },
+
+  "services": {
+    "deliveryTitle": "FREE AND FAST DELIVERY",
+    "deliveryDesc": "Free delivery for all orders over $140",
+    "serviceTitle": "24/7 CUSTOMER SERVICE",
+    "serviceDesc": "Friendly 24/7 customer support",
+    "secureTitle": "MONEY BACK GUARANTEE",
+    "secureDesc": "We return money within 30 days"
+  }
+
+},
+
+"ProductDetails": {
+  "breadcrumbAccount": "Home",
+  "errorMessage": "We couldn't load this product.",
+  "backHome": "Back to Home",
+  "inStock": "In Stock",
+  "colours": "Colours",
+  "size": "Size",
+  "buyNow": "Buy Now",
+  "freeDeliveryTitle": "Free Delivery",
+  "freeDeliverySub": "Enter your postal code for delivery availability",
+  "returnDeliveryTitle": "Return Delivery",
+  "returnDeliverySub": "Free 30 Days Delivery Returns",
+  "relatedKicker": "Related Item",
+  "relatedTitle": "You May Also Like"
+},
+
+
+"CategoryPage": {
+  "breadcrumbHome": "Home",
+  "sortByLabel": "Sort By",
+  "sortDefault": "Default Sorting",
+  "sortPriceAsc": "Price: Low to High",
+  "sortPriceDesc": "Price: High to Low",
+  "errorMessage": "Failed to load products for this category.",
+  "retryButton": "Retry",
+  "emptyMessage": "No products found in this category.",
+
+
+  "searchResultsTitle": "Search results for “{query}”",
+  "searchNoResults": "No products match “{query}”.",
+
+
+  "backHomeButton": "Back To Home"
+},
+
+"CartPage": {
+  "breadcrumbHome": "Home",
+  "breadcrumbCart": "Cart",
+  "colProduct": "Product",
+  "colPrice": "Price",
+  "colQuantity": "Quantity",
+  "colSubtotal": "Subtotal",
+  "color": "Color",
+  "size": "Size",
+  "returnToShop": "Return To Shop",
+  "updateCart": "Update Cart",
+  "couponPlaceholder": "Coupon Code",
+  "applyCoupon": "Apply Coupon",
+  "couponApplied": "10% discount applied.",
+  "couponInvalid": "Invalid code. Try SAVE10.",
+  "discount": "Discount",
+  "cartTotalTitle": "Cart Total",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "free": "Free",
+  "total": "Total",
+  "proceedToCheckout": "Procees to checkout",
+  "emptyTitle": "Your Cart is Empty",
+  "emptySubtitle": "Looks like you haven't added any items to your cart yet.",
+  "orderConfirmation": "Order Confirmed"
+},
+
+"Checkout": {
+  "breadcrumbCart": "Cart",
+  "breadcrumbCheckout": "Checkout",
+
+  "steps": {
+    "shipping": "Shipping",
+    "review": "Review order"
+  },
+
+  "billingDetails": "Billing Details",
+  "firstName": "First Name",
+  "companyName": "Company Name",
+  "streetAddress": "Street Address",
+  "apartment": "Apartment, floor, etc. (optional)",
+  "townCity": "Town/City",
+  "phoneNumber": "Phone Number",
+  "emailAddress": "Email Address",
+  "saveInfo": "Save this information for faster check-out next time",
+  "orderSummary": "Order Summary",
+  "reviewTitle": "Review Your Order",
+  "shippingInformation": "Shipping Information",
+  "edit": "Edit",
+  "name": "Name",
+  "address": "Address",
+  "quantity": "Qty: {count}",
+  "emptyCart": "Your cart is empty.",
+  "backToCart": "Return to cart",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "free": "Free",
+  "total": "Total",
+  "paymentMethod": "Payment Method",
+  "bank": "Bank transfer",
+  "cashDelivery": "Cash on delivery",
+  "couponPlaceholder": "Coupon Code",
+  "applyCoupon": "Apply Coupon",
+  "couponApplied": "10% discount applied.",
+  "couponInvalid": "Invalid code. Try SAVE10.",
+  "discount": "Discount",
+  "continueReview": "Continue to review order",
+  "placeOrder": "Place Order",
+  "backShipping": "Back to shipping",
+  "orderConfirmedTitle": "Order Confirmed!",
+  "orderConfirmedDesc": "Thank you for your purchase. Your order has been placed successfully.",
+  "backToHome": "Back to Home",
+
+  "validation": {
+    "firstName": "Enter at least 2 characters for your first name.",
+    "streetAddress": "Enter a street address with at least 5 characters.",
+    "townCity": "Enter a town or city.",
+    "phoneNumber": "Enter a valid phone number with at least 8 characters.",
+    "emailAddress": "Enter a valid email address."
+  }
+
+},
+
+"WishlistPage": {
+  "wishlistTitle": "Wishlist",
+  "moveAllToBag": "Move All To Bag",
+  "emptyMessage": "Your wishlist is currently empty.",
+  "exploreProducts": "Explore Products",
+  "justForYouKicker": "Just For You",
+  "seeAll": "See All"
+},
+
+
+"AboutPage": {
+  "breadcrumbHome": "Home",
+  "breadcrumbAbout": "About",
+  "storyTitle": "Our Story",
+  "storyImageAlt": "Two women enjoying a shopping trip",
+  "storyText1": "Launched in 2015, Exclusive is South Asia's premier online shopping marketplace with an active presence in Bangladesh. Supported by a wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 million customers across the region.",
+  "storyText2": "Exclusive has more than 1 million products to offer, growing at a very fast pace. Exclusive offers a diverse assortment in categories ranging from consumer goods to lifestyle essentials.",
+  "sellersLabel": "Sellers active on our site",
+  "monthlyLabel": "Monthly product sales",
+  "customersLabel": "Customers active on our site",
+  "annualLabel": "Annual gross sales on our site",
+  "tomRole": "Founder & Chairman",
+  "emmaRole": "Managing Director",
+  "willRole": "Product Designer",
+  "teamSlideLabel": "Go to team slide {number}"
+},
+
+
+"NotFoundPage": {
+  "breadcrumbHome": "Home",
+  "breadcrumb404": "404 Error",
+  "title": "404 Not Found",
+  "subtitle": "Your visited page not found. You may go home page.",
+  "backToHome": "Back to home page"
+},
+
+
+"ContactPage": {
+  "breadcrumbHome": "Home",
+  "breadcrumbContact": "Contact",
+  "callTitle": "Call To Us",
+  "callSubtitle": "We are available 24/7, 7 days a week.",
+  "phone": "Phone",
+  "writeTitle": "Write To US",
+  "writeSubtitle": "Fill out our form and we will contact you within 24 hours.",
+  "emailCustomer": "Emails",
+  "emailSupport": "Emails",
+  "inputName": "Your Name *",
+  "inputEmail": "Your Email *",
+  "inputPhone": "Your Phone *",
+  "inputMessage": "Your Massage",
+  "sendButton": "Send Massage",
+  "messageSent": "Your message was saved for this demo; no email was sent."
+}
+}
