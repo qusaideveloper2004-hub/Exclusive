@@ -162,7 +162,7 @@ This was done to make the project closer to production-ready frontend work.
 - [x] Product JSON-LD with an Offer, plus BreadcrumbList structured data
 - [x] Localized sitemap entries for public pages, categories, and products
 - [x] `robots.txt` with the sitemap URL
-- [x] Lighthouse SEO score of 92 for the saved English/Arabic desktop and mobile reports
+- [x] Lighthouse SEO score of 92 for the English/Arabic desktop and mobile screenshots
 
 Cart, login, account, and wishlist pages are marked `noindex`; they are intentionally omitted from the public sitemap.
 
@@ -180,10 +180,10 @@ The following Lighthouse audits were run against the live Vercel deployment on 2
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-desktop-lighthouse.png) · [HTML](docs/lighthouse/final-en-desktop.report.html) · [JSON](docs/lighthouse/final-en-desktop.report.json) |
-| English | Mobile | 88 (84 repeat) | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-mobile-lighthouse.png) · [HTML](docs/lighthouse/final-en-mobile.report.html) · [JSON](docs/lighthouse/final-en-mobile.report.json) · [Repeat report](docs/lighthouse/final-en-mobile-repeat.report.html) |
-| Arabic | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-ar-desktop-lighthouse.png) · [HTML](docs/lighthouse/final-ar-desktop.report.html) · [JSON](docs/lighthouse/final-ar-desktop.report.json) |
-| Arabic | Mobile | 90 | 100 | 96 | 92 | [Screenshot](docs/lighthouse/final-ar-mobile-lighthouse.png) · [HTML](docs/lighthouse/final-ar-mobile.report.html) · [JSON](docs/lighthouse/final-ar-mobile.report.json) |
+| English | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-desktop-lighthouse.png) |
+| English | Mobile | 88 (84 repeat) | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-mobile-lighthouse.png) |
+| Arabic | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-ar-desktop-lighthouse.png) |
+| Arabic | Mobile | 90 | 100 | 96 | 92 | [Screenshot](docs/lighthouse/final-ar-mobile-lighthouse.png) |
 
 <details>
 <summary>English desktop Lighthouse screenshot</summary>
