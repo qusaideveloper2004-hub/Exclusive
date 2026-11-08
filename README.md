@@ -176,37 +176,37 @@ Cart, login, account, and wishlist pages are marked `noindex`; they are intentio
 
 ### Lighthouse evidence
 
-The following scores are from the saved accessible audit reports generated on 2026-11-07. The older baseline reports include an English mobile Performance score of 87; the accessible audit runs below are the later saved runs. Re-run Lighthouse after any further changes before submission.
+The following Lighthouse audits were run against the live Vercel deployment on 2026-11-08. SEO is 92 in all four locale/device combinations. English mobile Performance scored 88, then 84 on a repeat run; Arabic mobile scored 90. This means the 90-point Performance target is not consistently met and should not be claimed as complete. Scores can vary between runs, so audit again after deployment changes.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | 100 | 92 | 100 | 92 | [Screenshot](docs/lighthouse/en-desktop-accessible-lighthouse.png) · [HTML](docs/lighthouse/en-desktop-accessible.report.html) · [JSON](docs/lighthouse/en-desktop-accessible.report.json) |
-| English | Mobile | 97 | 96 | 100 | 92 | [Screenshot](docs/lighthouse/en-mobile-accessible-lighthouse.png) · [HTML](docs/lighthouse/en-mobile-accessible.report.html) · [JSON](docs/lighthouse/en-mobile-accessible.report.json) |
-| Arabic | Desktop | 100 | 96 | 100 | 92 | [Screenshot](docs/lighthouse/ar-desktop-accessible-lighthouse.png) · [HTML](docs/lighthouse/ar-desktop-accessible.report.html) · [JSON](docs/lighthouse/ar-desktop-accessible.report.json) |
-| Arabic | Mobile | 94 | 100 | 100 | 92 | [Screenshot](docs/lighthouse/ar-mobile-accessible-lighthouse.png) · [HTML](docs/lighthouse/ar-mobile-accessible.report.html) · [JSON](docs/lighthouse/ar-mobile-accessible.report.json) |
+| English | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-desktop-lighthouse.png) · [HTML](docs/lighthouse/final-en-desktop.report.html) · [JSON](docs/lighthouse/final-en-desktop.report.json) |
+| English | Mobile | 88 (84 repeat) | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-mobile-lighthouse.png) · [HTML](docs/lighthouse/final-en-mobile.report.html) · [JSON](docs/lighthouse/final-en-mobile.report.json) · [Repeat report](docs/lighthouse/final-en-mobile-repeat.report.html) |
+| Arabic | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-ar-desktop-lighthouse.png) · [HTML](docs/lighthouse/final-ar-desktop.report.html) · [JSON](docs/lighthouse/final-ar-desktop.report.json) |
+| Arabic | Mobile | 90 | 100 | 96 | 92 | [Screenshot](docs/lighthouse/final-ar-mobile-lighthouse.png) · [HTML](docs/lighthouse/final-ar-mobile.report.html) · [JSON](docs/lighthouse/final-ar-mobile.report.json) |
 
 <details>
 <summary>English desktop Lighthouse screenshot</summary>
 
-![English desktop Lighthouse scores](docs/lighthouse/en-desktop-accessible-lighthouse.png)
+![English desktop Lighthouse scores](docs/lighthouse/final-en-desktop-lighthouse.png)
 </details>
 
 <details>
 <summary>English mobile Lighthouse screenshot</summary>
 
-![English mobile Lighthouse scores](docs/lighthouse/en-mobile-accessible-lighthouse.png)
+![English mobile Lighthouse scores](docs/lighthouse/final-en-mobile-lighthouse.png)
 </details>
 
 <details>
 <summary>Arabic desktop Lighthouse screenshot</summary>
 
-![Arabic desktop Lighthouse scores](docs/lighthouse/ar-desktop-accessible-lighthouse.png)
+![Arabic desktop Lighthouse scores](docs/lighthouse/final-ar-desktop-lighthouse.png)
 </details>
 
 <details>
 <summary>Arabic mobile Lighthouse screenshot</summary>
 
-![Arabic mobile Lighthouse scores](docs/lighthouse/ar-mobile-accessible-lighthouse.png)
+![Arabic mobile Lighthouse scores](docs/lighthouse/final-ar-mobile-lighthouse.png)
 </details>
 
 ## How to run the project

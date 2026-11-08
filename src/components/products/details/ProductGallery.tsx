@@ -40,7 +40,9 @@ return (
                     alt={`${title} ${idx + 1}`}
 
                     fill
+                    // سيم
                     unoptimized
+                    sizes="(min-width: 1024px) 112px, 88px"
                     className="object-contain p-2"
                 />
 
@@ -59,6 +61,7 @@ return (
 
             fill
             unoptimized
+            sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 650px"
             priority
             className="object-contain p-6"
         />
@@ -68,5 +71,6 @@ return (
 </div>
 
 );
-
 }
+
+

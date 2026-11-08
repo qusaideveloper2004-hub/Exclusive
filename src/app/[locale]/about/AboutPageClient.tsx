@@ -182,8 +182,6 @@ export default function AboutPage() {
 const t = useTranslations("AboutPage");
 
 const [activePageIndex, setActivePageIndex] = useState(2);
-
-// دي بقا اللي هعمل عليها مابينج و اعرض المجموعه اللي هستقبل رقمها 
 const currentMembers = TEAM_PAGES[activePageIndex];
 
 return (
