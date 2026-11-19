@@ -10,6 +10,8 @@ import { FaChevronRight, FaArrowRight, FaApple, FaGamepad, FaTshirt, FaHome, FaR
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
+import { useEffect } from "react";
+
 const HERO_SLIDES = [
   {
 
@@ -139,6 +141,18 @@ const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     hoverTimeoutRef.current = setTimeout(() => setActiveCategory(null), 200);
   };
+
+
+
+  useEffect(() => {
+  const interval = window.setInterval(() => {
+    setCurrentSlide((current) =>
+      current === HERO_SLIDES.length - 1 ? 0 : current + 1
+    );
+  }, 2000);
+
+  return () => window.clearInterval(interval);
+}, []);
 
   return (
 
