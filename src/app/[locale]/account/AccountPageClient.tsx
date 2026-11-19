@@ -88,6 +88,7 @@ const onSubmit: SubmitHandler<AccountFormData> = (data) => {
     });
 
     alert(accountT("profileUpdated"));
+    router.push("/");
 };
 
 // لاحظت الصفحه بتتعرض قبل ما يحصل ريرندر و يوجهني لتسجيل الدخول ف وقفت الصفحه تماما 
