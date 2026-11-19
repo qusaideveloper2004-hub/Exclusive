@@ -24,7 +24,7 @@ return (
 
 <div className="grid min-w-0 grid-cols-1 items-start gap-5 sm:gap-6 lg:grid-cols-[112px_minmax(0,1fr)] lg:gap-8 xl:gap-10">
 
-    <div className="order-2 flex w-full gap-3 overflow-x-auto pb-1 lg:order-1 lg:w-auto lg:flex-col lg:gap-3 lg:overflow-visible lg:pb-0">
+    <div className="hide-scrollbar order-2 flex w-full gap-3 overflow-x-auto pb-1 lg:order-1 lg:w-auto lg:flex-col lg:gap-3 lg:overflow-visible lg:pb-0">
 
         {images.map((imgSrc, idx) => (
 

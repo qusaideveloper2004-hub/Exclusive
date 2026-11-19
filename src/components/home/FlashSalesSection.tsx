@@ -67,7 +67,7 @@ return (
         </div>
 
 
-        <div ref={sliderRef} onScroll={syncCurrentIndex} className="relative w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain pt-2 pb-4 scroll-smooth">
+        <div ref={sliderRef} onScroll={syncCurrentIndex} className="hide-scrollbar relative w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain pt-2 pb-4 scroll-smooth">
 
             <div className="flex w-max min-w-full gap-8">
 

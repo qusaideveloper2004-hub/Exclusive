@@ -137,6 +137,15 @@ video {
   margin-inline: auto;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .section-spacing {
   padding-block: var(--section-space);
 }
