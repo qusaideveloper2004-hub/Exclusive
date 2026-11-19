@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import Image from "next/image";
 
 import { useTranslations } from "next-intl";
@@ -9,6 +7,7 @@ import { Link } from "@/i18n/routing";
 
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { SliderArrows } from "@/components/ui/SliderArrows";
+import { useHorizontalSlider } from "@/hooks/useHorizontalSlider";
 
 const CATEGORY_ITEMS = [
 
@@ -27,10 +26,7 @@ export const CategoriesSection = () => {
 
 const t = useTranslations("CategorySection");
 
-
-const [currentIndex, setCurrentIndex] = useState(0);
-const handlePrev = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0));;
-const handleNext = () => {setCurrentIndex((prev) => (prev < CATEGORY_ITEMS.length - 6 ? prev + 1 : prev));};
+const { sliderRef, movePrevious, moveNext, syncCurrentIndex } = useHorizontalSlider();
 
 return (
 
@@ -43,22 +39,23 @@ return (
         <div className="flex items-end justify-between">
 
             <SectionTitle kicker={t("kicker")} title={t("title")} />
-            <SliderArrows onPrev={handlePrev} onNext={handleNext} />
+            <SliderArrows onPrev={movePrevious} onNext={moveNext} />
 
         </div>
 
 
 
-        <div className="relative w-full overflow-hidden pt-2 pb-2">
+        <div ref={sliderRef} onScroll={syncCurrentIndex} className="relative w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain pt-2 pb-2 scroll-smooth">
 
-            <div className="flex gap-8 transition-transform duration-500 ease-out" style={{transform: `translateX(-${currentIndex * 202}px)`,}}>
+            <div className="flex w-max min-w-full gap-8">
 
                 {CATEGORY_ITEMS.map((item) => (
                     <Link
                         key={item.id}
                         href={`/category/${item.slug}`}
+                        data-slider-item
 
-                        className="group relative flex flex-col items-center justify-center w-[170px] h-[145px] shrink-0 rounded border border-gray-300 hover:border-[var(--brand)] hover:bg-[var(--brand)] transition-all duration-300 cursor-pointer"
+                        className="group relative flex h-[145px] w-[170px] shrink-0 snap-start cursor-pointer flex-col items-center justify-center rounded border border-gray-300 transition-all duration-300 hover:border-[var(--brand)] hover:bg-[var(--brand)]"
                     >
 
                         <div className="relative w-14 h-14 mb-4 flex items-center justify-center">
@@ -92,6 +89,4 @@ return (
 );
 
 };
-
-
 

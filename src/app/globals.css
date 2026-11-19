@@ -58,7 +58,6 @@
 }
 
 html {
-  min-width: 320px;
   scroll-behavior: smooth;
   text-size-adjust: 100%;
 }

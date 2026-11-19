@@ -55,55 +55,55 @@ if (variant === 'circular') {
 
     return (
 
-        <div className={`flex items-center gap-4 ${className}`} dir="ltr">
+        <div className={`flex items-center gap-2 sm:gap-4 ${className}`} dir="ltr">
 
 
-            <div className="w-16 h-16 rounded-full bg-white text-black flex flex-col items-center justify-center shrink-0">
+            <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-base font-bold leading-tight">
+                <span className="text-sm font-bold leading-tight sm:text-base">
                     {formatNumber(timeLeft.hours)}
                 </span>
 
-                <span className="text-[11px] font-medium leading-tight">
+                <span className="whitespace-nowrap text-[9px] font-medium leading-tight sm:text-[11px]">
                     {t('hours')}
                 </span>
 
             </div>
 
 
-            <div className="w-16 h-16 rounded-full bg-white text-black flex flex-col items-center justify-center shrink-0">
+            <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-base font-bold leading-tight">
+                <span className="text-sm font-bold leading-tight sm:text-base">
                     {formatNumber(timeLeft.days)}
                 </span>
 
-                <span className="text-[11px] font-medium leading-tight">
+                <span className="whitespace-nowrap text-[9px] font-medium leading-tight sm:text-[11px]">
                     {t('days')}
                 </span>
 
             </div>
 
 
-            <div className="w-16 h-16 rounded-full bg-white text-black flex flex-col items-center justify-center shrink-0">
+            <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-base font-bold leading-tight">
+                <span className="text-sm font-bold leading-tight sm:text-base">
                     {formatNumber(timeLeft.minutes)}
                 </span>
 
-                <span className="text-[11px] font-medium leading-tight">
+                <span className="whitespace-nowrap text-[9px] font-medium leading-tight sm:text-[11px]">
                     {t('minutes')}
                 </span>
 
             </div>
 
 
-            <div className="w-16 h-16 rounded-full bg-white text-black flex flex-col items-center justify-center shrink-0">
+            <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-base font-bold leading-tight">
+                <span className="text-sm font-bold leading-tight sm:text-base">
                     {formatNumber(timeLeft.seconds)}
                 </span>
 
-                <span className="text-[11px] font-medium leading-tight">
+                <span className="whitespace-nowrap text-[9px] font-medium leading-tight sm:text-[11px]">
                     {t('seconds')}
                 </span>
 

@@ -81,7 +81,14 @@ export const productService = {
     } catch (error) {
 
       console.error(`Error fetching product ${id}:`, error);
-      return null;
+
+      try {
+        const products = await productService.getAllProducts();
+        return products.find((product) => product.id === Number(id)) ?? null;
+      } catch (fallbackError) {
+        console.error(`Error finding product ${id} in the product collection:`, fallbackError);
+        return null;
+      }
 
     }
 

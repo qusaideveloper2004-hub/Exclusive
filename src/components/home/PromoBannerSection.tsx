@@ -21,19 +21,19 @@ return (
 
     <div className="page-container max-w-[1170px]">
 
-        <div className="relative w-full bg-black text-white rounded-sm overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 md:p-14 lg:p-16 gap-8">
+        <div className="relative flex w-full flex-col items-center justify-between gap-6 overflow-hidden rounded-sm bg-black p-4 text-white sm:gap-8 sm:p-8 md:flex-row md:p-14 lg:p-16">
 
 
 
 
-            <div className="flex flex-col items-start gap-8 z-10 max-w-lg">
+            <div className="z-10 flex w-full min-w-0 max-w-lg flex-col items-start gap-6 sm:gap-8 md:w-auto">
 
                 <span className="text-[#00FF66] text-sm md:text-base font-semibold tracking-wide">
                     {t("kicker")}
                 </span>
 
 
-                <h2 className="text-3xl md:text-5xl font-semibold leading-tight tracking-wide max-w-[340px]">
+                <h2 className="max-w-full text-2xl font-semibold leading-tight tracking-wide sm:max-w-[340px] sm:text-3xl md:text-5xl">
                     {t("title")}
                 </h2>
 
@@ -44,7 +44,7 @@ return (
 
                 <Link
                     href="/category/electronics"
-                    className="mt-2 inline-flex min-h-12 items-center justify-center rounded bg-[#00FF66] px-12 py-4 font-medium text-black transition-colors hover:bg-[#00cc52] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="mt-2 inline-flex min-h-12 items-center justify-center rounded bg-[#00FF66] px-8 py-3 font-medium text-black transition-colors hover:bg-[#00cc52] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-12 sm:py-4"
                 >
                     {t("buyNow")}
                 </Link>

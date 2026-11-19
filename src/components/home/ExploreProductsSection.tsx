@@ -112,7 +112,7 @@ return (
 
             </div>
 
-        </div>s
+        </div>
 
     </section>
 

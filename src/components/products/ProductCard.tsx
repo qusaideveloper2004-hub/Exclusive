@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 
-import { Heart, Eye, Trash2 } from "lucide-react";
+import { Heart, Eye, ImageOff, Trash2 } from "lucide-react";
 
 import { useTranslations } from "next-intl";
 
@@ -52,6 +53,15 @@ const t = useTranslations("Common");
 const addToCart = useCartStore((state) => state.addToCart);
 const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 const isFavorite = useWishlistStore((state) => state.isInWishlist(product.id));
+const [hasImageError, setHasImageError] = useState(false);
+
+const cacheProductForDetails = () => {
+    try {
+        window.sessionStorage.setItem(`product:${product.id}`, JSON.stringify(product));
+    } catch {
+        // Continue navigation if browser storage is unavailable.
+    }
+};
 
 
 const hasDiscount = showDiscount && !!product.discountPercentage;
@@ -131,6 +141,7 @@ return (
 
                         <Link
                             href={`/product/${product.id}`}
+                            onClick={cacheProductForDetails}
 
                             aria-label={t("quickView")}
                             className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black shadow-sm transition-all duration-200 hover:text-[var(--brand)] hover:scale-105"
@@ -145,14 +156,21 @@ return (
 
             <div className="relative h-full w-full">
 
-                <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-contain transition-transform duration-300 group-hover:scale-105"
-                />
+                {hasImageError || !product.image ? (
+                    <div role="img" aria-label={product.title} className="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <ImageOff className="h-9 w-9" aria-hidden="true" />
+                    </div>
+                ) : (
+                    <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        onError={() => setHasImageError(true)}
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                )}
 
             </div>
 
@@ -165,7 +183,7 @@ return (
                 className={`absolute inset-x-0 bottom-0 z-10 flex h-[38px] w-full items-center justify-center bg-black text-center text-[13px] font-medium !text-white transition-all duration-200 cursor-pointer hover:bg-[var(--brand)] ${
                     showAddToCartAlways
                         ? "opacity-100 translate-y-0"
-                            : "opacity-0 translate-y-1 group-hover:translate-y-0 group-hover:opacity-100"
+                        : "opacity-100 translate-y-0 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
                     }`}
                 >
 
@@ -181,6 +199,7 @@ return (
 
                 <Link
                     href={`/product/${product.id}`}
+                    onClick={cacheProductForDetails}
                     className="truncate text-[14px] font-medium leading-5 text-black transition-colors duration-200 hover:text-[var(--brand)]"
                 >
                     {product.title}
@@ -244,6 +263,5 @@ return (
 );
 
 };
-
 
 

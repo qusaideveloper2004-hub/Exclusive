@@ -11,6 +11,7 @@ import { SliderArrows } from "@/components/ui/SliderArrows";
 import { Button } from "@/components/ui/Button";
 
 import { ProductCard } from "@/components/products/ProductCard";
+import { useHorizontalSlider } from "@/hooks/useHorizontalSlider";
 
 import { Product } from "@/types/product";
 
@@ -27,9 +28,9 @@ const [targetDate] = useState( () => new Date(Date.now() + 3 * 24 * 60 * 60 * 10
 
 const flashProducts = products.filter((p) => p.discountPercentage);
 
-const [currentIndex, setCurrentIndex] = useState(0);
-const handlePrev = () => { setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0)); };
-const handleNext = () => { setCurrentIndex((prev) =>prev < flashProducts.length - 1 ? prev + 1 : prev); };
+const { sliderRef, movePrevious, moveNext, syncCurrentIndex } = useHorizontalSlider();
+
+if (flashProducts.length === 0) return null;
 
 return (
 
@@ -57,8 +58,8 @@ return (
 
 
                 <SliderArrows
-                onPrev={handlePrev}
-                onNext={handleNext}
+                onPrev={movePrevious}
+                onNext={moveNext}
 
                 className="self-end md:self-auto"
                 />
@@ -66,13 +67,13 @@ return (
         </div>
 
 
-        <div className="relative w-full overflow-hidden pt-2 pb-4">
+        <div ref={sliderRef} onScroll={syncCurrentIndex} className="relative w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain pt-2 pb-4 scroll-smooth">
 
-            <div className="flex gap-8 transition-transform duration-500 ease-out" style={{transform: `translateX(-${currentIndex * 302}px)`, }}>
+            <div className="flex w-max min-w-full gap-8">
 
                 {flashProducts.map((product) => (
 
-                    <div key={product.id} className="w-[270px] shrink-0">
+                    <div key={product.id} data-slider-item className="w-[calc(100vw-2rem)] shrink-0 snap-start sm:w-[270px]">
 
                         <ProductCard
                             product={product}
@@ -110,5 +111,3 @@ return (
 );
 
 };
-
-
