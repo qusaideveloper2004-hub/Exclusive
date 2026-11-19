@@ -127,41 +127,41 @@ const [currentSlide, setCurrentSlide] = useState(0);
 const [activeCategory, setActiveCategory] = useState<string | null>(null);
 const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleMouseEnter = (key: string) => {
+const handleMouseEnter = (key: string) => {
 
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+  if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
 
     setActiveCategory(key);
-  };
+};
 
-  const handleMouseLeave = () => {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+const handleMouseLeave = () => {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    hoverTimeoutRef.current = setTimeout(() => setActiveCategory(null), 200);
-  };
+  hoverTimeoutRef.current = setTimeout(() => setActiveCategory(null), 200);
+};
 
 
 
-  useEffect(() => {
-  const interval = window.setInterval(() => {
-    setCurrentSlide((current) =>
-      current === HERO_SLIDES.length - 1 ? 0 : current + 1
-    );
-  }, 2000);
+useEffect(() => {
+const interval = window.setInterval(() => {
+  setCurrentSlide((current) =>
+    current === HERO_SLIDES.length - 1 ? 0 : current + 1
+  );
+}, 2000);
 
   return () => window.clearInterval(interval);
 }, []);
 
-  return (
+return (
 
 <section className="mb-14">
 
-      <div className="page-container flex flex-col md:flex-row items-stretch">
+  <div className="page-container flex flex-col md:flex-row items-stretch">
 
-        <div className="relative w-full border-r border-gray-300 pt-10 pb-2 md:w-[217px] md:shrink-0 md:pr-4 ltr:border-r rtl:border-r-0 rtl:border-l rtl:pl-4 rtl:pr-0">
-          
+    <div className="relative w-full border-r border-gray-300 pt-10 pb-2 md:w-[217px] md:shrink-0 md:pr-4 ltr:border-r rtl:border-r-0 rtl:border-l rtl:pl-4 rtl:pr-0">
+
           <ul className="flex flex-col gap-4">
 
             {CATEGORIES.map((cat) => (
@@ -233,10 +233,10 @@ const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
           </ul>
 
-        </div>
+    </div>
 
 
-        <div className="w-full flex-1 pt-10 ltr:md:pl-11 rtl:md:pr-11">
+    <div className="w-full flex-1 pt-10 ltr:md:pl-11 rtl:md:pr-11">
 
           <div
             className="relative flex min-h-[300px] w-full items-center overflow-hidden rounded-sm bg-black p-8 text-white md:min-h-[344px] md:p-12"
@@ -330,8 +330,9 @@ const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
           </div>
 
-        </div>
-      </div>
+    </div>
+
+  </div>
 
 </section>
 
