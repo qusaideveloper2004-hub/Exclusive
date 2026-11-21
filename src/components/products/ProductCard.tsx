@@ -18,6 +18,7 @@ import { Product } from "@/types/product";
 
 interface ProductCardProps {
 product: Product;
+priority?: boolean;
 
 showDiscount?: boolean;
 showBadge?: boolean;
@@ -34,6 +35,7 @@ showAddToCartAlways?: boolean;
 
 export const ProductCard: React.FC<ProductCardProps> = ({
 product,
+priority = false,
 
 showDiscount = true,
 showBadge = true,
@@ -155,8 +157,8 @@ return (
                         src={product.image}
                         alt={product.title}
                         fill
-                        unoptimized
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        priority={priority}
+                        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 270px"
                         onError={() => setHasImageError(true)}
                         className="object-contain transition-transform duration-300 group-hover:scale-105"
                     />
@@ -252,4 +254,3 @@ return (
 );
 
 };
-

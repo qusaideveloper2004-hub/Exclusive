@@ -71,12 +71,13 @@ return (
 
             <div className="flex w-max min-w-full gap-8">
 
-                {flashProducts.map((product) => (
+                {flashProducts.map((product, index) => (
 
                     <div key={product.id} data-slider-item className="w-[calc(100vw-2rem)] shrink-0 snap-start sm:w-[270px]">
 
                         <ProductCard
                             product={product}
+                            priority={index < 4}
                             
                             showDiscount={true}
                             showBadge={true}

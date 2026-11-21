@@ -59,7 +59,7 @@ if (variant === 'circular') {
 
             <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-sm font-bold leading-tight sm:text-base">
+                <span className="min-w-[2ch] text-center text-sm font-bold leading-tight tabular-nums sm:text-base">
                     {formatNumber(timeLeft.hours)}
                 </span>
 
@@ -72,7 +72,7 @@ if (variant === 'circular') {
 
             <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-sm font-bold leading-tight sm:text-base">
+                <span className="min-w-[2ch] text-center text-sm font-bold leading-tight tabular-nums sm:text-base">
                     {formatNumber(timeLeft.days)}
                 </span>
 
@@ -85,7 +85,7 @@ if (variant === 'circular') {
 
             <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-sm font-bold leading-tight sm:text-base">
+                <span className="min-w-[2ch] text-center text-sm font-bold leading-tight tabular-nums sm:text-base">
                     {formatNumber(timeLeft.minutes)}
                 </span>
 
@@ -98,7 +98,7 @@ if (variant === 'circular') {
 
             <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full bg-white text-black sm:h-16 sm:w-16">
 
-                <span className="text-sm font-bold leading-tight sm:text-base">
+                <span className="min-w-[2ch] text-center text-sm font-bold leading-tight tabular-nums sm:text-base">
                     {formatNumber(timeLeft.seconds)}
                 </span>
 
@@ -126,7 +126,7 @@ if (variant === 'circular') {
                     {t('days')}
                 </span>
 
-                <span className="text-2xl sm:text-3xl tracking-tight">
+                <span className="min-w-[2ch] text-center text-2xl tracking-tight tabular-nums sm:text-3xl">
                     {formatNumber(timeLeft.days)}
                 </span>
 
@@ -140,7 +140,7 @@ if (variant === 'circular') {
                     {t('hours')}
                 </span>
 
-                <span className="text-2xl sm:text-3xl tracking-tight">
+                <span className="min-w-[2ch] text-center text-2xl tracking-tight tabular-nums sm:text-3xl">
                     {formatNumber(timeLeft.hours)}
                 </span>
 
@@ -154,7 +154,7 @@ if (variant === 'circular') {
                     {t('minutes')}
                 </span>
 
-                <span className="text-2xl sm:text-3xl tracking-tight">
+                <span className="min-w-[2ch] text-center text-2xl tracking-tight tabular-nums sm:text-3xl">
                     {formatNumber(timeLeft.minutes)}
                 </span>
 
@@ -168,7 +168,7 @@ if (variant === 'circular') {
                     {t('seconds')}
                 </span>
 
-                <span className="text-2xl sm:text-3xl tracking-tight">
+                <span className="min-w-[2ch] text-center text-2xl tracking-tight tabular-nums sm:text-3xl">
                     {formatNumber(timeLeft.seconds)}
                 </span>
 
@@ -179,5 +179,4 @@ if (variant === 'circular') {
     );
 
 };
-
 

@@ -18,9 +18,7 @@ import { ServicesFeatureSection } from "@/components/home/ServicesFeatureSection
 import { HomeErrorState } from "@/components/home/HomeErrorState";
 import type { Product } from "@/types/product";
 
-
-import { connection } from "next/server";
-import { Suspense } from "react";
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }>; }): Promise<Metadata> {
 
@@ -56,7 +54,6 @@ const title = t("homeTitle");
 }
 
 async function HomeProductSections() {
-    await connection();
     let products: Product[] | null = null;
     try {
         products = await productService.getAllProducts();
@@ -99,22 +96,11 @@ return (
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     setRequestLocale(locale);
-    const t = await getTranslations("Home");
 
     return (
         <div>
             <HeroSection />
-
-            <Suspense fallback={
-                <p className="page-container py-10 text-sm text-gray-600" role="status">
-                    {t("loadingProducts")}
-                </p>
-            }>
-
-                <HomeProductSections />
-
-            </Suspense>
-
+            <HomeProductSections />
         </div>
     );
 }

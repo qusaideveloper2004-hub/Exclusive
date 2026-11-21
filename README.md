@@ -155,14 +155,32 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-These are single-run Lighthouse snapshots of the deployed URL on 2026-11-21; they are not medians and predate the latest local server-fetch, retry, snapshot, and home-page skeleton changes. Deploy those changes and rerun Lighthouse to measure their effect. Both mobile runs include Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect the scores. Keep that limitation in mind when comparing results.
+These are single-run Lighthouse snapshots of the deployed English and Arabic storefronts, captured on 2026-11-21. They are not medians, and scores can vary between runs. The English mobile run includes Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect its performance score; keep that limitation in mind when comparing results.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | 82 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-en-desktop.json) |
-| English | Mobile | 85 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-en-mobile.json) |
-| Arabic | Desktop | 72 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-ar-desktop.json) |
-| Arabic | Mobile | 85 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-ar-mobile.json) |
+| English | Desktop | 84 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-en-desktop.json) |
+| English | Mobile | 77 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-en-mobile.json) |
+| Arabic | Desktop | 41 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-ar-desktop.json) |
+| Arabic | Mobile | 91 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-ar-mobile.json) |
+
+### Score screenshots
+
+**English - Desktop**
+
+![English desktop Lighthouse scores](docs/lighthouse/final-en-desktop-lighthouse.png)
+
+**English - Mobile**
+
+![English mobile Lighthouse scores](docs/lighthouse/final-en-mobile-lighthouse.png)
+
+**Arabic - Desktop**
+
+![Arabic desktop Lighthouse scores](docs/lighthouse/final-ar-desktop-lighthouse.png)
+
+**Arabic - Mobile**
+
+![Arabic mobile Lighthouse scores](docs/lighthouse/final-ar-mobile-lighthouse.png)
 
 To reproduce:
 
@@ -179,7 +197,7 @@ npx lighthouse "https://exclusive-olive.vercel.app/en" \
   --output=json --output-path=docs/lighthouse/live-en-desktop.json
 ```
 
-Repeat with `/ar` and matching `live-ar-*.json` output paths for Arabic. The PNG files are screenshots of the corresponding Lighthouse reports.
+Repeat with `/ar` and matching `live-ar-*.json` output paths for Arabic. The screenshots below show the category scores from each corresponding Lighthouse report.
 
 ## How to Run
 
