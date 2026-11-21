@@ -1,20 +1,11 @@
 
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME, DEFAULT_LOCALE, SUPPORTED_LOCALES  } from "@/lib/seo/constants";
 
-import { productService } from "@/services/productService";
 import { HeroSection } from "@/components/home/HeroSection";
-import { FlashSalesSection } from "@/components/home/FlashSalesSection";
-import { CategoriesSection } from "@/components/home/CategoriesSection";
-import { BestSellingSection } from "@/components/home/BestSellingSection";
-import { PromoBannerSection } from "@/components/home/PromoBannerSection";
-import { ExploreProductsSection } from "@/components/home/ExploreProductsSection";
-import { ServicesFeatureSection } from "@/components/home/ServicesFeatureSection";
-import { HomeErrorState } from "@/components/home/HomeErrorState";
+import HomePageClient from "./HomePageClient";
 
 type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -51,40 +42,11 @@ const title = validLocale === "ar"
     };
 }
 
-async function HomeProductSections() {
-    try {
-        const products = await productService.getAllProducts({ fresh: true });
-        return (
-            <>
-                <FlashSalesSection products={products} />
-                <CategoriesSection />
-                <BestSellingSection products={products} />
-                <PromoBannerSection />
-                <ExploreProductsSection products={products} />
-                <ServicesFeatureSection />
-            </>
-        );
-    } catch (error) {
-        console.error("Unable to load products on the home page:", error);
-        return (
-            <>
-                <HomeErrorState />
-                <PromoBannerSection />
-                <ServicesFeatureSection />
-            </>
-        );
-    }
-}
-
-export default async function HomePage() {
-    const t = await getTranslations("Home");
-
+export default function HomePage() {
     return (
         <div>
             <HeroSection />
-            <Suspense fallback={<p className="page-container py-10 text-sm text-gray-600" role="status">{t("loadingProducts")}</p>}>
-                <HomeProductSections />
-            </Suspense>
+            <HomePageClient />
         </div>
     );
 }
