@@ -39,7 +39,7 @@ z.object({
         firstName: z.string().min(1, messages?.requiredField || "First Name is required"),
         lastName: z.string().min(1, messages?.requiredField || "Last Name is required"),
 
-        email: z.string().email(messages?.invalidEmail || "Invalid email address"),
+        email: z.email({ error: messages?.invalidEmail || "Invalid email address" }),
 
         address: z.string().min(1, messages?.requiredField || "Address is required"),
 
@@ -65,5 +65,4 @@ z.object({
 );
 
 export type AccountFormData = z.infer<ReturnType<typeof createAccountSchema>>;
-
 

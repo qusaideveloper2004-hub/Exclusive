@@ -377,7 +377,7 @@
     "firstName": "Enter at least 2 characters for your first name.",
     "streetAddress": "Enter a street address with at least 5 characters.",
     "townCity": "Enter a town or city.",
-    "phoneNumber": "Enter a valid phone number with at least 8 characters.",
+    "phoneNumber": "Enter a valid phone number: 8–15 digits with an optional +, or 10–11 digits starting with 0.",
     "emailAddress": "Enter a valid email address."
   }
 
