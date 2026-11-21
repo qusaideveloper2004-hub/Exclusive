@@ -166,48 +166,98 @@ This was done to make the project closer to production-ready frontend work.
 
 Cart, login, account, and wishlist pages are marked `noindex`; they are intentionally omitted from the public sitemap.
 
-### Technology choices and tradeoffs
+## Architecture decisions
 
-- Next.js App Router provides localized routes, route-level metadata, and server-rendered product details; client components handle interactive UI.
-- `next-intl` handles English/Arabic routing and translations. FakeStoreAPI product content is English-only, so product text falls back to the API's English data while the surrounding interface is localized.
-- Zustand persistence keeps cart, wishlist, and demo session state in the browser without requiring a backend.
-- React Hook Form and Zod provide client-side form handling and validation.
-- FakeStoreAPI supplies sample product and login data. Payments, account creation, and contact submissions are not backed by production services.
+### Next.js App Router
 
-### Lighthouse evidence
+The App Router was used instead of the Pages Router because route groups and nested layouts fit the localized pages, shared navigation, and route-level metadata. Server components handle page and metadata setup, while client components are used only for interactive state such as sliders, forms, stores, and user actions.
 
-The following Lighthouse audits were run against the live Vercel deployment on 2026-11-08. SEO is 92 in all four locale/device combinations. English mobile Performance scored 88, then 84 on a repeat run; Arabic mobile scored 90. This means the 90-point Performance target is not consistently met and should not be claimed as complete. Scores can vary between runs, so audit again after deployment changes.
+This keeps the initial HTML useful for search engines and avoids sending the whole page through the client boundary.
 
-| Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
+### Zustand instead of Redux
+
+Zustand was chosen for cart, wishlist, and demo authentication state because the application has small, separate stores and does not need Redux actions, reducers, middleware, or a large provider setup.
+
+Each store has a focused responsibility:
+
+- cart store manages items, quantities, totals, and checkout coupon state
+- wishlist store manages favorite products
+- auth store manages the demo login session and account updates
+
+Zustand is sufficient here because state changes are local and predictable. Redux would add more setup for a benefit the project does not currently need.
+
+### Persistence and hydration
+
+Zustand persist middleware stores cart, wishlist, and authentication data in `localStorage`. This lets demo data survive page refreshes without a database or backend.
+
+Hydration mismatch is avoided by not reading persisted values during server rendering. Components that depend on browser state use mounted-state checks before rendering counts or user-dependent values. A store is also not used to generate server metadata.
+
+The tradeoff is that persisted browser state can belong to a previous session or contain outdated demo data. Validation and safe fallbacks should be added before this design is used with real account data.
+
+### Server and client data boundaries
+
+Product API calls are collected in `productService.ts` so the same data rules can be reused by pages and sitemap generation. FakeStoreAPI is a public demo dependency, so request failures are converted into visible retry or fallback states.
+
+Home product sections are streamed independently from the hero section. This prevents an unavailable API response from delaying the initial hero and navigation HTML.
+
+The tradeoff is that successful product rendering depends on the external API. Caching and a short timeout reduce the risk, but a production storefront would normally use a stable database or a server-side API proxy.
+
+### Localization
+
+The project uses `next-intl` for locale routes, navigation, and translated interface text. The English and Arabic layouts share components, while the document direction changes to LTR or RTL.
+
+Product data from FakeStoreAPI is English-only. The surrounding interface is localized, but product titles and descriptions are not translated. A production implementation would add localized product fields or a translation layer.
+
+### Forms and validation
+
+React Hook Form minimizes re-renders and controls form state. Zod schemas define the data and password rules used by checkout and account forms.
+
+Validation is kept in the client because this is a frontend-only demo. In a real application, the same rules would also need to run on the server or API boundary so that client validation cannot be bypassed.
+
+### SEO
+
+The app uses Next.js metadata for titles, descriptions, canonical URLs, language alternates, Open Graph, and Twitter cards. Product pages generate JSON-LD for products and breadcrumbs, while public and private routes are separated with sitemap and `noindex` rules.
+
+The Sitemap and robots configuration are generated from project constants so localized public routes use the same canonical domain.
+
+### Responsive UI and sliders
+
+Cards and sections use Tailwind breakpoints to change from one column to two or four columns. Home sliders use native horizontal overflow and snap behavior, allowing touch scrolling on mobile and arrow controls on larger screens.
+
+The scrollbar is hidden for the slider containers, but keyboard and arrow controls remain available. A native, CSS-based slider approach avoids pulling in a heavy carousel library for a simple one-row interface.
+
+### Images and performance
+
+The hero image uses `next/image` with priority loading and responsive `sizes`. The configuration enables AVIF and WebP output with longer image caching.
+
+The tradeoff is that changing every image at once would have limited additional benefit. The first-view assets need priority loading and correct dimensions, while later product images can load progressively.
+
+## Lighthouse evidence
+
+The latest deployed English mobile audit measured 94 Performance, 100 Accessibility, 100 Best Practices, and 92 SEO.
+
+This replaces the earlier English mobile baseline, which scored 88 or 84 in repeat runs. The current screenshot is stored at [docs/lighthouse/final-en-mobile-lighthouse.png](docs/lighthouse/final-en-mobile-lighthouse.png).
+
+The SEO audit identified the site domain as the remaining cleanup area. The production URL fallback is now set to `https://exclusive-olive.vercel.app`, so canonical URLs and sitemap entries do not fall back to `localhost:3000`.
+
+The full baseline table remains useful for comparison:
+
+| Locale | Device | Performance | Accessibility | Best Practices | SEO | Status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-desktop-lighthouse.png) |
-| English | Mobile | 88 (84 repeat) | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-en-mobile-lighthouse.png) |
-| Arabic | Desktop | 100 | 99 | 100 | 92 | [Screenshot](docs/lighthouse/final-ar-desktop-lighthouse.png) |
-| Arabic | Mobile | 90 | 100 | 96 | 92 | [Screenshot](docs/lighthouse/final-ar-mobile-lighthouse.png) |
+| English | Desktop | 100 | 99 | 100 | 92 | Baseline |
+| English | Mobile | 88 (84 repeat) | 99 | 100 | 92 | Baseline |
+| Arabic | Desktop | 100 | 99 | 100 | 92 | Baseline |
+| Arabic | Mobile | 90 | 100 | 96 | 92 | Baseline |
 
-<details>
-<summary>English desktop Lighthouse screenshot</summary>
+## Lighthouse report process
 
-![English desktop Lighthouse scores](docs/lighthouse/final-en-desktop-lighthouse.png)
-</details>
+Run the English mobile audit after deployment:
 
-<details>
-<summary>English mobile Lighthouse screenshot</summary>
+```bash
+npx lighthouse "https://your-deployed-domain/en" --preset=perf --form-factor=mobile --screenEmulation.mobile=true --output=html --output-path=docs/lighthouse/post-change-en-mobile.html
+```
 
-![English mobile Lighthouse scores](docs/lighthouse/final-en-mobile-lighthouse.png)
-</details>
-
-<details>
-<summary>Arabic desktop Lighthouse screenshot</summary>
-
-![Arabic desktop Lighthouse scores](docs/lighthouse/final-ar-desktop-lighthouse.png)
-</details>
-
-<details>
-<summary>Arabic mobile Lighthouse screenshot</summary>
-
-![Arabic mobile Lighthouse scores](docs/lighthouse/final-ar-mobile-lighthouse.png)
-</details>
+Run the desktop and Arabic variants by changing the URL and the Lighthouse viewport or preset. Keep the screenshots and generated reports in `docs/lighthouse` only after confirming they were produced from the deployed current build.
 
 ## How to run the project
 
@@ -240,28 +290,15 @@ npx tsc --noEmit
 npm run build
 ```
 
-## Notes
+## Demo limitations
 
-This is a frontend demo project, not a real e-commerce backend.
+The project is a frontend demonstration, not a production e-commerce backend.
 
-So:
-- login is demo-only
-- signup does not create a real user
-- checkout does not process a real payment
-- contact form does not send real email
-- products come from a public sample API
-
-This is normal for a frontend challenge and keeps the project focused on UI, UX, and architecture.
-
-## Final note
-
-This project was built with the goal of creating a complete e-commerce frontend experience, with a clean structure, responsive layout, bilingual support, and real UI logic.
-
-The main focus was to make the interface look close to the provided design while keeping the code readable and organized.
-
-
-
-
+- login and signup are demo interactions
+- account changes are stored in browser state
+- checkout does not process real payments
+- contact form submissions are not delivered by email
+- products come from FakeStoreAPI
 
 
 

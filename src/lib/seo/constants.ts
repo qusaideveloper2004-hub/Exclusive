@@ -3,7 +3,7 @@
 
 export const SITE_NAME = "Exclusive";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://exclusive-olive.vercel.app";
 
 export const DEFAULT_LOCALE = "en";
 
