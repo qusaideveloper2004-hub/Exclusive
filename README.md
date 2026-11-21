@@ -93,9 +93,9 @@ This keeps reusable controls separate from product and page behavior without add
 
 ### 4. Data, server rendering, and client interaction
 
-`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. The home route (`src/app/[locale]/page.tsx`) renders the hero, while `src/app/[locale]/HomePageClient.tsx` fetches products from the browser and renders the product sections. If the request fails, its retry button starts another browser request.
+`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. The home route (`src/app/[locale]/page.tsx`) fetches products on the server and renders the sections. If the request fails, `src/components/home/HomeErrorState.tsx` offers a retry button that calls `router.refresh()` to re-run the server request.
 
-The home route shell is a Server Component, while `HomePageClient` and the home sections it renders run on the client so product fetching and retry happen in the browser. The client boundary includes more UI and JavaScript than the earlier server-fetch approach.
+The home route and data request are Server Components. Interactive sections remain Client Components where their sliders and product actions require browser behavior. This avoids a single client wrapper for the home page, but the effect on deployed Lighthouse scores must be measured rather than assumed.
 
 ### 5. Forms, validation, and SEO
 
@@ -108,7 +108,7 @@ SEO helpers in `src/lib/seo` are used with the Next.js Metadata API. `sitemap.ts
 - `src/app/[locale]/error.tsx`: localized route error boundary with a retry action.
 - `src/app/[locale]/loading.tsx`: general localized loading fallback. Product and checkout routes have their own page-specific `loading.tsx` skeletons.
 - `ProductDetailsSkeleton` and `ProductDetailsError` (in `components/products/details`) handle product loading and failed requests.
-- Home loading and error states are handled in `HomePageClient`; category requests manage their own loading and error states in `CategoryPageClient`.
+- Home product loading is performed by the server route; failed requests render `HomeErrorState`, whose retry button refreshes the route. Category requests manage their own loading and error states in `CategoryPageClient`.
 - `src/app/not-found.tsx`: localized 404 page with a link back to the current locale.
 
 ### 7. Responsive behavior and images
@@ -119,7 +119,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 ### Refactors after review
 
-- Home product fetching was moved to the server and then returned to `HomePageClient.tsx` after the server-fetch approach did not reliably load products from FakeStoreAPI in the deployed environment. The browser now makes the initial request and each retry directly.
+- Home product fetching was first moved to the server, then temporarily returned to a client page while investigating FakeStoreAPI failures. It is now server-rendered again, with a small client retry control that refreshes the route.
 - Inline locale checks (`locale === "ar"`) for loading and retry text were replaced with `next-intl` messages.
 - The middleware matcher was widened so unprefixed routes are handled by next-intl.
 
@@ -127,7 +127,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 - Zustand + `localStorage` avoids a backend for demo state, but persisted data is limited to the current browser.
 - FakeStoreAPI provides sample data quickly, but its copy is English-only and its availability is outside the app's control. A production store would use a first-party API and database.
-- Keeping the home sections in a Client Component enables browser-side loading and retry with FakeStoreAPI. This adds client-side work compared with server fetching; the current Lighthouse table is not a before/after comparison for this refactor, so its performance impact has not been measured.
+- Server-fetching home products reduces the need for a client wrapper and allows rendered product sections to arrive with the page. FakeStoreAPI availability and response time remain external dependencies; Lighthouse should be rerun against the deployed version to measure the actual impact.
 
 ## SEO
 
