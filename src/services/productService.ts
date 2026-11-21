@@ -3,6 +3,7 @@
 import { Product, FakeStoreProduct } from '@/types/product';
 
 const BASE_URL = 'https://fakestoreapi.com';
+const REQUEST_TIMEOUT_MS = 10000;
 
 const transformToProduct = (item: FakeStoreProduct): Product => {
 
@@ -51,7 +52,7 @@ export const productService = {
         ...(options.fresh ? { cache: 'no-store' as const } : { next: { revalidate: 300 } }),
 
         headers: { 'Accept': 'application/json' },
-        signal: AbortSignal.timeout(10000),
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
 
       });
 
@@ -60,6 +61,7 @@ export const productService = {
 
       const data: FakeStoreProduct[] = await res.json();
       if (!Array.isArray(data)) throw new Error('FakeStoreAPI returned an invalid products response');
+      if (data.length === 0) throw new Error('FakeStoreAPI returned an empty products response');
 
       return data.map(transformToProduct);
 

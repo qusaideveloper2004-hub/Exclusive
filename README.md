@@ -93,7 +93,7 @@ This keeps reusable controls separate from product and page behavior without add
 
 ### 4. Data, server rendering, and client interaction
 
-`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. The home route (`src/app/[locale]/page.tsx`) fetches products on the server and renders the sections. If the request fails, `src/components/home/HomeErrorState.tsx` offers a retry button that calls `router.refresh()` to re-run the server request.
+`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. The home route (`src/app/[locale]/page.tsx`) fetches products on the server and renders the sections. Product and category data come only from FakeStoreAPI; if the API is unavailable, the home page shows its retry state rather than sample catalog data. A skeleton is streamed while product data is loading.
 
 The home route and data request are Server Components. Interactive sections remain Client Components where their sliders and product actions require browser behavior. This avoids a single client wrapper for the home page, but the effect on deployed Lighthouse scores must be measured rather than assumed.
 
@@ -141,7 +141,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 
 
-- [ ] Run Lighthouse SEO audits against the current deployed build.
+- [x] Run Lighthouse SEO audits against the current deployed build.
 
 
 
@@ -154,31 +154,31 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-The current source changes have not yet been audited on the live deployment. Deploy them first, then replace these pending values with real measurements; do not report a median unless three runs were completed.
+These are single-run Lighthouse snapshots of the deployed URL on 2026-11-21; they are not medians and predate the latest local home-page skeleton change. Deploy the change and rerun Lighthouse to measure its effect. Both mobile runs include Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect the scores. Keep that limitation in mind when comparing results.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | Pending | Pending | Pending | Pending | Run after deployment |
-| English | Mobile | Pending | Pending | Pending | Pending | Run after deployment |
-| Arabic | Desktop | Pending | Pending | Pending | Pending | Run after deployment |
-| Arabic | Mobile | Pending | Pending | Pending | Pending | Run after deployment |
+| English | Desktop | 82 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-en-desktop.json) |
+| English | Mobile | 85 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-en-mobile.json) |
+| Arabic | Desktop | 72 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-ar-desktop.json) |
+| Arabic | Mobile | 85 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-ar-mobile.json) |
 
 To reproduce:
 
 ```bash
-# Mobile (default form factor)
+# Mobile (standard Lighthouse mobile throttling)
 npx lighthouse "https://exclusive-olive.vercel.app/en" \
   --only-categories=performance,accessibility,best-practices,seo \
-  --output=html --output-path=docs/lighthouse/en-mobile.html
+  --output=json --output-path=docs/lighthouse/live-en-mobile.json
 
 # Desktop
 npx lighthouse "https://exclusive-olive.vercel.app/en" \
   --preset=desktop \
   --only-categories=performance,accessibility,best-practices,seo \
-  --output=html --output-path=docs/lighthouse/en-desktop.html
+  --output=json --output-path=docs/lighthouse/live-en-desktop.json
 ```
 
-Repeat with `/ar` for Arabic.
+Repeat with `/ar` and matching `live-ar-*.json` output paths for Arabic. The PNG files are screenshots of the corresponding Lighthouse reports.
 
 ## How to Run
 
