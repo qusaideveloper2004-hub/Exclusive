@@ -56,13 +56,17 @@ formValues,  } = useCheckout();
 
 
 useEffect(() => {
-    if (step !== 2 || !window.matchMedia("(max-width: 767px)").matches) return;
+    if (step === 1 || !window.matchMedia("(max-width: 767px)").matches) return;
 
     const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
+        ? "instant"
         : "smooth";
 
-    checkoutTopRef.current?.scrollIntoView({ behavior, block: "start" });
+    if (step === 2) {
+        checkoutTopRef.current?.scrollIntoView({ behavior, block: "start" });
+    } else {
+        window.scrollTo({ top: 0, behavior });
+    }
 }, [step]);
 
 
