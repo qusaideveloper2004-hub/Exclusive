@@ -5,6 +5,7 @@ import { Product } from "@/types/product";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "next/navigation";
+import { useRouter as useLocalizedRouter } from "@/i18n/routing";
 
 
 import { useProductDetails } from "@/hooks/products/useProductDetails";
@@ -56,8 +57,10 @@ return (
 function ProductDetailsView({ product, relatedProducts }: ProductDetailsViewProps) {
 
 const t = useTranslations("ProductDetails");
+const localizedRouter = useLocalizedRouter();
 
 const {
+
     selectedImage,
     setSelectedImage,
 
@@ -147,7 +150,12 @@ return (
                     isInWishlist={isInWishlist}
                     onIncreaseQuantity={handleIncreaseQuantity}
                     onDecreaseQuantity={handleDecreaseQuantity}
-                    onAddToCart={handleAddToCart}
+
+                    onBuyNow={() => {
+                        handleAddToCart();
+                        localizedRouter.push("/checkout");
+                    }}
+                    
                     onToggleWishlist={handleToggleWishlist}
                 />
 
@@ -169,6 +177,5 @@ return (
 
 
 }
-
 
 

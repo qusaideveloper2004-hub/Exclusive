@@ -12,12 +12,12 @@ interface ProductActionsProps {
     isInWishlist: boolean;
     onIncreaseQuantity: () => void;
     onDecreaseQuantity: () => void;
-    onAddToCart: () => void;
+    onBuyNow: () => void;
     onToggleWishlist: () => void;
 }
 
 
-export function ProductActions({ quantity, isInWishlist, onIncreaseQuantity, onDecreaseQuantity, onAddToCart, onToggleWishlist }: ProductActionsProps) {
+export function ProductActions({ quantity, isInWishlist, onIncreaseQuantity, onDecreaseQuantity, onBuyNow, onToggleWishlist }: ProductActionsProps) {
 
 const t = useTranslations("ProductDetails");
 const commonT = useTranslations("Common");
@@ -59,7 +59,8 @@ return (
 
 
     <Button
-        onClick={onAddToCart}
+        type="button"
+        onClick={onBuyNow}
 
         variant="primary"
         size="md"
@@ -97,5 +98,6 @@ return (
 );
 
 }
+
 
 
