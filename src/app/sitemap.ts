@@ -4,7 +4,7 @@ import { SITE_URL, SUPPORTED_LOCALES, type Locale } from "@/lib/seo/constants";
 
 import { productService } from "@/services/productService";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 
 const BASE_URL = SITE_URL.replace(/\/+$/, "");
@@ -126,4 +126,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
 }
-

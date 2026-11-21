@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { createMetadata } from "@/lib/seo/metadata";
 import { type Locale } from "@/lib/seo/constants";
 
@@ -10,13 +11,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const { locale } = await params;
 
-const metadata = await createMetadata(locale, "/contact");
-
-const title = locale === "ar" ? "تواصل معنا" : "Contact Us";
-
-    const description = locale === "ar"
-        ? "تواصل مع Exclusive للاستفسارات والدعم والمساعدة بشأن تجربة التسوق الإلكتروني."
-        : "Get in touch with Exclusive. Contact our team for questions, support, or assistance with your online shopping experience.";
+const [metadata, t] = await Promise.all([
+    createMetadata(locale, "/contact"),
+    getTranslations({ locale, namespace: "ContactPage" }),
+]);
+const title = t("metadataTitle");
+const description = t("metadataDescription");
 
     return {
         ...metadata,
@@ -41,4 +41,3 @@ const title = locale === "ar" ? "تواصل معنا" : "Contact Us";
 export default function ContactPage() {
     return <ContactPageClient />;
 }
-

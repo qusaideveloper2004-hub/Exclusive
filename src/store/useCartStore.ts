@@ -25,8 +25,52 @@ interface CartStore {
   getTotalPrice: () => number;
 }
 
+type PersistedCartState = Pick<CartStore, "items" | "appliedCoupon">;
+type LegacyPersistedCartState = Pick<CartStore, "items"> &
+  Partial<Pick<CartStore, "appliedCoupon">>;
+
+const isCartItem = (value: unknown): value is CartItem => {
+  if (typeof value !== "object" || value === null) return false;
+
+  const item = value as Partial<CartItem>;
+  const product = item.product;
+
+  return (
+    typeof product === "object" &&
+    product !== null &&
+    typeof product.id === "number" &&
+    typeof product.title === "string" &&
+    typeof product.price === "number" &&
+    typeof product.description === "string" &&
+    typeof product.category === "string" &&
+    typeof product.image === "string" &&
+    typeof item.quantity === "number" &&
+    Number.isFinite(item.quantity) &&
+    item.quantity > 0 &&
+    (item.selectedColor === undefined ||
+      item.selectedColor === null ||
+      typeof item.selectedColor === "string") &&
+    (item.selectedSize === undefined ||
+      item.selectedSize === null ||
+      typeof item.selectedSize === "string")
+  );
+};
+
+const isPersistedCartState = (state: unknown): state is LegacyPersistedCartState => {
+  if (typeof state !== "object" || state === null) return false;
+
+  const persistedState = state as Partial<LegacyPersistedCartState>;
+  return (
+    Array.isArray(persistedState.items) &&
+    persistedState.items.every(isCartItem) &&
+    (persistedState.appliedCoupon === undefined ||
+      persistedState.appliedCoupon === null ||
+      typeof persistedState.appliedCoupon === "string")
+  );
+};
+
 export const useCartStore = create<CartStore>()(
-  persist(
+  persist<CartStore, [], [], PersistedCartState>(
     (set, get) => ({
 
       items: [],
@@ -99,7 +143,21 @@ export const useCartStore = create<CartStore>()(
     }),
 
 
-    { name: 'ecommerce-cart-storage' }
+    {
+      name: "ecommerce-cart-storage",
+      version: 1,
+      partialize: ({ items, appliedCoupon }) => ({ items, appliedCoupon }),
+      migrate: (persistedState, version) => {
+        if (version === 0 && isPersistedCartState(persistedState)) {
+          return {
+            items: persistedState.items,
+            appliedCoupon: persistedState.appliedCoupon ?? null,
+          };
+        }
+
+        return { items: [], appliedCoupon: null };
+      },
+    }
 
   )
 );

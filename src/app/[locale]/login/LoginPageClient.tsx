@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createLoginSchema } from "@/lib/schemas/authSchema";
 import type { LoginFormData } from "@/lib/schemas/authSchema";
 
-import { authService } from "@/services/authService";
+import { authService, AUTH_LOGIN_FAILED } from "@/services/authService";
 import { useAuthStore } from "@/store/useAuthStore";
 
 import { Input } from "@/components/ui/Input";
@@ -67,7 +67,10 @@ const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
         router.push("/");
 
     } catch (err: unknown) {
-        setErrorMessage(err instanceof Error ? err.message : t("loginFailed"));
+        if (!(err instanceof Error) || err.message !== AUTH_LOGIN_FAILED) {
+            console.error("Login request failed:", err);
+        }
+        setErrorMessage(t("loginFailed"));
         
     } finally {
         setIsLoading(false);
@@ -168,5 +171,4 @@ return (
 </main>
 );
 }
-
 

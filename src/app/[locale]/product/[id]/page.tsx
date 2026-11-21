@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { cache } from "react";
+import { getTranslations } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { SITE_URL, type Locale } from "@/lib/seo/constants";
+import snapshot from "@/data/products.snapshot.json";
 
 import { generateProductSchema, generateBreadcrumbSchema, getCategoryBreadcrumb } from "@/lib/seo/structuredData";
 
@@ -22,12 +24,19 @@ interface ProductPageProps {
 
 const getProductById = cache((id: number) => productService.getProductById(id));
 
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+    return snapshot.map((product) => ({ id: String(product.id) }));
+}
+
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
 
 const { locale, id } = await params;
 
 const baseMetadata = await createMetadata(locale);
+const t = await getTranslations({ locale, namespace: "ProductDetails" });
 
 const product = await getProductById(Number(id));
 
@@ -36,9 +45,7 @@ if (!product) {
 
     return {
         ...baseMetadata,
-        title: locale === "ar"
-            ? "المنتج غير موجود"
-            : "Product Not Found",
+        title: t("productNotFound"),
     };
 
 }
@@ -100,6 +107,7 @@ return {
 export default async function ProductDetailsPage({ params }: ProductPageProps) {
 
 const { locale, id } = await params;
+const t = await getTranslations({ locale, namespace: "Header" });
 
 const product = await getProductById(Number(id));
 
@@ -127,7 +135,7 @@ const productSchema = generateProductSchema(product, locale);
 const breadcrumbSchema = generateBreadcrumbSchema([
 
     {
-        name: locale === "ar" ? "الرئيسية" : "Home",
+        name: t("home"),
         url: `${SITE_URL}/${locale}`,
     },
 

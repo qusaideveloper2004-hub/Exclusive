@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { type Locale } from "@/lib/seo/constants";
@@ -17,12 +18,23 @@ import type { Product } from "@/types/product";
 
 type Props = { params: Promise<{ locale: Locale; slug: string; }>; };
 
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+    return [
+        { slug: "all" },
+        { slug: "electronics" },
+        { slug: "jewelery" },
+        { slug: "men's clothing" },
+        { slug: "women's clothing" },
+    ];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const { locale, slug } = await params;
 const decodedSlug = decodeURIComponent(slug);
-
-    // const metadata = createMetadata(locale);
+const t = await getTranslations({ locale, namespace: "CategoryPage" });
 
     const metadata = await createMetadata(locale,`/category/${encodeURIComponent(decodedSlug)}`);
 
@@ -33,18 +45,14 @@ const decodedSlug = decodeURIComponent(slug);
     const title = category
         ? category.title
         : isAllProducts
-            ? locale === "ar" ? "جميع المنتجات" : "All Products"
+            ? t("metadataAllTitle")
             : decodedSlug.replace(/-/g, " ").toUpperCase();
 
     const description = category
         ? category.description
         : isAllProducts
-            ? locale === "ar"
-                ? "اكتشف جميع منتجات Exclusive واستمتع بتشكيلة متنوعة من المنتجات وأفضل العروض والخصومات."
-                : "Explore all products at Exclusive. Discover a wide range of products and enjoy great deals and discounts."
-            : locale === "ar"
-                ? `اكتشف منتجات قسم ${title} في Exclusive واستمتع بأفضل العروض والخصومات.`
-                : `Discover ${title} products at Exclusive and enjoy great deals and discounts.`;
+            ? t("metadataAllDescription")
+            : t("metadataCategoryDescription", { title });
 
     return {
         ...metadata,
@@ -69,6 +77,7 @@ const decodedSlug = decodeURIComponent(slug);
 export default async function CategoryPage({ params }: Props) {
 
     const { locale, slug } = await params;
+    const t = await getTranslations({ locale, namespace: "CategoryPage" });
 
     const decodedSlug = decodeURIComponent(slug);
     const categorySlug = decodedSlug.toLowerCase();
@@ -95,14 +104,12 @@ export default async function CategoryPage({ params }: Props) {
     }
 
     const categoryName = decodedSlug === "all"
-        ? locale === "ar"
-            ? "جميع المنتجات"
-            : "All Products"
+        ? t("metadataAllTitle")
         : getCategoryBreadcrumb(decodedSlug, locale);
 
     const breadcrumbSchema = generateBreadcrumbSchema([
         {
-            name: locale === "ar" ? "الرئيسية" : "Home",
+            name: t("breadcrumbHome"),
             url: `${SITE_URL}/${locale}`,
         },
 
@@ -128,5 +135,3 @@ export default async function CategoryPage({ params }: Props) {
     );
 
 }
-
-

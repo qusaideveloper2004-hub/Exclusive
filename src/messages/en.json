@@ -93,6 +93,7 @@
 
   "Common": {
     "search": "Search products...",
+    "new": "NEW",
     "addToCart": "Add to Cart",
     "addToWishlist": "Add to Wishlist",
     "removeFromWishlist": "Remove from Wishlist",
@@ -265,6 +266,7 @@
 
 "ProductDetails": {
   "breadcrumbAccount": "Home",
+  "productNotFound": "Product Not Found",
   "errorMessage": "We couldn't load this product.",
   "backHome": "Back to Home",
   "retryButton": "Retry",
@@ -283,6 +285,9 @@
 
 "CategoryPage": {
   "breadcrumbHome": "Home",
+  "metadataAllTitle": "All Products",
+  "metadataAllDescription": "Explore all products at Exclusive. Discover a wide range of products and enjoy great deals and discounts.",
+  "metadataCategoryDescription": "Discover {title} products at Exclusive and enjoy great deals and discounts.",
   "sortByLabel": "Sort By",
   "sortDefault": "Default Sorting",
   "sortPriceAsc": "Price: Low to High",
@@ -396,6 +401,8 @@
 "AboutPage": {
   "breadcrumbHome": "Home",
   "breadcrumbAbout": "About",
+  "metadataTitle": "About Us",
+  "metadataDescription": "Learn more about Exclusive, our story, our products and our commitment to making online shopping easier.",
   "storyTitle": "Our Story",
   "storyImageAlt": "Two women enjoying a shopping trip",
   "storyText1": "Launched in 2015, Exclusive is South Asia's premier online shopping marketplace with an active presence in Bangladesh. Supported by a wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 million customers across the region.",
@@ -430,6 +437,8 @@
 "ContactPage": {
   "breadcrumbHome": "Home",
   "breadcrumbContact": "Contact",
+  "metadataTitle": "Contact Us",
+  "metadataDescription": "Get in touch with Exclusive. Contact our team for questions, support, or assistance with your online shopping experience.",
   "callTitle": "Call To Us",
   "callSubtitle": "We are available 24/7, 7 days a week.",
   "phone": "Phone",

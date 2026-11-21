@@ -91,6 +91,7 @@
   },
   "Common": {
     "search": "ابحث عن المنتجات...",
+    "new": "جديد",
     "addToCart": "إضافة للسلة",
     "addToWishlist": "إضافة للمفضلة",
     "removeFromWishlist": "إزالة من المفضلة",
@@ -269,6 +270,7 @@
 
 "ProductDetails": {
   "breadcrumbAccount": "الرئيسية",
+  "productNotFound": "المنتج غير موجود",
   "errorMessage": "تعذر تحميل هذا المنتج.",
   "backHome": "العودة للرئيسية",
   "retryButton": "إعادة المحاولة",
@@ -287,6 +289,9 @@
 
 "CategoryPage": {
   "breadcrumbHome": "الرئيسية",
+  "metadataAllTitle": "جميع المنتجات",
+  "metadataAllDescription": "اكتشف جميع منتجات Exclusive واستمتع بتشكيلة متنوعة من المنتجات وأفضل العروض والخصومات.",
+  "metadataCategoryDescription": "اكتشف منتجات قسم {title} في Exclusive واستمتع بأفضل العروض والخصومات.",
   "sortByLabel": "ترتيب حسب",
   "sortDefault": "الافتراضي",
   "sortPriceAsc": "السعر: من الأقل للأعلى",
@@ -404,6 +409,8 @@
 "AboutPage": {
   "breadcrumbHome": "الرئيسية",
   "breadcrumbAbout": "من نحن",
+  "metadataTitle": "من نحن",
+  "metadataDescription": "تعرف على Exclusive وقصتنا ومنتجاتنا والتزامنا بتوفير تجربة تسوق إلكتروني سهلة ومميزة.",
   "storyTitle": "قصتنا",
   "storyImageAlt": "امرأتان تستمتعان بالتسوق",
   "storyText1": "انطلقت Exclusive عام 2015 لتصبح من أبرز منصات التسوق الإلكتروني في جنوب آسيا، مع حضور نشط في بنغلاديش. وبفضل حلول التسويق والبيانات والخدمات المصممة لتلبية الاحتياجات، تضم Exclusive أكثر من 10,500 بائع و300 علامة تجارية، وتخدم 3 ملايين عميل في المنطقة.",
@@ -438,6 +445,8 @@
 "ContactPage": {
   "breadcrumbHome": "الرئيسية",
   "breadcrumbContact": "التواصل",
+  "metadataTitle": "تواصل معنا",
+  "metadataDescription": "تواصل مع Exclusive للاستفسارات والدعم والمساعدة بشأن تجربة التسوق الإلكتروني.",
   "callTitle": "اتصل بنا",
   "callSubtitle": "نحن متواجدون على مدار 24/7 طوال أيام الأسبوع.",
   "phone": "الهاتف",

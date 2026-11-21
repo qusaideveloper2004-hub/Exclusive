@@ -1,0 +1,21 @@
+{
+  "source": "Google PageSpeed Insights",
+  "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/tm0vp6fupe?form_factor=desktop",
+  "requestedUrl": "https://exclusive-olive.vercel.app/ar",
+  "capturedAt": "2026-11-21T21:59:37+02:00",
+  "formFactor": "desktop",
+  "lighthouseVersion": "13.6.0",
+  "scores": {
+    "performance": 84,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "labMetrics": {
+    "firstContentfulPaint": "0.3 s",
+    "largestContentfulPaint": "0.5 s",
+    "totalBlockingTime": "40 ms",
+    "cumulativeLayoutShift": 0.325,
+    "speedIndex": "1.0 s"
+  }
+}

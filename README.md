@@ -93,7 +93,7 @@ This keeps reusable controls separate from product and page behavior without add
 
 ### 4. Data, server rendering, and client interaction
 
-`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. Product requests run on the server, are cached for one hour, and retry once after a failure. If FakeStoreAPI is still unavailable, `src/data/products.snapshot.json` supplies the product and category data so the storefront does not render empty. A skeleton is streamed while home-page products are loading.
+`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. Product requests run on the server, are cached for one hour, and retry once after a failure. If FakeStoreAPI is still unavailable, `src/data/products.snapshot.json` supplies the product and category data so the storefront does not render empty.
 
 The home route and data request are Server Components. Interactive sections remain Client Components where their sliders and product actions require browser behavior. This avoids a single client wrapper for the home page, but the effect on deployed Lighthouse scores must be measured rather than assumed.
 
@@ -109,6 +109,8 @@ SEO helpers in `src/lib/seo` are used with the Next.js Metadata API. `sitemap.ts
 - `src/app/[locale]/loading.tsx`: general localized loading fallback. Product and checkout routes have their own page-specific `loading.tsx` skeletons.
 - `ProductDetailsSkeleton` and `ProductDetailsError` (in `components/products/details`) handle product loading and failed requests.
 - Home, category, product-detail, wishlist recommendations, and sitemap product data are fetched by Server Components or server utilities. The home page keeps `HomeErrorState` for unexpected failures after snapshot recovery; category retry refreshes the route.
+- The home page renders `<HeroSection />` followed directly by `<HomeProductSections />`; it does not wrap its product sections in `Suspense` or show a home-page loading skeleton.
+- Product and category routes are pre-rendered from the snapshot product IDs and supported categories, then revalidated hourly. The sitemap is also revalidated hourly.
 - `src/app/not-found.tsx`: localized 404 page with a link back to the current locale.
 
 ### 7. Responsive behavior and images
@@ -155,49 +157,14 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-These are single-run Lighthouse snapshots of the deployed English and Arabic storefronts, captured on 2026-11-21. They are not medians, and scores can vary between runs. The English mobile run includes Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect its performance score; keep that limitation in mind when comparing results.
+These are single-run lab reports from Google PageSpeed Insights for the deployed storefront, captured on 2026-11-21. They are not medians, and scores can vary between runs. Each evidence link opens the original PageSpeed report; the JSON files contain the reported scores and lab metrics. CLS is 0 on mobile, but remains 0.325 on desktop, so the layout-shift issue is not fully resolved.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | 84 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-en-desktop.json) |
-| English | Mobile | 77 | 96 | 100 | 92 | [PNG](docs/lighthouse/final-en-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-en-mobile.json) |
-| Arabic | Desktop | 41 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-desktop-lighthouse.png) · [JSON](docs/lighthouse/live-ar-desktop.json) |
-| Arabic | Mobile | 91 | 100 | 100 | 92 | [PNG](docs/lighthouse/final-ar-mobile-lighthouse.png) · [JSON](docs/lighthouse/live-ar-mobile.json) |
-
-### Score screenshots
-
-**English - Desktop**
-
-![English desktop Lighthouse scores](docs/lighthouse/final-en-desktop-lighthouse.png)
-
-**English - Mobile**
-
-![English mobile Lighthouse scores](docs/lighthouse/final-en-mobile-lighthouse.png)
-
-**Arabic - Desktop**
-
-![Arabic desktop Lighthouse scores](docs/lighthouse/final-ar-desktop-lighthouse.png)
-
-**Arabic - Mobile**
-
-![Arabic mobile Lighthouse scores](docs/lighthouse/final-ar-mobile-lighthouse.png)
-
-To reproduce:
-
-```bash
-# Mobile (standard Lighthouse mobile throttling)
-npx lighthouse "https://exclusive-olive.vercel.app/en" \
-  --only-categories=performance,accessibility,best-practices,seo \
-  --output=json --output-path=docs/lighthouse/live-en-mobile.json
-
-# Desktop
-npx lighthouse "https://exclusive-olive.vercel.app/en" \
-  --preset=desktop \
-  --only-categories=performance,accessibility,best-practices,seo \
-  --output=json --output-path=docs/lighthouse/live-en-desktop.json
-```
-
-Repeat with `/ar` and matching `live-ar-*.json` output paths for Arabic. The screenshots below show the category scores from each corresponding Lighthouse report.
+| English | Desktop | 84 | 96 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/cexkch7jd2?form_factor=desktop) · [JSON](docs/lighthouse/pagespeed-en-desktop.json) |
+| English | Mobile | 98 | 96 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/1m1coluh8s?form_factor=mobile) · [JSON](docs/lighthouse/pagespeed-en-mobile.json) |
+| Arabic | Desktop | 84 | 100 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/tm0vp6fupe?form_factor=desktop) · [JSON](docs/lighthouse/pagespeed-ar-desktop.json) |
+| Arabic | Mobile | 100 | 100 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/gkj19hpnbz?form_factor=mobile) · [JSON](docs/lighthouse/pagespeed-ar-mobile.json) |
 
 ## How to Run
 

@@ -82,7 +82,7 @@ return (
                         {isNewProduct && (
 
                             <span className="rounded-[3px] bg-[#00ff66] px-[10px] py-[3px] text-[11px] font-medium leading-4 text-black">
-                                NEW
+                                {t("new")}
                             </span>
 
                         )}
