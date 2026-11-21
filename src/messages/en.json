@@ -401,6 +401,13 @@
 },
 
 
+ "Errors": {
+  "title": "Something went wrong",
+  "description": "We could not complete this page request. Please try again.",
+  "retry": "Try again"
+},
+
+
 "NotFoundPage": {
   "breadcrumbHome": "Home",
   "breadcrumb404": "404 Error",

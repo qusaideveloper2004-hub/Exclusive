@@ -142,6 +142,15 @@ Examples:
 
 This makes the forms more stable and reduces invalid input.
 
+### Loading and error handling
+
+- Route-level: [error.tsx](src/app/[locale]/error.tsx) provides a localized error boundary below the `[locale]` route with a retry action.
+- Route-level loading: [loading.tsx](src/app/[locale]/loading.tsx) provides a general fallback below `[locale]`, while [product loading.tsx](src/app/[locale]/product/[id]/loading.tsx) and [checkout loading.tsx](src/app/[locale]/checkout/loading.tsx) render page-specific skeletons while route work is pending.
+- Component-level: [ProductDetailsSkeleton.tsx](src/components/products/details/ProductDetailsSkeleton.tsx) and [ProductDetailsError.tsx](src/components/products/details/ProductDetailsError.tsx) handle product detail loading and failed requests.
+- Home data: [HomePageClient.tsx](src/app/[locale]/HomePageClient.tsx) manages loading, success, error, and retry states for FakeStoreAPI products.
+- Category and cart routes manage their loading state in client components; category products are fetched in [CategoryPageClient.tsx](src/app/[locale]/category/[slug]/CategoryPageClient.tsx), while cart state comes from [useCartStore.ts](src/store/useCartStore.ts).
+- Not found: [not-found.tsx](src/app/not-found.tsx) provides the localized 404 page and a link back to the current locale.
+
 ## SEO and metadata
 
 The project includes SEO setup such as:
@@ -299,8 +308,6 @@ The project is a frontend demonstration, not a production e-commerce backend.
 - checkout does not process real payments
 - contact form submissions are not delivered by email
 - products come from FakeStoreAPI
-
-
 
 
 
