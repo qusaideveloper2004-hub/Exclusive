@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/seo/metadata";
+import { type Locale } from "@/lib/seo/constants";
 
 import ContactPageClient from "./ContactPageClient";
 
-type Props = { params: Promise<{ locale: "en" | "ar"; }>; };
+type Props = { params: Promise<{ locale: Locale }>; };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const { locale } = await params;
 
-const metadata = createMetadata(locale, "/contact");
+const metadata = await createMetadata(locale, "/contact");
 
 const title = locale === "ar" ? "تواصل معنا" : "Contact Us";
 
@@ -40,5 +41,4 @@ const title = locale === "ar" ? "تواصل معنا" : "Contact Us";
 export default function ContactPage() {
     return <ContactPageClient />;
 }
-
 

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { SITE_URL, SUPPORTED_LOCALES ,} from "@/lib/seo/constants";
+import { SITE_URL, SUPPORTED_LOCALES, type Locale } from "@/lib/seo/constants";
 
 import { productService } from "@/services/productService";
 
@@ -8,8 +8,6 @@ export const dynamic = "force-dynamic";
 
 
 const BASE_URL = SITE_URL.replace(/\/+$/, "");
-
-type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 type SitemapOptions = { changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number; };
 
@@ -128,5 +126,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
 }
-
 

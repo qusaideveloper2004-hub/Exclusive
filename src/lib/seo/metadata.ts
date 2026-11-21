@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SUPPORTED_LOCALES  ,DEFAULT_OG_IMAGE } from "@/lib/seo/constants";
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, type Locale, DEFAULT_OG_IMAGE } from "@/lib/seo/constants";
 
-type Locale = (typeof SUPPORTED_LOCALES)[number];
-
-export function createMetadata( locale: Locale, pathname?: string ): Metadata {
+export async function createMetadata(locale: Locale, pathname?: string): Promise<Metadata> {
 
 const isArabic = locale === "ar";
-const title = isArabic ? "التسوق الإلكتروني" : "Online Shopping";
+const t = await getTranslations({ locale, namespace: "Metadata" });
+const title = t("siteTitle");
 const description = SITE_DESCRIPTION[locale];
 
 
@@ -35,9 +35,7 @@ const description = SITE_DESCRIPTION[locale];
 
 
 
-        const imageAlt = isArabic
-    ? "متجر Exclusive للتسوق الإلكتروني"
-    : "Exclusive Online Shopping Store";
+        const imageAlt = t("imageAlt");
 
     return {
 
@@ -90,10 +88,10 @@ const description = SITE_DESCRIPTION[locale];
 }
 
 
-export function createNoIndexMetadata(locale: Locale): Metadata {
+export async function createNoIndexMetadata(locale: Locale): Promise<Metadata> {
 
     return {
-        ...createMetadata(locale),
+        ...await createMetadata(locale),
 
         robots: {
             index: false,

@@ -15,14 +15,14 @@ import { Footer } from "@/components/layout/Footer";
 
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/seo/metadata";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/seo/constants";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/lib/seo/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }>; }): Promise<Metadata> {
 
   const { locale } = await params;
 
-    const validLocale = SUPPORTED_LOCALES.includes( locale as (typeof SUPPORTED_LOCALES)[number])
-      ? locale as (typeof SUPPORTED_LOCALES)[number]
+    const validLocale = SUPPORTED_LOCALES.includes(locale as Locale)
+      ? locale as Locale
         : DEFAULT_LOCALE;
 
     return createMetadata(validLocale);
@@ -66,7 +66,6 @@ const dir = locale === "ar" ? "rtl" : "ltr";
 
   );
 }
-
 
 
 

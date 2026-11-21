@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 
 import { createMetadata } from "@/lib/seo/metadata";
-import { SITE_URL, SUPPORTED_LOCALES } from "@/lib/seo/constants";
+import { SITE_URL, type Locale } from "@/lib/seo/constants";
 
 import { generateProductSchema, generateBreadcrumbSchema, getCategoryBreadcrumb } from "@/lib/seo/structuredData";
 
@@ -12,12 +12,9 @@ import ProductDetailsClient from "./ProductDetailsClient";
 import { productService } from "@/services/productService";
 
 
-type Locale = (typeof SUPPORTED_LOCALES)[number];
-
-
 interface ProductPageProps {
     params: Promise<{
-        locale: string;
+        locale: Locale;
         id: string;
     }>;
 }
@@ -30,7 +27,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 const { locale, id } = await params;
 
-const baseMetadata = createMetadata(locale as Locale);
+const baseMetadata = await createMetadata(locale);
 
 const product = await getProductById(Number(id));
 
@@ -47,7 +44,7 @@ if (!product) {
 }
 
 
-const productMetadata = createMetadata(locale as Locale, `/product/${id}`);
+const productMetadata = await createMetadata(locale, `/product/${id}`);
 
 const title = product.title;
 
@@ -125,7 +122,7 @@ const relatedProducts = await productService.getProductsByCategory(product.categ
 const filteredRelatedProducts = relatedProducts.filter((item) => item.id !== product.id);
 
 
-const productSchema = generateProductSchema(product, locale as Locale);
+const productSchema = generateProductSchema(product, locale);
 
 
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -136,7 +133,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     },
 
     {
-        name: getCategoryBreadcrumb(product.category, locale as Locale),
+        name: getCategoryBreadcrumb(product.category, locale),
         url: `${SITE_URL}/${locale}/category/${encodeURIComponent(product.category)}`,
     },
 
@@ -168,5 +165,4 @@ return (
 );
 
 }
-
 

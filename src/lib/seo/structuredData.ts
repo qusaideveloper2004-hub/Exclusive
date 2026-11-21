@@ -1,9 +1,7 @@
 import { Product } from "@/types/product";
 
-import { SITE_NAME, SITE_URL } from "@/lib/seo/constants";
+import { SITE_NAME, SITE_URL, type Locale } from "@/lib/seo/constants";
 import { getCategorySEO } from "@/lib/seo/categoryTranslations";
-
-type Locale = "en" | "ar";
 
 export function generateProductSchema( product: Product, locale: Locale ) {
 
@@ -83,4 +81,3 @@ export function getCategoryBreadcrumb( slug: string, locale: Locale ) {
         .replace(/-/g, " ")
         .toUpperCase();
 }
-

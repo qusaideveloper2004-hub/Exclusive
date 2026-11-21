@@ -1,13 +1,12 @@
 
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
-import { SITE_NAME, DEFAULT_LOCALE, SUPPORTED_LOCALES  } from "@/lib/seo/constants";
+import { SITE_NAME, DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/lib/seo/constants";
 
 import { HeroSection } from "@/components/home/HeroSection";
 import HomePageClient from "./HomePageClient";
-
-type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }>; }): Promise<Metadata> {
 
@@ -17,11 +16,11 @@ const validLocale = SUPPORTED_LOCALES.includes(locale as Locale)
     ? locale as Locale
     : DEFAULT_LOCALE;
 
-const baseMetadata = createMetadata(validLocale,"/");
-
-const title = validLocale === "ar"
-    ? "التسوق الإلكتروني"
-    : "Online Shopping";
+const [baseMetadata, t] = await Promise.all([
+    createMetadata(validLocale, "/"),
+    getTranslations({ locale: validLocale, namespace: "Metadata" }),
+]);
+const title = t("homeTitle");
 
     return {
 

@@ -3,8 +3,9 @@ import { createNoIndexMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 import WishlistPageClient from "./WishlistPageClient";
+import { type Locale } from "@/lib/seo/constants";
 
-type Props = { params: Promise<{ locale: "en" | "ar"; }>; };
+type Props = { params: Promise<{ locale: Locale }>; };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
@@ -19,5 +20,4 @@ export default function WishlistPage() {
     return <WishlistPageClient />;
 
 }
-
 

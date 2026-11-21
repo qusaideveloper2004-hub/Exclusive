@@ -1,4 +1,6 @@
 
+import type { Locale } from "@/lib/seo/constants";
+
 type CategorySEOData = {
     name: string;
     title: string;
@@ -184,7 +186,7 @@ export const CATEGORY_SEO: Record<string, CategorySEOTranslations> = {
 
 };
 
-export function getCategorySEO(slug: string, locale: "en" | "ar"): CategorySEOData | null {
+export function getCategorySEO(slug: string, locale: Locale): CategorySEOData | null {
 
 let decodedSlug = slug;
 
@@ -211,5 +213,3 @@ if (!category) {
 return category[locale];
 
 }
-
-

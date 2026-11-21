@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { createMetadata } from "@/lib/seo/metadata";
+import { type Locale } from "@/lib/seo/constants";
 import { getCategorySEO } from "@/lib/seo/categoryTranslations";
 
 import CategoryPageClient from "./CategoryPageClient";
@@ -12,7 +13,7 @@ import {generateBreadcrumbSchema,getCategoryBreadcrumb, } from "@/lib/seo/struct
 
 import JsonLd from "@/lib/seo/JsonLd";
 
-type Props = { params: Promise<{ locale: "en" | "ar"; slug: string; }>; };
+type Props = { params: Promise<{ locale: Locale; slug: string; }>; };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
@@ -21,7 +22,7 @@ const decodedSlug = decodeURIComponent(slug);
 
     // const metadata = createMetadata(locale);
 
-    const metadata = createMetadata(locale,`/category/${encodeURIComponent(decodedSlug)}`);
+    const metadata = await createMetadata(locale,`/category/${encodeURIComponent(decodedSlug)}`);
 
     const category = getCategorySEO(decodedSlug, locale);
 
@@ -99,7 +100,6 @@ export default async function CategoryPage({ params }: Props) {
     );
 
 }
-
 
 
 

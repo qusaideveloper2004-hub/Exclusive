@@ -8,6 +8,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://exclusive-o
 export const DEFAULT_LOCALE = "en";
 
 export const SUPPORTED_LOCALES = ["en", "ar"] as const;
+export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const SITE_DESCRIPTION = {
     en: "Shop electronics, fashion, accessories, and home essentials at Exclusive. Discover exclusive deals and fast delivery across Egypt.",
