@@ -157,14 +157,14 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-These are single-run lab reports from Google PageSpeed Insights for the deployed storefront, captured on 2026-11-21. They are not medians, and scores can vary between runs. Each evidence link opens the original PageSpeed report; the JSON files contain the reported scores and lab metrics. CLS is 0 on mobile, but remains 0.325 on desktop, so the layout-shift issue is not fully resolved.
+These are Google PageSpeed Insights lab reports for the deployed storefront, captured on 2026-11-21. The Arabic mobile scores are medians from three runs; the other rows are single-run results and are not directly comparable as repeated samples. Each evidence link opens the original report, and the JSON files contain the captured scores and lab metrics. Arabic mobile SEO remained 100 across all three runs. CLS was 0 on mobile, but the earlier desktop result was 0.325, so desktop layout stability still needs a fresh measurement.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | English | Desktop | 84 | 96 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/cexkch7jd2?form_factor=desktop) · [JSON](docs/lighthouse/pagespeed-en-desktop.json) |
 | English | Mobile | 98 | 96 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/1m1coluh8s?form_factor=mobile) · [JSON](docs/lighthouse/pagespeed-en-mobile.json) |
 | Arabic | Desktop | 84 | 100 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/tm0vp6fupe?form_factor=desktop) · [JSON](docs/lighthouse/pagespeed-ar-desktop.json) |
-| Arabic | Mobile | 100 | 100 | 100 | 100 | [PageSpeed report](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/gkj19hpnbz?form_factor=mobile) · [JSON](docs/lighthouse/pagespeed-ar-mobile.json) |
+| Arabic | Mobile | 99 (99–99) | 100 (100–100) | 100 (100–100) | 100 (100–100) | [Run 1](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/d0xvo5ww6n?form_factor=mobile) · [Run 2](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/fjlw48qt1v?form_factor=mobile) · [Run 3](https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/iy5o9djupj?form_factor=mobile) · [JSON](docs/lighthouse/pagespeed-ar-mobile.json) |
 
 ## How to Run
 
