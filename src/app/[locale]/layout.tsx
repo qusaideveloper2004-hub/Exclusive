@@ -1,4 +1,4 @@
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { setRequestLocale} from   "next-intl/server"
 
 import { notFound } from "next/navigation";
@@ -48,6 +48,7 @@ const { locale } = await params;
 
 
 const messages = await getMessages();
+const t = await getTranslations("Header");
 const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -56,8 +57,16 @@ const dir = locale === "ar" ? "rtl" : "ltr";
       <body className="min-h-screen bg-background text-foreground antialiased">
 
         <NextIntlClientProvider messages={messages}>
+          <a
+            href="#main-content"
+            className="fixed start-4 top-4 z-[100] -translate-y-[150%] rounded-md bg-white px-4 py-2 font-medium text-black shadow-md transition-transform focus:translate-y-0 focus:outline-2 focus:outline-offset-2 focus:outline-[var(--brand)]"
+          >
+            {t("skipToContent")}
+          </a>
           <Navbar />
-          <main>{children}</main>
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
 
@@ -66,6 +75,5 @@ const dir = locale === "ar" ? "rtl" : "ltr";
 
   );
 }
-
 
 

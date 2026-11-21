@@ -175,7 +175,7 @@ return (
                 className={`absolute inset-x-0 bottom-0 z-10 flex h-[38px] w-full items-center justify-center bg-black text-center text-[13px] font-medium !text-white transition-all duration-200 cursor-pointer hover:bg-[var(--brand)] ${
                     showAddToCartAlways
                         ? "opacity-100 translate-y-0"
-                        : "opacity-100 translate-y-0 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
+                        : "opacity-100 translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
                     }`}
                 >
 
@@ -228,18 +228,20 @@ return (
 
                         {product.colors.map((color, index) => (
 
-                            <button
+                            <span
                                 key={index}
+                                role="img"
                                 aria-label={t(color.name.toLowerCase())}
                                 className="flex h-4 w-4 items-center justify-center rounded-full border border-black p-0.5"
                             >
 
                                 <span
+                                    aria-hidden="true"
                                     className="h-full w-full rounded-full"
                                     style={{ backgroundColor: color.hex }}
                                 />
 
-                            </button>
+                            </span>
 
                         ))}
 

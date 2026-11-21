@@ -12,6 +12,7 @@
 
 
   "Header": {
+    "skipToContent": "Skip to main content",
     "home": "Home",
     "contact": "Contact",
     "about": "About",
