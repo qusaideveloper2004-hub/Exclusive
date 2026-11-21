@@ -55,15 +55,6 @@ const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 const isFavorite = useWishlistStore((state) => state.isInWishlist(product.id));
 const [hasImageError, setHasImageError] = useState(false);
 
-const cacheProductForDetails = () => {
-    try {
-        window.sessionStorage.setItem(`product:${product.id}`, JSON.stringify(product));
-    } catch {
-        // Continue navigation if browser storage is unavailable.
-    }
-};
-
-
 const hasDiscount = showDiscount && !!product.discountPercentage;
 const isNewProduct = !hasDiscount && !!product.isNew;
 
@@ -141,7 +132,6 @@ return (
 
                         <Link
                             href={`/product/${product.id}`}
-                            onClick={cacheProductForDetails}
 
                             aria-label={t("quickView")}
                             className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black shadow-sm transition-all duration-200 hover:text-[var(--brand)] hover:scale-105"
@@ -199,7 +189,6 @@ return (
 
                 <Link
                     href={`/product/${product.id}`}
-                    onClick={cacheProductForDetails}
                     className="truncate text-[14px] font-medium leading-5 text-black transition-colors duration-200 hover:text-[var(--brand)]"
                 >
                     {product.title}
@@ -263,5 +252,4 @@ return (
 );
 
 };
-
 

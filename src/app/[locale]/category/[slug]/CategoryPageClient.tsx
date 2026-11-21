@@ -1,105 +1,36 @@
 "use client";
 
-import { useState } from "react"
-import { useEffect } from "react";
-import { use } from "react";
-
+import { useState } from "react";
 
 import { useTranslations } from "next-intl";
-
-
-import { useSearchParams } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Link } from "@/i18n/routing";
 
 import { ProductCard } from "@/components/products/ProductCard";
-import { productService } from "@/services/productService";
 import { Button } from "@/components/ui/Button";
-
-import { Product } from "@/types/product";
+import type { Product } from "@/types/product";
 
 type SortOption = "default" | "price-asc" | "price-desc";
 const SUPPORTED_CATEGORIES = new Set(["electronics", "jewelery", "men's clothing", "women's clothing"]);
 
 interface CategoryPageProps {
-params: Promise<{ slug: string }>;
+    slug: string;
+    products: Product[];
+    hasLoadError: boolean;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ slug, products, hasLoadError }: CategoryPageProps) {
 
-const { slug } = use(params);
 const categorySlug = decodeURIComponent(slug).toLowerCase();
 const isUnsupportedCategory = categorySlug !== "all" && !SUPPORTED_CATEGORIES.has(categorySlug);
 
 const t = useTranslations("CategoryPage");
-
-
+const router = useRouter();
 const searchParams = useSearchParams();
 const searchQuery = (searchParams.get("search") ?? "").trim();
 
-
-
-const [products, setProducts] = useState<Product[]>([]);
-
-const [loading, setLoading] = useState(true);
-
-const [error, setError] = useState(false);
-
 const [sortBy, setSortBy] = useState<SortOption>("default");
-
-
-useEffect(() => {
-
-let isActive = true;
-
-    setLoading(true);
-    setError(false);
-
-
-if (isUnsupportedCategory) {
-    setProducts([]);
-    setLoading(false);
-    return () => {
-        isActive = false;
-    };
-}
-
-const fetchPromise = categorySlug === "all" ? productService.getAllProducts() : productService.getProductsByCategory(categorySlug);
-
-
-    fetchPromise.then((data) => {
-
-            if (!isActive) return;
-
-            setProducts(data);
-            setLoading(false);
-
-        }).catch((err: unknown) => {
-
-            console.error("Unable to load category products:", err);
-
-            if (isActive) {
-
-                setError(true);
-                setLoading(false);
-
-            }
-
-        });
-
-
-    return () => {
-
-        isActive = false;
-
-    };
-
-}, [categorySlug, isUnsupportedCategory]);
-
-
-
-
 
 const normalizedQuery = searchQuery.toLocaleLowerCase();
 
@@ -196,26 +127,7 @@ return (
 
 
 
-                {loading && (
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
-
-                            <div
-                                key={index}
-                                className="w-full h-[320px] bg-gray-100 rounded-md animate-pulse"
-                            />
-
-                        ))}
-
-                    </div>
-
-                )}
-
-
-
-                {error && !loading && (
+                {hasLoadError && (
 
                     <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
 
@@ -226,7 +138,7 @@ return (
                         <Button
                             variant="primary"
                             size="sm"
-                            onClick={() => window.location.reload()}
+                            onClick={() => router.refresh()}
                         >
                             {t("retryButton")}
                         </Button>
@@ -237,7 +149,7 @@ return (
 
 
 
-                {!loading && !error && sortedProducts.length === 0 && (
+                {!hasLoadError && sortedProducts.length === 0 && (
 
                     <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
 
@@ -263,7 +175,7 @@ return (
 
 
 
-                {!loading && !error && sortedProducts.length > 0 && (
+                {!hasLoadError && sortedProducts.length > 0 && (
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
@@ -291,5 +203,4 @@ return (
 );
 
 }
-
 

@@ -109,7 +109,6 @@ if (!product) {
     return (
         <ProductDetailsClient
             product={null}
-            productId={id}
             relatedProducts={[]}
         />
     );
@@ -156,7 +155,6 @@ return (
     <ProductDetailsClient
         key={product.id}
         product={product}
-        productId={id}
         relatedProducts={filteredRelatedProducts}
     />
 
@@ -165,4 +163,3 @@ return (
 );
 
 }
-

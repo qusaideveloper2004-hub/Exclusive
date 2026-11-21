@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-import { useEffect } from "react";
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
@@ -15,11 +13,13 @@ import { ProductCard } from "@/components/products/ProductCard";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { useCartStore } from "@/store/useCartStore";
 
-import { productService } from "@/services/productService";
+import type { Product } from "@/types/product";
 
-import { Product } from "@/types/product";
-
-export default function WishlistPage() {
+export default function WishlistPageClient({
+    recommendedProducts,
+}: {
+    recommendedProducts: Product[];
+}) {
 
 const t = useTranslations("WishlistPage");
 
@@ -28,39 +28,6 @@ const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 const clearWishlist = useWishlistStore((state) => state.clearWishlist);
 
 const addToCart = useCartStore((state) => state.addToCart);
-
-const [Products, setProducts] = useState<Product[]>([]);
-const [loadingR, setLoadingR] = useState(true);
-
-
-useEffect(() => {
-
-    let isActive = true;
-
-        productService.getAllProducts() .then((data: Product[]) => {
-
-                if (isActive) {
-
-                    setProducts(data.slice(0, 4));
-                    setLoadingR(false);
-                }
-
-            }).catch((err) => {
-
-                console.error("Unable to fetch recommended products:", err);
-
-                if (isActive) setLoadingR(false);
-
-            });
-
-    return () => {
-
-        isActive = false;
-
-        };
-
-}, []);
-
 
 const handleMoveAllToBag = () => {
 
@@ -188,40 +155,24 @@ const handleMoveAllToBag = () => {
                     </div>
 
 
-                    {loadingR ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        {recommendedProducts.map((product) => (
 
-                            {[1, 2, 3, 4].map((idx) => (
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                showBadge={true}
+                                showDiscount={true}
+                                showColors={false}
+                                showHeartIcon={false}
+                                showTrashIcon={false}
+                                showAddToCartAlways={true}
+                            />
 
-                                <div key={idx} className="w-full h-[320px] bg-gray-100 rounded animate-pulse" />
+                        ))}
 
-                            ))}
-
-                        </div>
-
-                    ) : (
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-                            {Products.map((product) => (
-
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                    showBadge={true}
-                                    showDiscount={true}
-                                    showColors={false}
-                                    showHeartIcon={false}
-                                    showTrashIcon={false}
-                                    showAddToCartAlways={true}
-                                />
-
-                            ))}
-
-                        </div>
-
-                    )}
+                    </div>
 
                 </div>
 
@@ -232,7 +183,6 @@ const handleMoveAllToBag = () => {
     );
 
 }
-
 
 
 

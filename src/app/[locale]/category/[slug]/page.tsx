@@ -12,6 +12,8 @@ import { SITE_URL,} from "@/lib/seo/constants";
 import {generateBreadcrumbSchema,getCategoryBreadcrumb, } from "@/lib/seo/structuredData";
 
 import JsonLd from "@/lib/seo/JsonLd";
+import { productService } from "@/services/productService";
+import type { Product } from "@/types/product";
 
 type Props = { params: Promise<{ locale: Locale; slug: string; }>; };
 
@@ -69,6 +71,28 @@ export default async function CategoryPage({ params }: Props) {
     const { locale, slug } = await params;
 
     const decodedSlug = decodeURIComponent(slug);
+    const categorySlug = decodedSlug.toLowerCase();
+    const supportedCategories = new Set([
+        "all",
+        "electronics",
+        "jewelery",
+        "men's clothing",
+        "women's clothing",
+    ]);
+
+    let products: Product[] = [];
+    let hasLoadError = false;
+
+    if (supportedCategories.has(categorySlug)) {
+        try {
+            products = categorySlug === "all"
+                ? await productService.getAllProducts()
+                : await productService.getProductsByCategory(categorySlug);
+        } catch (error) {
+            console.error(`Unable to load category ${categorySlug}:`, error);
+            hasLoadError = true;
+        }
+    }
 
     const categoryName = decodedSlug === "all"
         ? locale === "ar"
@@ -93,13 +117,16 @@ export default async function CategoryPage({ params }: Props) {
         <>
             <JsonLd data={breadcrumbSchema} />
 
-            <CategoryPageClient params={Promise.resolve({ slug })} />
+            <CategoryPageClient
+                slug={slug}
+                products={products}
+                hasLoadError={hasLoadError}
+            />
 
         </>
         
     );
 
 }
-
 
 

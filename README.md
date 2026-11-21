@@ -93,7 +93,7 @@ This keeps reusable controls separate from product and page behavior without add
 
 ### 4. Data, server rendering, and client interaction
 
-`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. The home route (`src/app/[locale]/page.tsx`) fetches products on the server and renders the sections. Product and category data come only from FakeStoreAPI; if the API is unavailable, the home page shows its retry state rather than sample catalog data. A skeleton is streamed while product data is loading.
+`src/services/productService.ts` centralizes FakeStoreAPI requests and product mapping. Product requests run on the server, are cached for one hour, and retry once after a failure. If FakeStoreAPI is still unavailable, `src/data/products.snapshot.json` supplies the product and category data so the storefront does not render empty. A skeleton is streamed while home-page products are loading.
 
 The home route and data request are Server Components. Interactive sections remain Client Components where their sliders and product actions require browser behavior. This avoids a single client wrapper for the home page, but the effect on deployed Lighthouse scores must be measured rather than assumed.
 
@@ -108,7 +108,7 @@ SEO helpers in `src/lib/seo` are used with the Next.js Metadata API. `sitemap.ts
 - `src/app/[locale]/error.tsx`: localized route error boundary with a retry action.
 - `src/app/[locale]/loading.tsx`: general localized loading fallback. Product and checkout routes have their own page-specific `loading.tsx` skeletons.
 - `ProductDetailsSkeleton` and `ProductDetailsError` (in `components/products/details`) handle product loading and failed requests.
-- Home product loading is performed by the server route; failed requests render `HomeErrorState`, whose retry button refreshes the route. Category requests manage their own loading and error states in `CategoryPageClient`.
+- Home, category, product-detail, wishlist recommendations, and sitemap product data are fetched by Server Components or server utilities. The home page keeps `HomeErrorState` for unexpected failures after snapshot recovery; category retry refreshes the route.
 - `src/app/not-found.tsx`: localized 404 page with a link back to the current locale.
 
 ### 7. Responsive behavior and images
@@ -119,15 +119,16 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 ### Refactors after review
 
-- Home product fetching was first moved to the server, then temporarily returned to a client page while investigating FakeStoreAPI failures. It is now server-rendered again, with a small client retry control that refreshes the route.
+- Product and category requests use a shared server-only fetch helper with a five-second timeout, one retry, one-hour revalidation, and a bundled API snapshot as the outage fallback.
+- Category pages, product details, and wishlist recommendations receive product data from the server instead of calling FakeStoreAPI from the browser.
 - Inline locale checks (`locale === "ar"`) for loading and retry text were replaced with `next-intl` messages.
 - The middleware matcher was widened so unprefixed routes are handled by next-intl.
 
 ### Tradeoffs
 
 - Zustand + `localStorage` avoids a backend for demo state, but persisted data is limited to the current browser.
-- FakeStoreAPI provides sample data quickly, but its copy is English-only and its availability is outside the app's control. A production store would use a first-party API and database.
-- Server-fetching home products reduces the need for a client wrapper and allows rendered product sections to arrive with the page. FakeStoreAPI availability and response time remain external dependencies; Lighthouse should be rerun against the deployed version to measure the actual impact.
+- FakeStoreAPI provides sample data quickly, but its copy is English-only and its availability is outside the app's control. Requests run on the server with one retry and one-hour caching; if the API remains unavailable, `src/data/products.snapshot.json` keeps the demo catalog available but can become stale. A production store would use a first-party API and database.
+- Server-fetching products reduces browser-side API requests and renders product sections with the page. Lighthouse should be rerun against the deployed version to measure the actual impact.
 
 ## SEO
 
@@ -154,7 +155,7 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-These are single-run Lighthouse snapshots of the deployed URL on 2026-11-21; they are not medians and predate the latest local home-page skeleton change. Deploy the change and rerun Lighthouse to measure its effect. Both mobile runs include Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect the scores. Keep that limitation in mind when comparing results.
+These are single-run Lighthouse snapshots of the deployed URL on 2026-11-21; they are not medians and predate the latest local server-fetch, retry, snapshot, and home-page skeleton changes. Deploy those changes and rerun Lighthouse to measure their effect. Both mobile runs include Lighthouse's warning that the test host CPU is slower than expected, which can negatively affect the scores. Keep that limitation in mind when comparing results.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |

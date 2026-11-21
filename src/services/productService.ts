@@ -1,146 +1,161 @@
+import "server-only";
 
+import snapshot from "@/data/products.snapshot.json";
+import type { FakeStoreProduct, Product } from "@/types/product";
 
-import { Product, FakeStoreProduct } from '@/types/product';
+const BASE_URL = "https://fakestoreapi.com";
+const REQUEST_TIMEOUT_MS = 5000;
+const FETCH_ATTEMPTS = 2;
+const FALLBACK = snapshot satisfies FakeStoreProduct[];
 
-const BASE_URL = 'https://fakestoreapi.com';
-const REQUEST_TIMEOUT_MS = 10000;
+const isFakeStoreProduct = (value: unknown): value is FakeStoreProduct => {
+  if (typeof value !== "object" || value === null) return false;
 
-const transformToProduct = (item: FakeStoreProduct): Product => {
-
-const productKey = item.id;
-
-const hasDiscount = productKey % 2 === 0;
-const discountPercentage = hasDiscount ? ( productKey % 3 === 0 ? 40 : 30 ) : undefined;
-
-
-const originalPrice = discountPercentage ? Math.round(item.price / (1 - discountPercentage / 100)) : undefined;
-
-const isNew = !hasDiscount && productKey % 3 === 0;
-
-const defaultColors = productKey % 2 === 1 ? [ { name: 'Red', hex: '#DB4444' }, { name: 'Black', hex: '#000000' }] : undefined;
-
-
-
-return {
-  id: item.id,
-  title: item.title,
-  description: item.description,
-  category: item.category,
-  image: item.image,
-  price: item.price,
-
-  originalPrice,
-  discountPercentage,
-  isNew,
-
-  rating: item.rating?.rate,
-  reviewCount: item.rating?.count,
-  colors: defaultColors
+  const product = value as Partial<FakeStoreProduct>;
+  return (
+    typeof product.id === "number" &&
+    typeof product.title === "string" &&
+    typeof product.price === "number" &&
+    typeof product.description === "string" &&
+    typeof product.category === "string" &&
+    typeof product.image === "string" &&
+    typeof product.rating?.rate === "number" &&
+    typeof product.rating?.count === "number"
+  );
 };
 
-};
+async function fetchJson<T>(path: string, fresh = false): Promise<T> {
+  let lastError: unknown;
 
-
-export const productService = {
-
-
-  getAllProducts: async (options: { fresh?: boolean } = {}): Promise<Product[]> => {
-
+  for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt += 1) {
     try {
-
-      const res = await fetch(`${BASE_URL}/products`, {
-        ...(options.fresh ? { cache: 'no-store' as const } : { next: { revalidate: 300 } }),
-
-        headers: { 'Accept': 'application/json' },
+      const response = await fetch(`${BASE_URL}${path}`, {
+        headers: { Accept: "application/json" },
+        ...(fresh ? { cache: "no-store" as const } : { next: { revalidate: 3600 } }),
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-
       });
 
+      if (!response.ok) {
+        throw new Error(`FakeStoreAPI request ${path} failed with status ${response.status}`);
+      }
 
-      if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
+      return (await response.json()) as T;
+    } catch (error) {
+      lastError = error;
+      if (attempt + 1 < FETCH_ATTEMPTS) {
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      }
+    }
+  }
 
-      const data: FakeStoreProduct[] = await res.json();
-      if (!Array.isArray(data)) throw new Error('FakeStoreAPI returned an invalid products response');
-      if (data.length === 0) throw new Error('FakeStoreAPI returned an empty products response');
+  throw lastError ?? new Error(`FakeStoreAPI request ${path} failed`);
+}
+
+const transformToProduct = (item: FakeStoreProduct): Product => {
+  const productKey = item.id;
+  const hasDiscount = productKey % 2 === 0;
+  const discountPercentage = hasDiscount
+    ? productKey % 3 === 0
+      ? 40
+      : 30
+    : undefined;
+  const originalPrice = discountPercentage
+    ? Math.round(item.price / (1 - discountPercentage / 100))
+    : undefined;
+  const isNew = !hasDiscount && productKey % 3 === 0;
+  const defaultColors =
+    productKey % 2 === 1
+      ? [
+          { name: "Red", hex: "#DB4444" },
+          { name: "Black", hex: "#000000" },
+        ]
+      : undefined;
+
+  return {
+    id: item.id,
+    title: item.title,
+    description: item.description,
+    category: item.category,
+    image: item.image,
+    price: item.price,
+    originalPrice,
+    discountPercentage,
+    isNew,
+    rating: item.rating.rate,
+    reviewCount: item.rating.count,
+    colors: defaultColors,
+  };
+};
+
+export const productService = {
+  getAllProducts: async (options: { fresh?: boolean } = {}): Promise<Product[]> => {
+    try {
+      const data = await fetchJson<unknown>("/products", options.fresh);
+      if (
+        !Array.isArray(data) ||
+        data.length === 0 ||
+        !data.every(isFakeStoreProduct)
+      ) {
+        throw new Error("FakeStoreAPI returned an invalid products response");
+      }
 
       return data.map(transformToProduct);
-
     } catch (error) {
-
-      console.error('API Fetch Error:', error);
-      throw error;
-
+      console.warn("FakeStoreAPI is unavailable; using the local product snapshot.", error);
+      return FALLBACK.map(transformToProduct);
     }
-
   },
 
-
-
-  getProductById: async (id: string | number): Promise<Product | null> => {
-
+  getProductById: async (id: number): Promise<Product | null> => {
     try {
-
-      const res = await fetch(`${BASE_URL}/products/${id}`, { next: { revalidate: 300 } });
-
-      if (!res.ok) throw new Error('Failed to fetch product');
-      const data: FakeStoreProduct = await res.json();
+      const data = await fetchJson<unknown>(`/products/${id}`);
+      if (!isFakeStoreProduct(data)) {
+        throw new Error(`FakeStoreAPI returned an invalid product response for ${id}`);
+      }
 
       return transformToProduct(data);
     } catch (error) {
-
-      console.error(`Error fetching product ${id}:`, error);
-
-      try {
-        const products = await productService.getAllProducts();
-        return products.find((product) => product.id === Number(id)) ?? null;
-      } catch (fallbackError) {
-        console.error(`Error finding product ${id} in the product collection:`, fallbackError);
-        return null;
-      }
-
+      console.warn(`FakeStoreAPI could not load product ${id}; checking the local snapshot.`, error);
+      const product = FALLBACK.find((item) => item.id === id);
+      return product ? transformToProduct(product) : null;
     }
-
   },
-
-
 
   getCategories: async (): Promise<string[]> => {
-
     try {
+      const categories = await fetchJson<unknown>("/products/categories");
+      if (
+        !Array.isArray(categories) ||
+        !categories.every((category) => typeof category === "string")
+      ) {
+        throw new Error("FakeStoreAPI returned an invalid categories response");
+      }
 
-      const res = await fetch(`${BASE_URL}/products/categories`, { next: { revalidate: 300 } });
-      if (!res.ok) throw new Error('Failed to fetch categories');
-
-      return await res.json();
+      return categories;
     } catch (error) {
-
-      console.error('Error fetching categories:', error);
-      return [];
-
+      console.warn("FakeStoreAPI could not load categories; using categories from the local snapshot.", error);
+      return [...new Set(FALLBACK.map((product) => product.category))];
     }
-
   },
 
-
-
   getProductsByCategory: async (category: string): Promise<Product[]> => {
-
     try {
-
-      const res = await fetch(`${BASE_URL}/products/category/${category}`, { next: { revalidate: 300 } });
-      if (!res.ok) throw new Error('Failed to fetch category products');
-
-      const data: FakeStoreProduct[] = await res.json();
-      if (!Array.isArray(data)) throw new Error('FakeStoreAPI returned an invalid category response');
+      const data = await fetchJson<unknown>(
+        `/products/category/${encodeURIComponent(category)}`,
+      );
+      if (!Array.isArray(data) || !data.every(isFakeStoreProduct)) {
+        throw new Error("FakeStoreAPI returned an invalid category response");
+      }
 
       return data.map(transformToProduct);
     } catch (error) {
-
-      console.error(`Error fetching category products:`, error);
-      return [];
-
+      console.warn(
+        `FakeStoreAPI could not load category ${category}; checking the local snapshot.`,
+        error,
+      );
+      return FALLBACK
+        .filter((product) => product.category === category)
+        .map(transformToProduct);
     }
-
-  }
-
+  },
 };
