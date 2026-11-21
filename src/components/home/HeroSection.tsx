@@ -296,6 +296,7 @@ return (
                         alt={t(`slides.${slide.titleKey}`)}
                         fill
                         priority
+                        fetchPriority="high"
                         sizes="(max-width: 768px) 180px, 320px"
                         className="object-contain"
                       />
@@ -339,6 +340,5 @@ return (
   );
 
 };
-
 
 

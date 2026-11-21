@@ -28,6 +28,7 @@ const description = SITE_DESCRIPTION[locale];
             languages: {
                 en: `/en${normalizedPath}`,
                 ar: `/ar${normalizedPath}`,
+                "x-default": `/en${normalizedPath}`,
             }
         }
         : undefined;
@@ -101,4 +102,3 @@ export function createNoIndexMetadata(locale: Locale): Metadata {
     };
 
 }
-

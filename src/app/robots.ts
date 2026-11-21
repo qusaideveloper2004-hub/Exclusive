@@ -7,9 +7,28 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: "*",
             allow: "/",
+            disallow: [
+                "/account",
+                "/cart",
+                "/checkout",
+                "/login",
+                "/signup",
+                "/wishlist",
+                "/en/account",
+                "/en/cart",
+                "/en/checkout",
+                "/en/login",
+                "/en/signup",
+                "/en/wishlist",
+                "/ar/account",
+                "/ar/cart",
+                "/ar/checkout",
+                "/ar/login",
+                "/ar/signup",
+                "/ar/wishlist",
+            ],
         },
 
         sitemap: `${SITE_URL}/sitemap.xml`,
     };
 }
-

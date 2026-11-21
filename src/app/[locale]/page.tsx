@@ -1,10 +1,13 @@
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME, DEFAULT_LOCALE, SUPPORTED_LOCALES  } from "@/lib/seo/constants";
 
 import HomePageClient from "./HomePageClient";
+import { productService } from "@/services/productService";
+import { HeroSection } from "@/components/home/HeroSection";
 
 type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -41,8 +44,23 @@ const title = validLocale === "ar"
     };
 }
 
+async function HomeProductSections() {
+    try {
+        const products = await productService.getAllProducts();
+        return <HomePageClient initialProducts={products} initialStatus="success" />;
+    } catch (error) {
+        console.error("Unable to load products on the home page:", error);
+        return <HomePageClient initialProducts={[]} initialStatus="error" />;
+    }
+}
+
 export default function HomePage() {
-
-    return <HomePageClient />;
-
+    return (
+        <div>
+            <HeroSection />
+            <Suspense fallback={<p className="page-container py-10 text-sm text-gray-600" role="status">Loading products...</p>}>
+                <HomeProductSections />
+            </Suspense>
+        </div>
+    );
 }

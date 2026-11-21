@@ -1,12 +1,8 @@
-// TODO: ارجع للملف ده و اعمل شروط عشان لو المنتجات فشلت يقدر يبعت ريكويست تاني و يعرض باقي الصفحه ع ما يحمل 
-
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 
-import { HeroSection } from "@/components/home/HeroSection";
 import { FlashSalesSection } from "@/components/home/FlashSalesSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { BestSellingSection } from "@/components/home/BestSellingSection";
@@ -20,17 +16,23 @@ import { Product } from "@/types/product";
 
 type ProductLoadStatus = "loading" | "success" | "error";
 
-export default function HomePage() {
+interface HomePageClientProps {
+initialProducts: Product[];
+initialStatus: ProductLoadStatus;
+}
+
+export default function HomePage({ initialProducts, initialStatus }: HomePageClientProps) {
 
 const locale = useLocale();
 
-const [allProducts, setAllProducts] = useState<Product[]>([]);
+const [allProducts, setAllProducts] = useState<Product[]>(initialProducts);
 
-const [status, setStatus] = useState<ProductLoadStatus>("loading");
+const [status, setStatus] = useState<ProductLoadStatus>(initialStatus);
 
 const [requestKey, setRequestKey] = useState(0);
 
 useEffect(() => {
+    if (requestKey === 0) return;
 
     let isActive = true;
 
@@ -62,8 +64,6 @@ useEffect(() => {
 return (
 
 <div>
-
-  <HeroSection />
 
       {status === "loading" && (
 
@@ -141,5 +141,3 @@ return (
   );
 
 }
-
-

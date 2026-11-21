@@ -47,7 +47,8 @@ export const productService = {
     try {
 
       const res = await fetch(`${BASE_URL}/products`, { next: { revalidate: 300 },
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Accept': 'application/json' },
+        signal: AbortSignal.timeout(2500),
       });
 
       if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
@@ -136,5 +137,4 @@ export const productService = {
   }
 
 };
-
 
