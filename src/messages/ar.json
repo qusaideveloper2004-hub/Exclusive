@@ -181,7 +181,10 @@
   "Home": {
     "flashSalesKicker": "اليوم",
     "flashSalesTitle": "مبيعات خاطفة",
-    "viewAllProducts": "عرض جميع المنتجات"
+    "viewAllProducts": "عرض جميع المنتجات",
+    "loadingProducts": "جارٍ تحميل المنتجات...",
+    "loadProductsError": "تعذر تحميل المنتجات من المتجر. تحقق من اتصال الإنترنت ثم أعد المحاولة.",
+    "retry": "إعادة المحاولة"
   },
 
   "Countdown": {
@@ -263,6 +266,7 @@
   "breadcrumbAccount": "الرئيسية",
   "errorMessage": "تعذر تحميل هذا المنتج.",
   "backHome": "العودة للرئيسية",
+  "retryButton": "إعادة المحاولة",
   "inStock": "متوفر في المخزون",
   "colours": "الألوان",
   "size": "المقاس",
@@ -443,5 +447,3 @@
   "messageSent": "تم حفظ رسالتك في هذا النموذج التجريبي؛ لم يتم إرسال بريد إلكتروني."
 }
 }
-
-

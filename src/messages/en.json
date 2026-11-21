@@ -182,7 +182,10 @@
   "Home": {
     "flashSalesKicker": "Today's",
     "flashSalesTitle": "Flash Sales",
-    "viewAllProducts": "View All Products"
+    "viewAllProducts": "View All Products",
+    "loadingProducts": "Loading products...",
+    "loadProductsError": "Products could not be loaded. Check your internet connection and try again.",
+    "retry": "Retry"
   },
 
 
@@ -259,6 +262,7 @@
   "breadcrumbAccount": "Home",
   "errorMessage": "We couldn't load this product.",
   "backHome": "Back to Home",
+  "retryButton": "Retry",
   "inStock": "In Stock",
   "colours": "Colours",
   "size": "Size",
