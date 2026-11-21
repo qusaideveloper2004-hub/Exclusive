@@ -16,8 +16,8 @@ interface CartStore {
   appliedCoupon: string | null;
 
   addToCart: (product: Product, color?: string | null, size?: string | null, quantity?: number) => void;
-  removeFromCart: (productId: string | number, color?: string | null, size?: string | null) => void;
-  updateQuantity: (productId: string | number, quantity: number, color?: string | null, size?: string | null) => void;
+  removeFromCart: (productId: number, color?: string | null, size?: string | null) => void;
+  updateQuantity: (productId: number, quantity: number, color?: string | null, size?: string | null) => void;
   clearCart: () => void;
   applyCoupon: (code: string) => boolean;
 
@@ -43,13 +43,12 @@ export const useCartStore = create<CartStore>()(
         );
 
         if (index > -1) {
-          set({
-            items: items.map((item, itemIndex) =>
-              itemIndex === index
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            )
-          });
+          const updated = items.map((item, itemIndex) =>
+            itemIndex === index
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          );
+          set({ items: updated });
         } else {
 
           set({ items: [...items, { product, quantity, selectedColor: color, selectedSize: size }] });
