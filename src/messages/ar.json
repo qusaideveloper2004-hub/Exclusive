@@ -126,7 +126,7 @@
     "twitter": "تويتر",
     "instagram": "إنستغرام",
     "linkedin": "لينكدإن",
-    "copyright": "© حقوق النشر محفوظة لـ Rimel 2022",
+    "copyright": "© 2026 Exclusive. جميع الحقوق محفوظة.",
     "subscribeSuccess": "شكرًا لاشتراكك!",
     "subscribeError": "يرجى إدخال بريدك الإلكتروني."
   },
@@ -289,6 +289,7 @@
   "errorMessage": "تعذر تحميل المنتجات الخاصة بهذا التصنيف.",
   "retryButton": "إعادة المحاولة",
   "emptyMessage": "لا توجد منتجات متاحة في هذا التصنيف حالياً.",
+  "unsupportedCategoryMessage": "هذا التصنيف غير متاح في كتالوج المنتجات التجريبي.",
 
 
   "searchResultsTitle": "نتائج البحث عن «{query}»",

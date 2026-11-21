@@ -128,7 +128,7 @@
     "twitter": "Twitter",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "copyright": "© Copyright Rimel 2022. All rights reserved",
+    "copyright": "© 2026 Exclusive. All rights reserved.",
     "subscribeSuccess": "Thanks for subscribing!",
     "subscribeError": "Please enter your email address."
   },
@@ -285,6 +285,7 @@
   "errorMessage": "Failed to load products for this category.",
   "retryButton": "Retry",
   "emptyMessage": "No products found in this category.",
+  "unsupportedCategoryMessage": "This category is not available in the demo catalog.",
 
 
   "searchResultsTitle": "Search results for “{query}”",

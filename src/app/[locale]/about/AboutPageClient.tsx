@@ -207,7 +207,7 @@ return (
 
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.1fr] md:gap-10">
         
-            <div className="flex flex-col gap-4 pr-0 md:gap-5 md:pr-6">
+            <div className="flex flex-col gap-4 pe-0 md:gap-5 md:pe-6">
 
                 <h1 className="text-3xl font-semibold text-black sm:text-4xl">
                     {t("storyTitle")}
@@ -230,6 +230,7 @@ return (
                     fill
                     unoptimized
                     priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center"
                 />
 
@@ -301,6 +302,7 @@ return (
                                 alt={member.name}
                                 fill
                                 unoptimized
+                                sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
                                 className="object-cover object-top"
                             />
 
@@ -385,5 +387,4 @@ return (
 </main>
 );
 }
-
 

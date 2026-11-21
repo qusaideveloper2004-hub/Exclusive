@@ -111,7 +111,7 @@ return (
 
                         <div className="col-span-2 text-center">{t("colQuantity")}</div>
 
-                        <div className="col-span-3 text-right">{t("colSubtotal")}</div>
+                        <div className="col-span-3 text-end">{t("colSubtotal")}</div>
 
                     </div>
 
@@ -134,7 +134,7 @@ return (
                                         <button
                                             onClick={() => removeFromCart(item.product.id, item.selectedColor, item.selectedSize)}
 
-                                            className="absolute -top-2 -left-2 w-5 h-5 bg-[var(--brand)] text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10"
+                                            className="absolute -top-2 -start-2 w-5 h-5 bg-[var(--brand)] text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10"
                                         >
 
                                             <X className="w-3 h-3 stroke-[3]" />
@@ -147,6 +147,7 @@ return (
 
                                             fill
                                             unoptimized
+                                            sizes="56px"
                                             className="object-contain p-1"
                                         />
 
@@ -224,7 +225,7 @@ return (
 
 
 
-                                <div className="col-span-1 md:col-span-3 md:text-right text-base font-normal text-black flex md:block items-center justify-between">
+                                <div className="col-span-1 md:col-span-3 md:text-end text-base font-normal text-black flex md:block items-center justify-between">
 
                                     <span className="md:hidden text-gray-500 text-sm">{t("colSubtotal")}:</span>
 
@@ -376,6 +377,5 @@ return (
 );
 
 }
-
 
 

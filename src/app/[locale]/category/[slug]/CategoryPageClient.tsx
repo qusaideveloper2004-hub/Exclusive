@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/Button";
 import { Product } from "@/types/product";
 
 type SortOption = "default" | "price-asc" | "price-desc";
+const SUPPORTED_CATEGORIES = new Set(["electronics", "jewelery", "men's clothing", "women's clothing"]);
 
 interface CategoryPageProps {
 params: Promise<{ slug: string }>;
@@ -28,6 +29,8 @@ params: Promise<{ slug: string }>;
 export default function CategoryPage({ params }: CategoryPageProps) {
 
 const { slug } = use(params);
+const categorySlug = decodeURIComponent(slug).toLowerCase();
+const isUnsupportedCategory = categorySlug !== "all" && !SUPPORTED_CATEGORIES.has(categorySlug);
 
 const t = useTranslations("CategoryPage");
 
@@ -54,7 +57,15 @@ let isActive = true;
     setError(false);
 
 
-const fetchPromise = slug === "all" ? productService.getAllProducts() : productService.getProductsByCategory(decodeURIComponent(slug));
+if (isUnsupportedCategory) {
+    setProducts([]);
+    setLoading(false);
+    return () => {
+        isActive = false;
+    };
+}
+
+const fetchPromise = categorySlug === "all" ? productService.getAllProducts() : productService.getProductsByCategory(categorySlug);
 
 
     fetchPromise.then((data) => {
@@ -84,7 +95,7 @@ const fetchPromise = slug === "all" ? productService.getAllProducts() : productS
 
     };
 
-}, [slug]);
+}, [categorySlug, isUnsupportedCategory]);
 
 
 
@@ -123,7 +134,7 @@ const sortedProducts = [...matchingProducts].sort((a, b) => {
 
 
 
-const formattedCategoryName = decodeURIComponent(slug).replace(/-/g, " ").toUpperCase();
+const formattedCategoryName = categorySlug.replace(/-/g, " ").toUpperCase();
 
 
 return (
@@ -233,7 +244,9 @@ return (
                         <p className="text-gray-500 text-lg font-medium">
                             {searchQuery
                                 ? t("searchNoResults", { query: searchQuery })
-                                : t("emptyMessage")}
+                                : isUnsupportedCategory
+                                    ? t("unsupportedCategoryMessage")
+                                    : t("emptyMessage")}
                         </p>
 
                         <Link href="/">
@@ -278,6 +291,5 @@ return (
 );
 
 }
-
 
 

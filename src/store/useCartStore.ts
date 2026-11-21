@@ -43,10 +43,13 @@ export const useCartStore = create<CartStore>()(
         );
 
         if (index > -1) {
-          const updated = [...items];
-          
-          updated[index].quantity += quantity;
-          set({ items: updated });
+          set({
+            items: items.map((item, itemIndex) =>
+              itemIndex === index
+                ? { ...item, quantity: item.quantity + quantity }
+                : item
+            )
+          });
         } else {
 
           set({ items: [...items, { product, quantity, selectedColor: color, selectedSize: size }] });

@@ -88,11 +88,12 @@ return (
                 alt="A shopping cart, phone, and shopping bags"
                 fill
                 priority
+                sizes="(max-width: 767px) 100vw, 56vw"
                 className="object-cover"
             />
         </div>
 
-        <div className="px-6 md:pl-[clamp(2rem,9vw,8rem)] md:pr-[max(2rem,calc((100vw-1170px)/2))]">
+        <div className="px-6 md:ps-[clamp(2rem,9vw,8rem)] md:pe-[max(2rem,calc((100vw-1170px)/2))]">
 
             <div className="mx-auto w-full max-w-[370px] md:mx-0">
 
@@ -167,6 +168,5 @@ return (
 </main>
 );
 }
-
 
 

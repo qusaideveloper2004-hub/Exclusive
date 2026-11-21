@@ -27,7 +27,7 @@ return (
 
               className={`w-full py-2 px-4 text-sm bg-gray-50 border rounded transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)] focus:border-[var(--brand)]
                 ${
-                icon ? 'ltr:pr-10 rtl:pl-10' : ''
+                icon ? 'pe-10' : ''
               } ${
                 error ? 'border-red-700' : 'border-gray-200'
               } ${className}`}
@@ -35,7 +35,7 @@ return (
             />
 
             {icon && (
-              <div className="absolute ltr:right-3 rtl:left-3 flex items-center text-gray-500">
+              <div className="absolute end-3 flex items-center text-gray-500">
                 {icon}
               </div>
             )}
@@ -52,4 +52,3 @@ return (
 );
 
 Input.displayName = 'Input';
-

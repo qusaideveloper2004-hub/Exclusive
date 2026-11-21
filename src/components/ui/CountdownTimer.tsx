@@ -27,21 +27,20 @@ const [timeLeft, setTimeLeft] = useState({
 
 useEffect(() => {
 
+    const updateTimeLeft = () => {
+        const differenceTime = Math.max(0, targetDate.getTime() - Date.now());
+        setTimeLeft({
+            days: Math.floor(differenceTime / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((differenceTime / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((differenceTime / (1000 * 60)) % 60),
+            seconds: Math.floor((differenceTime / 1000) % 60)
+        });
+    };
+
+    updateTimeLeft();
     const timer = setInterval(() => {
-
-    const differenceTime = targetDate.getTime() - new Date().getTime();
-
-        if (differenceTime > 0) {
-
-            setTimeLeft({
-
-                days: Math.floor(differenceTime / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((differenceTime / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((differenceTime / (1000 * 60)) % 60),
-                seconds: Math.floor((differenceTime / 1000) % 60)
-            });
-
-        }}, 1000);
+        updateTimeLeft();
+    }, 1000);
 
     return () => clearInterval(timer);
 
@@ -180,6 +179,5 @@ if (variant === 'circular') {
     );
 
 };
-
 
 

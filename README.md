@@ -141,7 +141,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 
 
-- [x] Lighthouse SEO: <!-- TODO: fill in after the new audits, e.g. "92+ in all four combinations" -->
+- [ ] Run Lighthouse SEO audits against the current deployed build.
 
 
 
@@ -154,22 +154,14 @@ I overlooked the "clear commit history" requirement early on, so the early histo
 
 ## Lighthouse Evidence
 
-<!--
-TODO before submitting:
-1. Deploy the latest code to Vercel.
-2. Audit the 4 combinations (EN/AR x Desktop/Mobile) on the live URL.
-3. Run mobile 3 times and record the median.
-4. Replace the table and screenshots below, and fill in the date.
--->
-
-Audits were run against the live Vercel deployment on `<DATE>`. Mobile values are the median of 3 runs.
+The current source changes have not yet been audited on the live deployment. Deploy them first, then replace these pending values with real measurements; do not report a median unless three runs were completed.
 
 | Locale | Device | Performance | Accessibility | Best Practices | SEO | Evidence |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| English | Desktop | `<>` | `<>` | `<>` | `<>` | [Screenshot](docs/lighthouse/en-desktop.png) |
-| English | Mobile | `<>` | `<>` | `<>` | `<>` | [Screenshot](docs/lighthouse/en-mobile.png) |
-| Arabic | Desktop | `<>` | `<>` | `<>` | `<>` | [Screenshot](docs/lighthouse/ar-desktop.png) |
-| Arabic | Mobile | `<>` | `<>` | `<>` | `<>` | [Screenshot](docs/lighthouse/ar-mobile.png) |
+| English | Desktop | Pending | Pending | Pending | Pending | Run after deployment |
+| English | Mobile | Pending | Pending | Pending | Pending | Run after deployment |
+| Arabic | Desktop | Pending | Pending | Pending | Pending | Run after deployment |
+| Arabic | Mobile | Pending | Pending | Pending | Pending | Run after deployment |
 
 To reproduce:
 

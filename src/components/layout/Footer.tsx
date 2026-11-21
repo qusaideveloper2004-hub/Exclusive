@@ -134,24 +134,6 @@ return (
                 <ul className="flex flex-col gap-3 text-sm text-gray-300">
 
                     <li>
-                        <Link href="/privacy-policy" className="hover:text-white transition-colors">
-                            {t('privacyPolicy')}
-                        </Link>
-                    </li>
-
-                    <li>
-                        <Link href="/terms" className="hover:text-white transition-colors">
-                            {t('termsOfUse')}
-                        </Link>
-                    </li>
-
-                    <li>
-                        <Link href="/faq" className="hover:text-white transition-colors">
-                            {t('faq')}
-                        </Link>
-                    </li>
-
-                    <li>
                         <Link href="/contact" className="hover:text-white transition-colors">
                             {t('contact')}
                         </Link>
@@ -284,5 +266,4 @@ return (
 
 );
 };
-
 

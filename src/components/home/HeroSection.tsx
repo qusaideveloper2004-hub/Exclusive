@@ -160,7 +160,7 @@ return (
 
   <div className="page-container flex flex-col md:flex-row items-stretch">
 
-    <div className="relative w-full border-r border-gray-300 pt-10 pb-2 md:w-[217px] md:shrink-0 md:pr-4 ltr:border-r rtl:border-r-0 rtl:border-l rtl:pl-4 rtl:pr-0">
+    <div className="relative w-full border-e border-gray-300 pt-10 pb-2 md:w-[217px] md:shrink-0 md:pe-4">
 
           <ul className="flex flex-col gap-4">
 
@@ -206,7 +206,7 @@ return (
                 {cat.subs && activeCategory === cat.key && (
 
                   <div
-                    className="relative z-30 mt-2 flex w-full flex-col gap-1 rounded border border-gray-100 bg-white p-3 shadow-sm md:absolute md:top-0 md:mt-0 md:w-52 md:shadow-lg md:ltr:left-[calc(100%+12px)] md:rtl:right-[calc(100%+12px)]"
+                    className="relative z-30 mt-2 flex w-full flex-col gap-1 rounded border border-gray-100 bg-white p-3 shadow-sm md:absolute md:top-0 md:mt-0 md:w-52 md:shadow-lg md:start-[calc(100%+12px)]"
 
                     onMouseEnter={() => handleMouseEnter(cat.key)}
                     onMouseLeave={handleMouseLeave}
@@ -236,7 +236,7 @@ return (
     </div>
 
 
-    <div className="w-full flex-1 pt-10 ltr:md:pl-11 rtl:md:pr-11">
+    <div className="w-full flex-1 pt-10 md:ps-11">
 
           <div
             className="relative flex min-h-[300px] w-full items-center overflow-hidden rounded-sm bg-black p-8 text-white md:min-h-[344px] md:p-12"
@@ -245,6 +245,7 @@ return (
             {HERO_SLIDES.map((slide, index) => {
 
               const IconComponent = slide.icon;
+              const Heading = index === 0 ? "h1" : "h2";
 
               return (
 
@@ -271,9 +272,9 @@ return (
 
                     </div>
 
-                    <h1 className="text-3xl font-semibold leading-tight md:text-5xl">
+                    <Heading className="text-3xl font-semibold leading-tight md:text-5xl">
                       {t(`slides.${slide.subtitleKey}`)}
-                    </h1>
+                    </Heading>
 
                     <Link
                       href={slide.link}
@@ -340,5 +341,4 @@ return (
   );
 
 };
-
 

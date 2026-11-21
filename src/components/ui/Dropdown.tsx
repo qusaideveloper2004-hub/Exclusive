@@ -48,7 +48,7 @@ const selectedOption = options.find((opt) => opt.value === value) || options[0];
 
 return (
 
-  <div ref={dropdownRef} className={`relative inline-block text-left rtl:text-right ${className}`} >
+  <div ref={dropdownRef} className={`relative inline-block text-start ${className}`} >
 
 
     <button
@@ -73,7 +73,7 @@ return (
 
     {isOpen && (
 
-      <div role="listbox" className="absolute z-[100] mt-3 w-36 overflow-hidden rounded border border-gray-200 !bg-white py-1 text-gray-900 shadow-lg ltr:right-0 rtl:left-0" >
+      <div role="listbox" className="absolute end-0 z-[100] mt-3 w-36 overflow-hidden rounded border border-gray-200 !bg-white py-1 text-gray-900 shadow-lg" >
 
         {options.map((option) => {
 
@@ -114,6 +114,5 @@ return (
 );
 
 };
-
 
 

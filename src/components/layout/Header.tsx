@@ -98,7 +98,7 @@ return (
           <Heart size={23} strokeWidth={1.6} />
 
           {hasMounted && wishlistCount > 0 && (
-            <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[var(--brand)] px-1 text-[10px] text-white rtl:-right-auto rtl:-left-2">
+            <span className="absolute -end-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[var(--brand)] px-1 text-[10px] text-white">
               {wishlistCount}
             </span>
           )}
@@ -111,7 +111,7 @@ return (
           <ShoppingCart size={25} strokeWidth={1.5} />
         
             {hasMounted && cartCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[var(--brand)] px-1 text-[10px] text-white rtl:-right-auto rtl:-left-2">
+              <span className="absolute -end-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[var(--brand)] px-1 text-[10px] text-white">
                 {cartCount}
               </span>
             )}
@@ -139,12 +139,12 @@ return (
           onChange={(event) => setSearchQuery(event.target.value)}
           placeholder={t("searchPlaceholder")}
           aria-label={t("searchPlaceholder")}
-          className="h-full w-full rounded-[4px] border-0 bg-[#f5f5f5] py-2 pl-[13px] pr-[42px] text-[12px] text-black outline-none placeholder:text-[#777] focus:ring-1 focus:ring-gray-300 rtl:pl-[42px] rtl:pr-[13px]"
+          className="h-full w-full rounded-[4px] border-0 bg-[#f5f5f5] py-2 ps-[13px] pe-[42px] text-[12px] text-black outline-none placeholder:text-[#777] focus:ring-1 focus:ring-gray-300"
         />
         <button
           type="submit"
           aria-label={t("searchAction")}
-          className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center text-black rtl:right-auto rtl:left-2"
+          className="absolute end-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center text-black"
         >
           <Search size={19} strokeWidth={1.8} />
         </button>
@@ -158,5 +158,4 @@ return (
 
 );
 };
-
 
