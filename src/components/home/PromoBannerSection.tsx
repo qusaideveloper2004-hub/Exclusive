@@ -44,7 +44,7 @@ return (
 
                 <Link
                     href="/category/electronics"
-                    className="mt-2 inline-flex min-h-12 items-center justify-center rounded bg-[#00FF66] px-8 py-3 font-medium text-black transition-colors hover:bg-[#00cc52] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-12 sm:py-4"
+                    className="mt-2 inline-flex min-h-12 items-center justify-center rounded bg-[#00FF66] px-8 py-3 font-medium text-white transition-colors hover:bg-[#00cc52] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-12 sm:py-4"
                 >
                     {t("buyNow")}
                 </Link>

@@ -125,7 +125,7 @@ return (
             <HeaderAccountDropdown />
 
             ) : (
-              <Link href="/signup" className="text-sm font-medium hover:underline; textColor=text-red-500  hoverTextColor=text-[#DB4444]">
+              <Link href="/signup" className="text-sm font-medium hover:underline lg:hidden">
                 {t("signup")}
               </Link>
             )}
@@ -158,6 +158,5 @@ return (
 
 );
 };
-
 
 
