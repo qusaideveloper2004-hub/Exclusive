@@ -4,18 +4,19 @@ import { Product, FakeStoreProduct } from '@/types/product';
 
 const BASE_URL = 'https://fakestoreapi.com';
 
-const transformToProduct = (item: FakeStoreProduct, index: number): Product => {
+const transformToProduct = (item: FakeStoreProduct): Product => {
 
+const productKey = item.id;
 
-const hasDiscount = index % 2 === 0;
-const discountPercentage = hasDiscount ? ( index % 3 === 0 ? 40 : 30 ) : undefined;
+const hasDiscount = productKey % 2 === 0;
+const discountPercentage = hasDiscount ? ( productKey % 3 === 0 ? 40 : 30 ) : undefined;
 
 
 const originalPrice = discountPercentage ? Math.round(item.price / (1 - discountPercentage / 100)) : undefined;
 
-const isNew = !hasDiscount && index % 3 === 0;
+const isNew = !hasDiscount && productKey % 3 === 0;
 
-const defaultColors = index % 2 === 1 ? [ { name: 'Red', hex: '#DB4444' }, { name: 'Black', hex: '#000000' }] : undefined;
+const defaultColors = productKey % 2 === 1 ? [ { name: 'Red', hex: '#DB4444' }, { name: 'Black', hex: '#000000' }] : undefined;
 
 
 
@@ -82,7 +83,7 @@ export const productService = {
       if (!res.ok) throw new Error('Failed to fetch product');
       const data: FakeStoreProduct = await res.json();
 
-      return transformToProduct(data, Number(id));
+      return transformToProduct(data);
     } catch (error) {
 
       console.error(`Error fetching product ${id}:`, error);
