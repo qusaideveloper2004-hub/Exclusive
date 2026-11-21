@@ -42,14 +42,18 @@ return {
 export const productService = {
 
 
-  getAllProducts: async (): Promise<Product[]> => {
+  getAllProducts: async (options: { fresh?: boolean } = {}): Promise<Product[]> => {
 
     try {
 
-      const res = await fetch(`${BASE_URL}/products`, { next: { revalidate: 300 },
+      const res = await fetch(`${BASE_URL}/products`, {
+        ...(options.fresh ? { cache: 'no-store' as const } : { next: { revalidate: 300 } }),
+
         headers: { 'Accept': 'application/json' },
-        signal: AbortSignal.timeout(2500),
+        signal: AbortSignal.timeout(10000),
+
       });
+
 
       if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
 
@@ -137,4 +141,3 @@ export const productService = {
   }
 
 };
-

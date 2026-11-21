@@ -53,7 +53,7 @@ const title = validLocale === "ar"
 
 async function HomeProductSections() {
     try {
-        const products = await productService.getAllProducts();
+        const products = await productService.getAllProducts({ fresh: true });
         return (
             <>
                 <FlashSalesSection products={products} />
@@ -88,4 +88,3 @@ export default async function HomePage() {
         </div>
     );
 }
-

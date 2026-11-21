@@ -63,7 +63,7 @@ src/
 │   └── seo/               # metadata and JSON-LD helpers
 ├── i18n/                  # next-intl routing and request config
 ├── messages/              # en.json / ar.json
-└── types/                 # shared TypeScript types
+└── types/                 # shared TypeScript type
 ```
 
 ## Architecture and Implementation Decisions
@@ -138,7 +138,13 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 - [x] Localized sitemap entries for public pages, categories, and products
 - [x] `robots.txt` with the sitemap URL
 - [x] `<html lang>` and `dir` set per locale
+
+
+
 - [x] Lighthouse SEO: <!-- TODO: fill in after the new audits, e.g. "92+ in all four combinations" -->
+
+
+
 
 Cart, login, account, and wishlist pages are marked `noindex` and intentionally omitted from the sitemap.
 
