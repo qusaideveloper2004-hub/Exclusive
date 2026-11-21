@@ -1,6 +1,8 @@
 
 "use client";
 
+import { useEffect, useRef } from "react";
+
 import { Link } from "@/i18n/routing";
 
 import { useCheckout } from "@/hooks/checkout/useCheckout";
@@ -16,6 +18,7 @@ import OrderConfirmation from "@/components/checkout/OrderConfirmation";
 
 
 export default function CheckoutClient() {
+const checkoutTopRef = useRef<HTMLElement>(null);
 
 const {
 
@@ -51,6 +54,20 @@ formValues,  } = useCheckout();
 
 
 
+
+useEffect(() => {
+    if (step !== 2 || !window.matchMedia("(max-width: 767px)").matches) return;
+
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth";
+
+    checkoutTopRef.current?.scrollIntoView({ behavior, block: "start" });
+}, [step]);
+
+
+
+
 if (step === 3) {
     return <OrderConfirmation />;
 }
@@ -58,7 +75,7 @@ if (step === 3) {
 
     return (
 
-        <main className="page-container max-w-[1170px] py-10 md:py-12">
+        <main ref={checkoutTopRef} className="page-container max-w-[1170px] py-10 md:py-12">
 
             <nav className="mb-10 flex items-center gap-2 text-xs text-gray-500 sm:text-sm">
 
