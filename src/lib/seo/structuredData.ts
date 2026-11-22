@@ -81,3 +81,5 @@ export function getCategoryBreadcrumb( slug: string, locale: Locale ) {
         .replace(/-/g, " ")
         .toUpperCase();
 }
+
+

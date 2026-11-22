@@ -33,3 +33,4 @@ export default async function WishlistPage({ params }: Props) {
     return <WishlistPageClient recommendedProducts={recommendedProducts} />;
 
 }
+

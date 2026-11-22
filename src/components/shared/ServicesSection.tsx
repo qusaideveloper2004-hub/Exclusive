@@ -14,6 +14,7 @@ const SERVICES_ITEMS = [
 
     icon: "/images/home/New-Arrival/icon-delivery.png",
 },
+
 {
 
     id: "service",
@@ -22,6 +23,7 @@ const SERVICES_ITEMS = [
 
     icon: "/images/home/New-Arrival/Icon-Customer-service.png",
 },
+
 {
 
     id: "secure",
@@ -30,6 +32,7 @@ const SERVICES_ITEMS = [
 
     icon: "/images/home/New-Arrival/Icon-secure.png",
 },
+
 ];
 
 

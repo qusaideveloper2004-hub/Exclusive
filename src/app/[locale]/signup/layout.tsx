@@ -16,3 +16,4 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function SignupLayout({ children }: Pick<Props, "children">) {
     return children;
 }
+

@@ -31,8 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 
 
-
-
 export function generateStaticParams() {
 
   return routing.locales.map((locale) => ({ locale }));

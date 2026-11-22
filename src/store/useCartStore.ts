@@ -26,8 +26,8 @@ interface CartStore {
 }
 
 type PersistedCartState = Pick<CartStore, "items" | "appliedCoupon">;
-type LegacyPersistedCartState = Pick<CartStore, "items"> &
-  Partial<Pick<CartStore, "appliedCoupon">>;
+type LegacyPersistedCartState = Pick<CartStore, "items"> & Partial<Pick<CartStore, "appliedCoupon">>;
+
 
 const isCartItem = (value: unknown): value is CartItem => {
   if (typeof value !== "object" || value === null) return false;
@@ -37,7 +37,9 @@ const isCartItem = (value: unknown): value is CartItem => {
 
   return (
     typeof product === "object" &&
+
     product !== null &&
+
     typeof product.id === "number" &&
     typeof product.title === "string" &&
     typeof product.price === "number" &&
@@ -45,22 +47,28 @@ const isCartItem = (value: unknown): value is CartItem => {
     typeof product.category === "string" &&
     typeof product.image === "string" &&
     typeof item.quantity === "number" &&
-    Number.isFinite(item.quantity) &&
-    item.quantity > 0 &&
-    (item.selectedColor === undefined ||
+
+    Number.isFinite(item.quantity) && item.quantity > 0 &&
+      (item.selectedColor === undefined ||
       item.selectedColor === null ||
+
       typeof item.selectedColor === "string") &&
+
     (item.selectedSize === undefined ||
       item.selectedSize === null ||
       typeof item.selectedSize === "string")
+
   );
 };
 
 const isPersistedCartState = (state: unknown): state is LegacyPersistedCartState => {
+
   if (typeof state !== "object" || state === null) return false;
 
   const persistedState = state as Partial<LegacyPersistedCartState>;
+
   return (
+
     Array.isArray(persistedState.items) &&
     persistedState.items.every(isCartItem) &&
     (persistedState.appliedCoupon === undefined ||
@@ -71,6 +79,7 @@ const isPersistedCartState = (state: unknown): state is LegacyPersistedCartState
 
 export const useCartStore = create<CartStore>()(
   persist<CartStore, [], [], PersistedCartState>(
+
     (set, get) => ({
 
       items: [],
@@ -87,11 +96,13 @@ export const useCartStore = create<CartStore>()(
         );
 
         if (index > -1) {
+
           const updated = items.map((item, itemIndex) =>
             itemIndex === index
               ? { ...item, quantity: item.quantity + quantity }
               : item
           );
+
           set({ items: updated });
         } else {
 
@@ -146,9 +157,13 @@ export const useCartStore = create<CartStore>()(
     {
       name: "ecommerce-cart-storage",
       version: 1,
+
       partialize: ({ items, appliedCoupon }) => ({ items, appliedCoupon }),
+
       migrate: (persistedState, version) => {
+
         if (version === 0 && isPersistedCartState(persistedState)) {
+          
           return {
             items: persistedState.items,
             appliedCoupon: persistedState.appliedCoupon ?? null,
@@ -161,3 +176,6 @@ export const useCartStore = create<CartStore>()(
 
   )
 );
+
+
+

@@ -14,9 +14,12 @@ export function createCheckoutSchema(messages: CheckoutValidationMessages) {
         townCity: z.string().min(2, messages.townCity),
         phoneNumber: z.string().regex(PHONE_NUMBER_REGEX, messages.phoneNumber),
         emailAddress: z.email({ error: messages.emailAddress }),
+
         saveInfo: z.boolean().default(false),
         paymentMethod: z.enum(["bank", "cash"]).default("cash"),
         couponCode: z.string().optional(),
 
     }) satisfies z.ZodType<CheckoutFormData, CheckoutFormInput>;
 }
+
+

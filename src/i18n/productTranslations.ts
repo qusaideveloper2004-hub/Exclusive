@@ -40,11 +40,11 @@ return PRODUCT_TITLES[locale]?.[id] ?? title;
 }
 
 export function localizeProduct(product: Product, locale: Locale): Product {
+
     const originalTitle = product.originalTitle ?? product.title;
 
-    return {
-        ...product,
-        originalTitle,
+    return { ...product, originalTitle,
+
         title: getProductTitle(product.id, originalTitle, locale),
     };
 }
