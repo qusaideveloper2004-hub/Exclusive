@@ -1,4 +1,5 @@
 import { createNoIndexMetadata } from "@/lib/seo/metadata";
+import { setRequestLocale } from "next-intl/server";
 
 import type { Metadata } from "next";
 
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function WishlistPage({ params }: Props) {
     const { locale } = await params;
+    setRequestLocale(locale);
     let recommendedProducts: Product[] = [];
 
     try {
@@ -33,4 +35,3 @@ export default async function WishlistPage({ params }: Props) {
     return <WishlistPageClient recommendedProducts={recommendedProducts} />;
 
 }
-

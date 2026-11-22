@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { SITE_URL, type Locale } from "@/lib/seo/constants";
@@ -109,6 +109,7 @@ return {
 export default async function ProductDetailsPage({ params }: ProductPageProps) {
 
 const { locale, id } = await params;
+setRequestLocale(locale);
 const t = await getTranslations({ locale, namespace: "Header" });
 
 const fetchedProduct = await getProductById(Number(id));

@@ -121,6 +121,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 
 ### Refactors after review
 
+- Removed the locale-level `loading.tsx`: its skeleton was part of the initial HTML and caused a large desktop layout shift when the real content replaced it.
 - Product and category requests use a shared server-only fetch helper with a five-second timeout, one retry, one-hour revalidation, and a bundled API snapshot as the outage fallback.
 - Category pages, product details, and wishlist recommendations receive product data from the server instead of calling FakeStoreAPI from the browser.
 - Inline locale checks (`locale === "ar"`) for loading and retry text were replaced with `next-intl` messages.

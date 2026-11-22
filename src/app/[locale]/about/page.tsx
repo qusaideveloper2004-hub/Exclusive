@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createMetadata } from "@/lib/seo/metadata";
 import { type Locale } from "@/lib/seo/constants";
 
@@ -39,7 +39,9 @@ const description = t("metadataDescription");
     };
 }
 
-export default function AboutPage() {
+export default async function AboutPage({ params }: Props) {
+    const { locale } = await params;
+    setRequestLocale(locale);
+
     return <AboutPageClient />;
 }
-

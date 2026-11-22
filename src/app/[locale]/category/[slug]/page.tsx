@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { createMetadata } from "@/lib/seo/metadata";
 import { type Locale } from "@/lib/seo/constants";
@@ -78,6 +78,7 @@ const t = await getTranslations({ locale, namespace: "CategoryPage" });
 export default async function CategoryPage({ params }: Props) {
 
     const { locale, slug } = await params;
+    setRequestLocale(locale);
     const t = await getTranslations({ locale, namespace: "CategoryPage" });
 
     const decodedSlug = decodeURIComponent(slug);

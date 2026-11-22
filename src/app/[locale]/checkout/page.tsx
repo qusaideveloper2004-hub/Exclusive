@@ -1,6 +1,7 @@
 import { createNoIndexMetadata } from "@/lib/seo/metadata";
 import type { Locale } from "@/lib/seo/constants";
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 
 import CheckoutClient from "./CheckoutPageClient";
 
@@ -11,7 +12,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return createNoIndexMetadata(locale);
 }
 
-export default function CheckoutPage() {
+export default async function CheckoutPage({ params }: Props) {
+    const { locale } = await params;
+    setRequestLocale(locale);
 
     return <CheckoutClient />;
 
