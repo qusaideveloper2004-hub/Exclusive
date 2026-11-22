@@ -106,7 +106,7 @@ SEO helpers in `src/lib/seo` are used with the Next.js Metadata API. `sitemap.ts
 ### 6. Loading, errors, and not found
 
 - `src/app/[locale]/error.tsx`: localized route error boundary with a retry action.
-- `src/app/[locale]/loading.tsx`: general localized loading fallback. Product and checkout routes have their own page-specific `loading.tsx` skeletons.
+- Product and checkout routes have page-specific `loading.tsx` skeletons; there is no locale-wide loading fallback.
 - `ProductDetailsSkeleton` and `ProductDetailsError` (in `components/products/details`) handle product loading and failed requests.
 - Home, category, product-detail, wishlist recommendations, and sitemap product data are fetched by Server Components or server utilities. The home page keeps `HomeErrorState` for unexpected failures after snapshot recovery; category retry refreshes the route.
 - The home page renders `<HeroSection />` followed directly by `<HomeProductSections />`; it does not wrap its product sections in `Suspense` or show a home-page loading skeleton.
