@@ -1,13 +1,13 @@
 {
   "source": "Google PageSpeed Insights",
-  "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/5au1vj34ct?form_factor=mobile",
+  "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-en/k3g1gpu2q2?form_factor=mobile&fresh=1",
   "requestedUrl": "https://exclusive-olive.vercel.app/en",
-  "capturedAt": "2026-11-22T16:32:00+02:00",
+  "capturedAt": "2026-11-22T18:51:36+02:00",
   "formFactor": "mobile",
   "emulatedDevice": "Moto G Power",
   "lighthouseVersion": "13.6.0",
   "scores": {
-    "performance": 99,
+    "performance": 100,
     "accessibility": 96,
     "bestPractices": 100,
     "seo": 100
@@ -15,8 +15,8 @@
   "labMetrics": {
     "firstContentfulPaint": "0.9 s",
     "largestContentfulPaint": "0.9 s",
-    "totalBlockingTime": "50 ms",
+    "totalBlockingTime": "0 ms",
     "cumulativeLayoutShift": 0,
-    "speedIndex": "3.1 s"
+    "speedIndex": "1.4 s"
   }
 }

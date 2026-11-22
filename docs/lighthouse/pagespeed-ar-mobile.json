@@ -1,76 +1,22 @@
 {
   "source": "Google PageSpeed Insights",
   "requestedUrl": "https://exclusive-olive.vercel.app/ar",
-  "capturedAt": "2026-11-21T22:29:03+02:00 to 2026-11-21T22:35:50+02:00",
+  "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/9vw54l5akw?form_factor=mobile",
+  "capturedAt": "2026-11-22T19:12:44+02:00",
   "formFactor": "mobile",
   "emulatedDevice": "Moto G Power",
   "lighthouseVersion": "13.6.0",
-  "summary": {
-    "method": "Median of three independent PageSpeed Insights runs",
-    "scores": {
-      "performance": 99,
-      "accessibility": 100,
-      "bestPractices": 100,
-      "seo": 100
-    },
-    "scoreRanges": {
-      "performance": "99-99",
-      "accessibility": "100-100",
-      "bestPractices": "100-100",
-      "seo": "100-100"
-    }
+  "scores": {
+    "performance": 98,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
   },
-  "runs": [
-    {
-      "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/d0xvo5ww6n?form_factor=mobile",
-      "capturedAt": "2026-11-21T22:29:03+02:00",
-      "scores": {
-        "performance": 99,
-        "accessibility": 100,
-        "bestPractices": 100,
-        "seo": 100
-      },
-      "labMetrics": {
-        "firstContentfulPaint": "1.0 s",
-        "largestContentfulPaint": "1.8 s",
-        "totalBlockingTime": "70 ms",
-        "cumulativeLayoutShift": 0,
-        "speedIndex": "2.5 s"
-      }
-    },
-    {
-      "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/fjlw48qt1v?form_factor=mobile",
-      "capturedAt": "2026-11-21T22:34:03+02:00",
-      "scores": {
-        "performance": 99,
-        "accessibility": 100,
-        "bestPractices": 100,
-        "seo": 100
-      },
-      "labMetrics": {
-        "firstContentfulPaint": "0.9 s",
-        "largestContentfulPaint": "2.0 s",
-        "totalBlockingTime": "10 ms",
-        "cumulativeLayoutShift": 0,
-        "speedIndex": "1.7 s"
-      }
-    },
-    {
-      "reportUrl": "https://pagespeed.web.dev/analysis/https-exclusive-olive-vercel-app-ar/iy5o9djupj?form_factor=mobile",
-      "capturedAt": "2026-11-21T22:35:50+02:00",
-      "scores": {
-        "performance": 99,
-        "accessibility": 100,
-        "bestPractices": 100,
-        "seo": 100
-      },
-      "labMetrics": {
-        "firstContentfulPaint": "0.9 s",
-        "largestContentfulPaint": "2.0 s",
-        "totalBlockingTime": "10 ms",
-        "cumulativeLayoutShift": 0,
-        "speedIndex": "1.8 s"
-      }
-    }
-  ]
+  "labMetrics": {
+    "firstContentfulPaint": "1.0 s",
+    "largestContentfulPaint": "1.0 s",
+    "totalBlockingTime": "20 ms",
+    "cumulativeLayoutShift": 0,
+    "speedIndex": "4.2 s"
+  }
 }
