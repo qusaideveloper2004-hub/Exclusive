@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,15 +20,31 @@ interface CategoryPageProps {
     hasLoadError: boolean;
 }
 
-export default function CategoryPage({ slug, products, hasLoadError }: CategoryPageProps) {
+export default function CategoryPage(props: CategoryPageProps) {
+
+    return (
+
+        <Suspense fallback={<CategoryPageContent {...props} searchQuery="" />}>
+            <CategoryPageWithSearchParams {...props} />
+        </Suspense>
+    );
+}
+
+function CategoryPageWithSearchParams(props: CategoryPageProps) {
+
+    const searchParams = useSearchParams();
+    const searchQuery = (searchParams.get("search") ?? "").trim();
+
+    return <CategoryPageContent {...props} searchQuery={searchQuery} />;
+}
+
+function CategoryPageContent({ slug, products, hasLoadError, searchQuery, }: CategoryPageProps & { searchQuery: string }) {
 
 const categorySlug = decodeURIComponent(slug).toLowerCase();
 const isUnsupportedCategory = categorySlug !== "all" && !SUPPORTED_CATEGORIES.has(categorySlug);
 
 const t = useTranslations("CategoryPage");
 const router = useRouter();
-const searchParams = useSearchParams();
-const searchQuery = (searchParams.get("search") ?? "").trim();
 
 const [sortBy, setSortBy] = useState<SortOption>("default");
 
@@ -203,4 +219,3 @@ return (
 );
 
 }
-
