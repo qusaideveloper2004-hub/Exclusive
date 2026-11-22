@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 import { Heart } from "lucide-react";
@@ -12,6 +12,8 @@ import { ProductCard } from "@/components/products/ProductCard";
 
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { useCartStore } from "@/store/useCartStore";
+import { localizeProduct } from "@/i18n/productTranslations";
+import type { Locale } from "@/lib/seo/constants";
 
 import type { Product } from "@/types/product";
 
@@ -22,8 +24,10 @@ export default function WishlistPageClient({
 }) {
 
 const t = useTranslations("WishlistPage");
+const locale = useLocale() as Locale;
 
-const wishlistItems = useWishlistStore((state) => state.items);
+const storedWishlistItems = useWishlistStore((state) => state.items);
+const wishlistItems = storedWishlistItems.map((product) => localizeProduct(product, locale));
 const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 const clearWishlist = useWishlistStore((state) => state.clearWishlist);
 
@@ -31,7 +35,7 @@ const addToCart = useCartStore((state) => state.addToCart);
 
 const handleMoveAllToBag = () => {
 
-    wishlistItems.forEach((product) => {
+    storedWishlistItems.forEach((product) => {
 
         addToCart(product, product.colors?.[0]?.name);
 
@@ -183,6 +187,4 @@ const handleMoveAllToBag = () => {
     );
 
 }
-
-
 

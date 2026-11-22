@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import WishlistPageClient from "./WishlistPageClient";
 import { type Locale } from "@/lib/seo/constants";
 import { productService } from "@/services/productService";
+import { localizeProduct } from "@/i18n/productTranslations";
 import type { Product } from "@/types/product";
 
 type Props = { params: Promise<{ locale: Locale }>; };
@@ -17,11 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 }
 
-export default async function WishlistPage() {
+export default async function WishlistPage({ params }: Props) {
+    const { locale } = await params;
     let recommendedProducts: Product[] = [];
 
     try {
-        recommendedProducts = (await productService.getAllProducts()).slice(0, 4);
+        recommendedProducts = (await productService.getAllProducts())
+            .slice(0, 4)
+            .map((product) => localizeProduct(product, locale));
     } catch (error) {
         console.error("Unable to load recommended wishlist products:", error);
     }

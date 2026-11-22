@@ -8,6 +8,7 @@ import { createMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME, DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/lib/seo/constants";
 
 import { productService } from "@/services/productService";
+import { localizeProduct } from "@/i18n/productTranslations";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FlashSalesSection } from "@/components/home/FlashSalesSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
@@ -53,10 +54,12 @@ const title = t("homeTitle");
     };
 }
 
-async function HomeProductSections() {
+async function HomeProductSections({ locale }: { locale: Locale }) {
     let products: Product[] | null = null;
     try {
-        products = await productService.getAllProducts();
+        products = (await productService.getAllProducts()).map((product) =>
+            localizeProduct(product, locale),
+        );
         if (products.length === 0) {
             throw new Error("FakeStoreAPI returned an empty products response");
         }
@@ -93,14 +96,14 @@ return (
 }
 
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
     const { locale } = await params;
     setRequestLocale(locale);
 
     return (
         <div>
             <HeroSection />
-            <HomeProductSections />
+            <HomeProductSections locale={locale} />
         </div>
     );
 }

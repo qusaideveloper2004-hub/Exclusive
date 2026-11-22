@@ -4,17 +4,20 @@ import { useState } from "react";
 import Image from "next/image";
 import { X, ShoppingBag } from "lucide-react";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
 import { useCartStore } from "@/store/useCartStore";
+import { localizeProduct } from "@/i18n/productTranslations";
+import type { Locale } from "@/lib/seo/constants";
 
 export default function CartPage() {
 
 const t = useTranslations("CartPage");
+const locale = useLocale() as Locale;
 
 const [couponCode, setCouponCode] = useState("");
 const [couponStatus, setCouponStatus] = useState<"success" | "error" | null>(null);
@@ -119,6 +122,7 @@ return (
                     {items.map((item) => {
 
                         const itemSubtotal = item.product.price * item.quantity;
+                        const product = localizeProduct(item.product, locale);
 
                         return (
 
@@ -142,8 +146,8 @@ return (
                                         </button>
 
                                         <Image
-                                            src={item.product.image}
-                                            alt={item.product.title}
+                                            src={product.image}
+                                            alt={product.title}
 
                                             fill
                                             unoptimized
@@ -160,7 +164,7 @@ return (
                                             className="text-base font-normal text-black hover:text-[var(--brand)] transition-colors line-clamp-1"
                                         >
 
-                                            {item.product.title}
+                                            {product.title}
 
                                         </Link>
 
@@ -377,5 +381,4 @@ return (
 );
 
 }
-
 

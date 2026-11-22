@@ -12,6 +12,7 @@ import JsonLd from "@/lib/seo/JsonLd";
 
 import ProductDetailsClient from "./ProductDetailsClient";
 import { productService } from "@/services/productService";
+import { localizeProduct } from "@/i18n/productTranslations";
 
 
 interface ProductPageProps {
@@ -38,10 +39,10 @@ const { locale, id } = await params;
 const baseMetadata = await createMetadata(locale);
 const t = await getTranslations({ locale, namespace: "ProductDetails" });
 
-const product = await getProductById(Number(id));
+const fetchedProduct = await getProductById(Number(id));
 
 
-if (!product) {
+if (!fetchedProduct) {
 
     return {
         ...baseMetadata,
@@ -50,6 +51,7 @@ if (!product) {
 
 }
 
+const product = localizeProduct(fetchedProduct, locale);
 
 const productMetadata = await createMetadata(locale, `/product/${id}`);
 
@@ -109,10 +111,10 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
 const { locale, id } = await params;
 const t = await getTranslations({ locale, namespace: "Header" });
 
-const product = await getProductById(Number(id));
+const fetchedProduct = await getProductById(Number(id));
 
 
-if (!product) {
+if (!fetchedProduct) {
 
     return (
         <ProductDetailsClient
@@ -123,8 +125,10 @@ if (!product) {
 
 }
 
+const product = localizeProduct(fetchedProduct, locale);
 
-const relatedProducts = await productService.getProductsByCategory(product.category);
+const relatedProducts = (await productService.getProductsByCategory(product.category))
+    .map((relatedProduct) => localizeProduct(relatedProduct, locale));
 
 const filteredRelatedProducts = relatedProducts.filter((item) => item.id !== product.id);
 

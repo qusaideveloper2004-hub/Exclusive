@@ -72,7 +72,7 @@ src/
 
 The route tree is locale-based under `src/app/[locale]`. `src/i18n/routing.ts` defines the supported locales and localized navigation, `src/i18n/request.ts` loads the messages, and `src/messages/en.json` and `ar.json` hold the UI strings. The locale layout sets `lang` and `dir` (RTL for Arabic, LTR for English). `src/middleware.ts` handles locale detection and redirects; its matcher excludes framework internals and static files while letting unprefixed routes be redirected to a locale.
 
-FakeStoreAPI product titles and descriptions stay in English because the API provides no localized data; the surrounding UI is fully localized.
+The surrounding UI is localized. FakeStoreAPI product titles and category names use local Arabic translations when available; untranslated product titles fall back to English. Product descriptions remain in English.
 
 ### 2. State management
 
@@ -129,7 +129,7 @@ The hero image in `HeroSection.tsx` uses `next/image` with priority loading and 
 ### Tradeoffs
 
 - Zustand + `localStorage` avoids a backend for demo state, but persisted data is limited to the current browser.
-- FakeStoreAPI provides sample data quickly, but its copy is English-only and its availability is outside the app's control. Requests run on the server with one retry and one-hour caching; if the API remains unavailable, `src/data/products.snapshot.json` keeps the demo catalog available but can become stale. A production store would use a first-party API and database.
+- FakeStoreAPI data is English-only, so product titles and category names are translated through a local overlay (`src/i18n/productTranslations.ts`, `src/lib/seo/categoryTranslations.ts`, and `src/messages/`) keyed by product id. Any product without a title translation falls back to its English title. Descriptions remain in English. FakeStoreAPI availability is outside the app's control. Requests run on the server with one retry and one-hour caching; if the API remains unavailable, `src/data/products.snapshot.json` keeps the demo catalog available but can become stale. A production store would use a first-party API and database.
 - Server-fetching products reduces browser-side API requests and renders product sections with the page. Lighthouse should be rerun against the deployed version to measure the actual impact.
 
 ## SEO

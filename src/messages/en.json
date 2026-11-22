@@ -453,5 +453,18 @@
   "inputMessage": "Your Massage",
   "sendButton": "Send Massage",
   "messageSent": "Your message was saved for this demo; no email was sent."
+},
+
+
+    "ProductCategories": {
+        "men's clothing": "Men's Clothing",
+        "women's clothing": "Women's Clothing",
+        "jewelery": "Jewelry",
+        "electronics": "Electronics"
+    }
+    
 }
-}
+
+
+
+

@@ -3,6 +3,7 @@ import "server-only";
 import snapshot from "@/data/products.snapshot.json";
 import type { FakeStoreProduct, Product } from "@/types/product";
 
+
 const BASE_URL = "https://fakestoreapi.com";
 const REQUEST_TIMEOUT_MS = 5000;
 const FETCH_ATTEMPTS = 2;
@@ -159,3 +160,5 @@ export const productService = {
     }
   },
 };
+
+

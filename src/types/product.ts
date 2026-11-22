@@ -8,6 +8,7 @@ export interface ProductColor {
 export interface Product {
   id: number;
   title: string;
+  originalTitle?: string;
   price: number;
   description: string;
   category: string;
@@ -34,6 +35,5 @@ export interface FakeStoreProduct {
     count: number;
   };
 }
-
 
 

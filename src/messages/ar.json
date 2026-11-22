@@ -461,5 +461,18 @@
   "inputMessage": "رسالتك",
   "sendButton": "إرسال الرسالة",
   "messageSent": "تم حفظ رسالتك في هذا النموذج التجريبي؛ لم يتم إرسال بريد إلكتروني."
+},
+
+"ProductCategories": {
+        "men's clothing": "ملابس رجالي",
+        "women's clothing": "ملابس نسائي",
+        "jewelery": "مجوهرات",
+        "electronics": "إلكترونيات"
+    }
+
+
 }
-}
+
+
+
+

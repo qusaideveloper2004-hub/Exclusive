@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCartStore } from "@/store/useCartStore";
+import { localizeProduct } from "@/i18n/productTranslations";
+import type { Locale } from "@/lib/seo/constants";
 
 
 type CheckoutItemProps = {
@@ -15,6 +17,8 @@ type CheckoutItemProps = {
 export default function CheckoutItem({ item, formatPrice }: CheckoutItemProps) {
 
     const t = useTranslations("Checkout");
+    const locale = useLocale() as Locale;
+    const product = localizeProduct(item.product, locale);
 
 
     return (
@@ -26,8 +30,8 @@ export default function CheckoutItem({ item, formatPrice }: CheckoutItemProps) {
                 <div className="relative h-14 w-14 shrink-0 rounded bg-[#F5F5F5] p-2">
 
                     <Image
-                        src={item.product.image}
-                        alt={item.product.title}
+                        src={product.image}
+                        alt={product.title}
                         fill
                         unoptimized
                         sizes="56px"
@@ -39,7 +43,7 @@ export default function CheckoutItem({ item, formatPrice }: CheckoutItemProps) {
                 <div className="min-w-0">
 
                     <p className="truncate text-sm font-medium text-black">
-                        {item.product.title}
+                        {product.title}
                     </p>
 
                     <p className="mt-1 text-xs text-gray-500">
@@ -59,5 +63,4 @@ export default function CheckoutItem({ item, formatPrice }: CheckoutItemProps) {
     );
 
 }
-
 

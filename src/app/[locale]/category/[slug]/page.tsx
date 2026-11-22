@@ -14,6 +14,7 @@ import {generateBreadcrumbSchema,getCategoryBreadcrumb, } from "@/lib/seo/struct
 
 import JsonLd from "@/lib/seo/JsonLd";
 import { productService } from "@/services/productService";
+import { localizeProduct } from "@/i18n/productTranslations";
 import type { Product } from "@/types/product";
 
 type Props = { params: Promise<{ locale: Locale; slug: string; }>; };
@@ -94,9 +95,10 @@ export default async function CategoryPage({ params }: Props) {
 
     if (supportedCategories.has(categorySlug)) {
         try {
-            products = categorySlug === "all"
+            const fetchedProducts = categorySlug === "all"
                 ? await productService.getAllProducts()
                 : await productService.getProductsByCategory(categorySlug);
+            products = fetchedProducts.map((product) => localizeProduct(product, locale));
         } catch (error) {
             console.error(`Unable to load category ${categorySlug}:`, error);
             hasLoadError = true;
