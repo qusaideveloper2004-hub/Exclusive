@@ -177,7 +177,7 @@ return (
                                     src="/images/footer/google-play.png"
                                 alt={t('googlePlayAlt')}
                                 width={110}
-                                height={36}
+                                height={40}
 
                                 className="object-contain"
                             />
@@ -266,4 +266,3 @@ return (
 
 );
 };
-
