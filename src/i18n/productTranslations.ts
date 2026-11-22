@@ -26,6 +26,29 @@ const PRODUCT_TITLES_AR: Record<number, string> = {
 
 };
 
+const PRODUCT_DESCRIPTIONS_AR: Record<number, string> = {
+    1: "حقيبة ظهر عملية للاستخدام اليومي والنزهات، مزودة بحجرة مبطنة لحمل حاسوب محمول مقاس يصل إلى 15 بوصة.",
+    2: "تيشيرت رجالي كاجوال بقصة سليم فيت وأكمام طويلة بتصميم راجلان، مصنوع من قماش خفيف ومريح ومناسب للارتداء اليومي.",
+    3: "جاكيت رجالي خارجي مناسب لفصول الربيع والخريف والشتاء، مثالي للعمل والمشي والتخييم والتنقلات والأنشطة الخارجية.",
+    4: "ملابس رجالية كاجوال بقصة سليم فيت؛ قد يختلف اللون قليلًا بين الشاشة والواقع، ويُفضّل مراجعة مقاسات القِطع قبل الاختيار.",
+    5: "سوار نسائي من مجموعة Legends مستوحى من تنين Naga الأسطوري، بتصميم سلسلة مرصعة بالذهب والفضة.",
+    6: "خاتم ذهبي صغير بتفاصيل Micropave، مصمم ليمنحك مظهرًا أنيقًا مع ضمان إمكانية الإرجاع أو الاستبدال خلال 30 يومًا.",
+    7: "خاتم خطوبة وزفاف كلاسيكي مطلي بالذهب الأبيض، مزين بحجر سوليتير أنيق ومناسب كهدية.",
+    8: "زوج أقراط مفتوح بتصميم Flare ومغطى بطبقة ذهب وردي على الستانلس ستيل المقاوم للصدأ.",
+    9: "قرص خارجي محمول بسعة 2 تيرابايت يدعم USB 3.0 وUSB 2.0، ويوفّر نقلًا سريعًا للبيانات وسعة تخزين كبيرة.",
+    10: "قرص SSD داخلي بسعة 1 تيرابايت يدعم SATA III، مصمم لتسريع التشغيل وأداء التطبيقات والاستجابة بشكل ملحوظ.",
+    11: "قرص Silicon Power SSD سعة 256 جيجابايت بتقنية 3D NAND وتقنية ذاكرة SLC لتحسين السرعة وطول عمر القرص.",
+    12: "قرص تخزين خارجي للألعاب بسعة 4 تيرابايت متوافق مع PlayStation 4، بتصميم أنيق وسهل الإعداد.",
+    13: "شاشة Acer حجمها 21.5 بوصة بدقة Full HD وتقنية IPS فائقة النحافة، مع تصميم خالي من الإطارات ووقت استجابة 4ms.",
+    14: "شاشة ألعاب Samsung منحنية بمساحة عرض فائقة مقاس 49 بوصة وتقنية QLED بمعدل تحديث 144 هرتز لتقليل الضبابية والتأخير.",
+    15: "جاكيت نسائي للتزلج 3 في 1، مزود بطبقة داخلية قابلة للفصل وغطاء قابل للتعديل ومناسب لموسم الشتاء والمناخات المختلفة.",
+    16: "جاكيت نسائي للموتوسيكلات بتصميم جلد صناعي ومزين بغطاء قابل للفصل، مزود بتفاصيل جيوب وأزرار على الخصر.",
+    17: "جاكيت مطر نسائي خفيف وخطوط، مزود بغطاء قابل للتعديل وحزام خصر وحجم جيوب مناسب للاستخدام اليومي والتنزه.",
+    18: "تيشيرت نسائي سادة بكم قصير وياقة قارب، مصنوع من قماش خفيف ومرن ومريح ومناسب للاستخدام اليومي.",
+    19: "تيشيرت نسائي خفيف بكم قصير وياقة على شكل V، صُمم بملمس قابل لتنقية الرطوبة ويحافظ على الراحة طوال اليوم.",
+    20: "تيشيرت نسائي كاجوال من القطن والـ Spandex بأكمام قصيرة وياقة على شكل V، مناسب للعمل والمدرسة والشاطئ والاستخدام اليومي.",
+};
+
 
 
 const PRODUCT_TITLES: Partial<Record<Locale, Record<number, string>>> = {
@@ -39,14 +62,27 @@ export function getProductTitle(id: number, title: string, locale: Locale): stri
 return PRODUCT_TITLES[locale]?.[id] ?? title;
 }
 
+export function getProductDescription(
+    id: number,
+    description: string,
+    locale: Locale,
+): string {
+    return locale === "ar"
+        ? PRODUCT_DESCRIPTIONS_AR[id] ?? description
+        : description;
+}
+
 export function localizeProduct(product: Product, locale: Locale): Product {
 
     const originalTitle = product.originalTitle ?? product.title;
+    const originalDescription = product.originalDescription ?? product.description;
 
-    return { ...product, originalTitle,
-
+    return {
+        ...product,
+        originalTitle,
+        originalDescription,
         title: getProductTitle(product.id, originalTitle, locale),
+        description: getProductDescription(product.id, originalDescription, locale),
     };
 }
-
 

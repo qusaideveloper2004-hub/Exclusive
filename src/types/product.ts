@@ -11,6 +11,7 @@ export interface Product {
   originalTitle?: string;
   price: number;
   description: string;
+  originalDescription?: string;
   category: string;
   image: string;
   rating?: number | { rate: number; count: number };
